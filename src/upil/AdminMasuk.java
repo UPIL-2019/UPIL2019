@@ -31,157 +31,197 @@ public class AdminMasuk extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        IsiNamaPengguna = new javax.swing.JTextField();
-        IsiKataSandi = new javax.swing.JTextField();
-        NamaPengguna = new javax.swing.JTextField();
-        Pass = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(250, 248, 240));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setText("Admin");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 16, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setText("Masuk Ke UPIL");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 92, -1, -1));
-
-        jToggleButton1.setText("Masuk");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 317, 125, -1));
-
-        jToggleButton2.setText("Buat Akun");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 317, 132, -1));
-
-        IsiNamaPengguna.setBackground(new java.awt.Color(250, 248, 240));
-        IsiNamaPengguna.setForeground(new java.awt.Color(250, 248, 240));
-        IsiNamaPengguna.setText("     Nama Pengguna");
-        IsiNamaPengguna.setCaretColor(new java.awt.Color(164, 172, 178));
-        IsiNamaPengguna.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        IsiNamaPengguna.setEnabled(false);
-        IsiNamaPengguna.setSelectionColor(new java.awt.Color(250, 248, 240));
-        IsiNamaPengguna.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IsiNamaPenggunaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(IsiNamaPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 320, 50));
-
-        IsiKataSandi.setBackground(new java.awt.Color(250, 248, 240));
-        IsiKataSandi.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        IsiKataSandi.setText("     Kata Sandi");
-        IsiKataSandi.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        IsiKataSandi.setEnabled(false);
-        IsiKataSandi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IsiKataSandiActionPerformed(evt);
-            }
-        });
-        getContentPane().add(IsiKataSandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 320, 50));
-
-        NamaPengguna.setDisabledTextColor(new java.awt.Color(250, 248, 240));
-        NamaPengguna.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                NamaPenggunaPropertyChange(evt);
-            }
-        });
-        NamaPengguna.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                NamaPenggunaKeyTyped(evt);
-            }
-        });
-        getContentPane().add(NamaPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 320, 50));
-
-        Pass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                PassKeyTyped(evt);
-            }
-        });
-        getContentPane().add(Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 320, 50));
+        btnAdmin = new javax.swing.JButton();
+        btnPemilih = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        btnAdmin1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(250, 248, 240));
+        jPanel1.setForeground(new java.awt.Color(49, 173, 226));
+
+        btnAdmin.setBackground(new java.awt.Color(49, 173, 226));
+        btnAdmin.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnAdmin.setForeground(new java.awt.Color(250, 248, 240));
+        btnAdmin.setText("Admin");
+        btnAdmin.setAlignmentY(1.0F);
+        btnAdmin.setFocusable(false);
+        btnAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAdminMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAdminMouseExited(evt);
+            }
+        });
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
+
+        btnPemilih.setBackground(new java.awt.Color(49, 173, 226));
+        btnPemilih.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnPemilih.setForeground(new java.awt.Color(250, 248, 240));
+        btnPemilih.setText("Pemilih");
+        btnPemilih.setAlignmentY(1.0F);
+        btnPemilih.setFocusable(false);
+        btnPemilih.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPemilihMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPemilihMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 880, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(408, 408, 408)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPemilih, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPemilih, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 510));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(250, 248, 240));
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(6, 62, 97));
+        jLabel3.setText("Nama Pengguna");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
+
+        jTextField1.setBackground(new java.awt.Color(250, 248, 240));
+        jTextField1.setForeground(new java.awt.Color(49, 173, 226));
+        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 230, 30));
+
+        jSeparator1.setForeground(new java.awt.Color(49, 173, 226));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 230, 10));
+
+        jLabel4.setFont(new java.awt.Font("Montserrat", 0, 10)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(6, 62, 97));
+        jLabel4.setText("Apakah anda tidak memilik akun?");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 180, 20));
+
+        jTextField2.setBackground(new java.awt.Color(250, 248, 240));
+        jTextField2.setForeground(new java.awt.Color(49, 173, 226));
+        jTextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 230, 30));
+
+        jSeparator2.setForeground(new java.awt.Color(49, 173, 226));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 230, 10));
+
+        btnAdmin1.setBackground(new java.awt.Color(49, 173, 226));
+        btnAdmin1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnAdmin1.setForeground(new java.awt.Color(250, 248, 240));
+        btnAdmin1.setText("Masuk");
+        btnAdmin1.setAlignmentY(1.0F);
+        btnAdmin1.setFocusable(false);
+        btnAdmin1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAdmin1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAdmin1MouseExited(evt);
+            }
+        });
+        btnAdmin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmin1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 235, 40));
+
+        jLabel5.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(6, 62, 97));
+        jLabel5.setText("Password");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(49, 173, 226));
+        jLabel6.setText("Daftar");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 40, 20));
+
+        jLabel2.setBackground(new java.awt.Color(49, 173, 226));
+        jLabel2.setForeground(new java.awt.Color(250, 248, 240));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upil/02.png"))); // NOI18N
+        jLabel2.setFocusable(false);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
+
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void btnAdminMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseEntered
         // TODO add your handling code here:
-        BuatAkun ba = new BuatAkun();
-        ba.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        btnAdmin.setBackground(new java.awt.Color(6,62,97));
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        TampilanAdmin ta = new TampilanAdmin();
-        ta.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnAdminMouseEntered
 
-    private void IsiKataSandiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsiKataSandiActionPerformed
+    private void btnAdminMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_IsiKataSandiActionPerformed
+        btnAdmin.setBackground(new java.awt.Color(49,173,226));
+    }//GEN-LAST:event_btnAdminMouseExited
 
-    private void IsiNamaPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsiNamaPenggunaActionPerformed
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_IsiNamaPenggunaActionPerformed
+    }//GEN-LAST:event_btnAdminActionPerformed
 
-    private void NamaPenggunaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NamaPenggunaKeyTyped
+    private void btnPemilihMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPemilihMouseEntered
         // TODO add your handling code here:
-        if ("".equals(NamaPengguna.getText())) 
-        {
-            IsiNamaPengguna.setVisible(true);
-            IsiNamaPengguna.setEnabled(false);
-        }else
-            IsiNamaPengguna.setVisible(false);
-            IsiNamaPengguna.setEnabled(false);
-        
-    }//GEN-LAST:event_NamaPenggunaKeyTyped
+        btnPemilih.setBackground(new java.awt.Color(6,62,97));
+    }//GEN-LAST:event_btnPemilihMouseEntered
 
-    private void PassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PassKeyTyped
+    private void btnPemilihMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPemilihMouseExited
         // TODO add your handling code here:
-        if ("".equals(Pass.getText())) 
-        {
-            IsiKataSandi.setVisible(true);
-            IsiKataSandi.setEnabled(false);
-        }else
-            IsiKataSandi.setVisible(false);
-            IsiKataSandi.setEnabled(false);
-    }//GEN-LAST:event_PassKeyTyped
+        btnPemilih.setBackground(new java.awt.Color(49,173,226));
+    }//GEN-LAST:event_btnPemilihMouseExited
 
-    private void NamaPenggunaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_NamaPenggunaPropertyChange
+    private void btnAdmin1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdmin1MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_NamaPenggunaPropertyChange
+        btnAdmin.setBackground(new java.awt.Color(6,62,97));
+
+    }//GEN-LAST:event_btnAdmin1MouseEntered
+
+    private void btnAdmin1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdmin1MouseExited
+        // TODO add your handling code here:
+        btnAdmin.setBackground(new java.awt.Color(49,173,226));
+    }//GEN-LAST:event_btnAdmin1MouseExited
+
+    private void btnAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmin1ActionPerformed
+        // TODO add your handling code here:
+        AdminMasuk adminmasuk = new AdminMasuk();
+        adminmasuk.setVisible(true);
+
+    }//GEN-LAST:event_btnAdmin1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,16 +262,21 @@ public class AdminMasuk extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IsiKataSandi;
-    private javax.swing.JTextField IsiNamaPengguna;
-    private javax.swing.JTextField NamaPengguna;
-    private javax.swing.JPasswordField Pass;
+    private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnAdmin1;
+    private javax.swing.JButton btnPemilih;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

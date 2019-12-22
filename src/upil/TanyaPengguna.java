@@ -28,76 +28,115 @@ public class TanyaPengguna extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnAdmin = new javax.swing.JButton();
+        btnPemilih = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setText("Kamu Siapa ?");
+        jPanel1.setBackground(new java.awt.Color(250, 248, 240));
+        jPanel1.setForeground(new java.awt.Color(49, 173, 226));
 
-        jToggleButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jToggleButton2.setText("Admin");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdmin.setBackground(new java.awt.Color(49, 173, 226));
+        btnAdmin.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnAdmin.setForeground(new java.awt.Color(250, 248, 240));
+        btnAdmin.setText("Admin");
+        btnAdmin.setAlignmentY(1.0F);
+        btnAdmin.setFocusable(false);
+        btnAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAdminMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAdminMouseExited(evt);
+            }
+        });
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                btnAdminActionPerformed(evt);
             }
         });
 
-        jToggleButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jToggleButton1.setText("Pemilih");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+        btnPemilih.setBackground(new java.awt.Color(49, 173, 226));
+        btnPemilih.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnPemilih.setForeground(new java.awt.Color(250, 248, 240));
+        btnPemilih.setText("Pemilih");
+        btnPemilih.setAlignmentY(1.0F);
+        btnPemilih.setFocusable(false);
+        btnPemilih.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPemilihMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPemilihMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(224, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
-                            .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(231, 231, 231))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(305, 305, 305))))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(408, 408, 408)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPemilih, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPemilih, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 1050, 110));
+
+        jLabel2.setBackground(new java.awt.Color(49, 173, 226));
+        jLabel2.setForeground(new java.awt.Color(250, 248, 240));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upil/01.png"))); // NOI18N
+        jLabel2.setFocusable(false);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnAdminMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseEntered
         // TODO add your handling code here:
-        PemilihMasuk pm = new PemilihMasuk();
-        pm.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        btnAdmin.setBackground(new java.awt.Color(6,62,97));
+        
+    }//GEN-LAST:event_btnAdminMouseEntered
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
-        AdminMasuk am = new AdminMasuk();
-        am.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        AdminMasuk adminmasuk = new AdminMasuk();
+        adminmasuk.setVisible(true);
+                
+    }//GEN-LAST:event_btnAdminActionPerformed
 
+    private void btnAdminMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseExited
+        // TODO add your handling code here:
+        btnAdmin.setBackground(new java.awt.Color(49,173,226));
+    }//GEN-LAST:event_btnAdminMouseExited
+
+    private void btnPemilihMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPemilihMouseEntered
+        // TODO add your handling code here:
+         btnPemilih.setBackground(new java.awt.Color(6,62,97));
+    }//GEN-LAST:event_btnPemilihMouseEntered
+
+    private void btnPemilihMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPemilihMouseExited
+        // TODO add your handling code here:
+        btnPemilih.setBackground(new java.awt.Color(49,173,226));
+    }//GEN-LAST:event_btnPemilihMouseExited
+
+    
     /**
      * @param args the command line arguments
      */
@@ -134,8 +173,9 @@ public class TanyaPengguna extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnPemilih;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
