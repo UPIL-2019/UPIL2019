@@ -4,7 +4,7 @@
  *  NIM : 10118009
  *  Deskripsi Program : 
  */
-package upil;
+package pbo.upil.view;
 
 /**
  *
@@ -35,14 +35,14 @@ public class AdminMasuk extends javax.swing.JFrame {
         btnAdmin = new javax.swing.JButton();
         btnPemilih = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
-        btnAdmin1 = new javax.swing.JButton();
+        btnMasuk = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblDaftar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -107,7 +107,6 @@ public class AdminMasuk extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(250, 248, 240));
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
@@ -115,10 +114,12 @@ public class AdminMasuk extends javax.swing.JFrame {
         jLabel3.setText("Nama Pengguna");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(250, 248, 240));
-        jTextField1.setForeground(new java.awt.Color(49, 173, 226));
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 230, 30));
+        txtUsername.setBackground(new java.awt.Color(250, 248, 240));
+        txtUsername.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(49, 173, 226));
+        txtUsername.setText("This is USERNAME");
+        txtUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 230, 30));
 
         jSeparator1.setForeground(new java.awt.Color(49, 173, 226));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 230, 10));
@@ -128,48 +129,57 @@ public class AdminMasuk extends javax.swing.JFrame {
         jLabel4.setText("Apakah anda tidak memilik akun?");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 180, 20));
 
-        jTextField2.setBackground(new java.awt.Color(250, 248, 240));
-        jTextField2.setForeground(new java.awt.Color(49, 173, 226));
-        jTextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 230, 30));
+        txtPassword.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        txtPassword.setText("jPasswordField1sdfs");
+        txtPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 230, 30));
 
         jSeparator2.setForeground(new java.awt.Color(49, 173, 226));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 230, 10));
 
-        btnAdmin1.setBackground(new java.awt.Color(49, 173, 226));
-        btnAdmin1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnAdmin1.setForeground(new java.awt.Color(250, 248, 240));
-        btnAdmin1.setText("Masuk");
-        btnAdmin1.setAlignmentY(1.0F);
-        btnAdmin1.setFocusable(false);
-        btnAdmin1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMasuk.setBackground(new java.awt.Color(49, 173, 226));
+        btnMasuk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnMasuk.setForeground(new java.awt.Color(250, 248, 240));
+        btnMasuk.setText("Masuk");
+        btnMasuk.setAlignmentY(1.0F);
+        btnMasuk.setFocusable(false);
+        btnMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAdmin1MouseEntered(evt);
+                btnMasukMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAdmin1MouseExited(evt);
+                btnMasukMouseExited(evt);
             }
         });
-        btnAdmin1.addActionListener(new java.awt.event.ActionListener() {
+        btnMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdmin1ActionPerformed(evt);
+                btnMasukActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 235, 40));
+        getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 235, 40));
 
         jLabel5.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel5.setText("Password");
+        jLabel5.setText("Kata Sandi");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(49, 173, 226));
-        jLabel6.setText("Daftar");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 40, 20));
+        lblDaftar.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        lblDaftar.setForeground(new java.awt.Color(49, 173, 226));
+        lblDaftar.setText("Daftar");
+        lblDaftar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblDaftar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDaftarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDaftarMouseExited(evt);
+            }
+        });
+        getContentPane().add(lblDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 40, 20));
 
         jLabel2.setBackground(new java.awt.Color(49, 173, 226));
         jLabel2.setForeground(new java.awt.Color(250, 248, 240));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upil/02.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/02.png"))); // NOI18N
         jLabel2.setFocusable(false);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
@@ -205,23 +215,31 @@ public class AdminMasuk extends javax.swing.JFrame {
         btnPemilih.setBackground(new java.awt.Color(49,173,226));
     }//GEN-LAST:event_btnPemilihMouseExited
 
-    private void btnAdmin1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdmin1MouseEntered
+    private void btnMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseEntered
         // TODO add your handling code here:
         btnAdmin.setBackground(new java.awt.Color(6,62,97));
 
-    }//GEN-LAST:event_btnAdmin1MouseEntered
+    }//GEN-LAST:event_btnMasukMouseEntered
 
-    private void btnAdmin1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdmin1MouseExited
+    private void btnMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseExited
         // TODO add your handling code here:
         btnAdmin.setBackground(new java.awt.Color(49,173,226));
-    }//GEN-LAST:event_btnAdmin1MouseExited
+    }//GEN-LAST:event_btnMasukMouseExited
 
-    private void btnAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmin1ActionPerformed
+    private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
         AdminMasuk adminmasuk = new AdminMasuk();
         adminmasuk.setVisible(true);
 
-    }//GEN-LAST:event_btnAdmin1ActionPerformed
+    }//GEN-LAST:event_btnMasukActionPerformed
+
+    private void lblDaftarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseEntered
+        lblDaftar.setText("<html><u>Daftar</u></html");
+    }//GEN-LAST:event_lblDaftarMouseEntered
+
+    private void lblDaftarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseExited
+        lblDaftar.setText("<html>Daftar</html");
+    }//GEN-LAST:event_lblDaftarMouseExited
 
     /**
      * @param args the command line arguments
@@ -263,7 +281,7 @@ public class AdminMasuk extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
-    private javax.swing.JButton btnAdmin1;
+    private javax.swing.JButton btnMasuk;
     private javax.swing.JButton btnPemilih;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -272,11 +290,11 @@ public class AdminMasuk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblDaftar;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

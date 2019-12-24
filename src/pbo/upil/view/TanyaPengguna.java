@@ -4,7 +4,7 @@
  *  NIM : 10118009
  *  Deskripsi Program : 
  */
-package upil;
+package pbo.upil.view;
 
 /**
  *
@@ -34,7 +34,6 @@ public class TanyaPengguna extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(250, 248, 240));
@@ -100,7 +99,7 @@ public class TanyaPengguna extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(49, 173, 226));
         jLabel2.setForeground(new java.awt.Color(250, 248, 240));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upil/01.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/01.png"))); // NOI18N
         jLabel2.setFocusable(false);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
@@ -117,6 +116,7 @@ public class TanyaPengguna extends javax.swing.JFrame {
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
         AdminMasuk adminmasuk = new AdminMasuk();
+        this.setVisible(false);
         adminmasuk.setVisible(true);
                 
     }//GEN-LAST:event_btnAdminActionPerformed

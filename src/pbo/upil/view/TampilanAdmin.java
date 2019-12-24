@@ -4,7 +4,7 @@
  *  NIM : 10118009
  *  Deskripsi Program : 
  */
-package upil;
+package pbo.upil.view;
 
 /**
  *
