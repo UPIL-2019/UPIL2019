@@ -1,4 +1,6 @@
-package pbo.upil.view;
+package pbo.upil;
+
+import pbo.upil.view.TanyaPengguna;
 
 /**
  *
