@@ -124,13 +124,13 @@ public class AdminMasuk extends javax.swing.JFrame {
 
     private void btnMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseEntered
         // TODO add your handling code here:
-        btnAdmin.setBackground(new java.awt.Color(6,62,97));
+        btnMasuk.setBackground(new java.awt.Color(6,62,97));
 
     }//GEN-LAST:event_btnMasukMouseEntered
 
     private void btnMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseExited
         // TODO add your handling code here:
-        btnAdmin.setBackground(new java.awt.Color(49,173,226));
+        btnMasuk.setBackground(new java.awt.Color(49,173,226));
     }//GEN-LAST:event_btnMasukMouseExited
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
