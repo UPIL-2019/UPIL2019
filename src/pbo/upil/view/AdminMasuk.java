@@ -1,9 +1,3 @@
-/*
- *  Nama : Tassyakur Pasya
- *  Kelas : IF01
- *  NIM : 10118009
- *  Deskripsi Program : 
- */
 package pbo.upil.view;
 
 /**
