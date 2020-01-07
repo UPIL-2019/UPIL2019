@@ -1,4 +1,4 @@
-package pbo.upil.view;
+package pbo.upil.views;
 
 /**
  *
@@ -46,8 +46,12 @@ public class AdminMasuk extends javax.swing.JFrame {
         txtUsername.setBackground(new java.awt.Color(250, 248, 240));
         txtUsername.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(49, 173, 226));
-        txtUsername.setText("This is USERNAME");
         txtUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 230, 30));
 
         jSeparator1.setForeground(new java.awt.Color(49, 173, 226));
@@ -58,8 +62,9 @@ public class AdminMasuk extends javax.swing.JFrame {
         jLabel4.setText("Apakah anda tidak memilik akun?");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 180, 20));
 
+        txtPassword.setBackground(new java.awt.Color(250, 248, 240));
         txtPassword.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        txtPassword.setText("jPasswordField1sdfs");
+        txtPassword.setForeground(new java.awt.Color(49, 173, 226));
         txtPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 230, 30));
 
@@ -129,8 +134,9 @@ public class AdminMasuk extends javax.swing.JFrame {
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
-        AdminMasuk adminmasuk = new AdminMasuk();
-        adminmasuk.setVisible(true);
+        TampilanAdmin ta = new TampilanAdmin();
+        this.setVisible(false);
+        ta.setVisible(true);
 
     }//GEN-LAST:event_btnMasukActionPerformed
 
@@ -141,6 +147,10 @@ public class AdminMasuk extends javax.swing.JFrame {
     private void lblDaftarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseExited
         lblDaftar.setText("<html>Daftar</html");
     }//GEN-LAST:event_lblDaftarMouseExited
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
     /**
      * @param args the command line arguments

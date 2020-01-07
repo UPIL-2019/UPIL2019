@@ -1,4 +1,4 @@
-package pbo.upil.view;
+package pbo.upil.views;
 
 /**
  *
@@ -30,6 +30,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
         IsiNIM = new javax.swing.JTextField();
         Nama = new javax.swing.JTextField();
         IsiNama = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -109,7 +110,11 @@ public class PemilihMasuk extends javax.swing.JFrame {
         });
         getContentPane().add(IsiNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 320, 50));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/bg.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -216,6 +221,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

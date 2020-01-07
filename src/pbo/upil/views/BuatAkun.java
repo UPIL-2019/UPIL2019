@@ -1,4 +1,4 @@
-package pbo.upil.view;
+package pbo.upil.views;
 
 /**
  *
@@ -29,6 +29,7 @@ public class BuatAkun extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         NamaPengguna = new javax.swing.JTextField();
         Pass = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,7 +90,11 @@ public class BuatAkun extends javax.swing.JFrame {
         });
         getContentPane().add(Pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 320, 50));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/views/bg.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, -1));
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -175,6 +180,7 @@ public class BuatAkun extends javax.swing.JFrame {
     private javax.swing.JPasswordField Pass;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
