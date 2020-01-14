@@ -1,5 +1,6 @@
 package pbo.upil.views;
 
+import java.awt.Frame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -35,7 +36,6 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnKembali = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
@@ -43,36 +43,22 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKandidat = new javax.swing.JTable();
+        pnlExit = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        pnlMinimize = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        pnlBack = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnKembali.setBackground(new java.awt.Color(49, 173, 226));
-        btnKembali.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnKembali.setForeground(new java.awt.Color(250, 248, 240));
-        btnKembali.setText("KEMBALI");
-        btnKembali.setAlignmentY(1.0F);
-        btnKembali.setFocusable(false);
-        btnKembali.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnKembaliMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnKembaliMouseExited(evt);
-            }
-        });
-        btnKembali.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKembaliActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 530, 235, 40));
 
         btnUbah.setBackground(new java.awt.Color(49, 173, 226));
         btnUbah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -93,7 +79,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
                 btnUbahActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 140, 235, 40));
+        getContentPane().add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 240, 60));
 
         btnTambah.setBackground(new java.awt.Color(49, 173, 226));
         btnTambah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -114,7 +100,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
                 btnTambahActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, 235, 40));
+        getContentPane().add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 240, 60));
 
         btnHapus.setBackground(new java.awt.Color(49, 173, 226));
         btnHapus.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -135,7 +121,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
                 btnHapusActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 235, 40));
+        getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 240, 60));
 
         btnHasil.setBackground(new java.awt.Color(49, 173, 226));
         btnHasil.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -156,12 +142,13 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
                 btnHasilActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 240, 235, 40));
+        getContentPane().add(btnHasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 240, 60));
 
+        jLabel1.setBackground(new java.awt.Color(250, 248, 240));
         jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("DAFTAR KANDIDAT");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, -1));
+        jLabel1.setText("Daftar Kandidat");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1060, -1));
 
         tableKandidat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -183,48 +170,119 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         });
         jScrollPane1.setViewportView(tableKandidat);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 740, 480));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 490, 230));
 
+        pnlExit.setBackground(new java.awt.Color(250, 248, 240));
+
+        jLabel4.setBackground(new java.awt.Color(255, 102, 102));
+        jLabel4.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(109, 109, 109));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("x");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlExitLayout = new javax.swing.GroupLayout(pnlExit);
+        pnlExit.setLayout(pnlExitLayout);
+        pnlExitLayout.setHorizontalGroup(
+            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        pnlExitLayout.setVerticalGroup(
+            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 30, -1));
+
+        pnlMinimize.setBackground(new java.awt.Color(250, 248, 240));
+
+        jLabel6.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("_");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel6MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlMinimizeLayout = new javax.swing.GroupLayout(pnlMinimize);
+        pnlMinimize.setLayout(pnlMinimizeLayout);
+        pnlMinimizeLayout.setHorizontalGroup(
+            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlMinimizeLayout.setVerticalGroup(
+            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pnlMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 30, -1));
+
+        pnlBack.setBackground(new java.awt.Color(250, 248, 240));
+
+        jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("<");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
+        pnlBack.setLayout(pnlBackLayout);
+        pnlBackLayout.setHorizontalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        pnlBackLayout.setVerticalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
+
+        jLabel2.setBackground(new java.awt.Color(250, 248, 240));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/bg.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnKembaliMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKembaliMouseEntered
-        // TODO add your handling code here:
-        btnKembali.setBackground(new java.awt.Color(6,62,97));
-
-    }//GEN-LAST:event_btnKembaliMouseEntered
-
-    private void btnKembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKembaliMouseExited
-        // TODO add your handling code here:
-        btnKembali.setBackground(new java.awt.Color(49,173,226));
-    }//GEN-LAST:event_btnKembaliMouseExited
-
-    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
-        // TODO add your handling code here:
-        TanyaPengguna tp = new TanyaPengguna();
-        this.setVisible(false);
-        tp.setVisible(true);
-
-    }//GEN-LAST:event_btnKembaliActionPerformed
-
-    private void btnUbahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUbahMouseEntered
-
-    private void btnUbahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUbahMouseExited
-
-    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        UbahKandidat dialogUbahKandidat = new UbahKandidat(this, true);
-        dialogUbahKandidat.getTxtNomorKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
-        dialogUbahKandidat.getTxtNamaKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 1).toString());
-        dialogUbahKandidat.setVisible(true);
-    }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnTambahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahMouseEntered
         // TODO add your handling code here:
@@ -285,6 +343,64 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         }
     }//GEN-LAST:event_tableKandidatMouseClicked
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+        pnlExit.setBackground(new java.awt.Color(153,153,153));
+        jLabel1.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        pnlExit.setBackground(new java.awt.Color(250,248,240));
+        jLabel1.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
+        pnlMinimize.setBackground(new java.awt.Color(153,153,153));
+        jLabel4.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel6MouseEntered
+
+    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
+        pnlMinimize.setBackground(new java.awt.Color(250,248,240));
+        jLabel4.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel6MouseExited
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        UbahKandidat dialogUbahKandidat = new UbahKandidat(this, true);
+        dialogUbahKandidat.getTxtNomorKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
+        dialogUbahKandidat.getTxtNamaKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 1).toString());
+        dialogUbahKandidat.setVisible(true);
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnUbahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUbahMouseExited
+
+    private void btnUbahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseEntered
+       pnlBack.setBackground(new java.awt.Color(153,153,153));
+        jLabel7.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_btnUbahMouseEntered
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        pnlBack.setBackground(new java.awt.Color(153,153,153));
+        jLabel7.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        pnlBack.setBackground(new java.awt.Color(250,248,240));
+        jLabel7.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel7MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -324,12 +440,17 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHasil;
-    private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pnlBack;
+    private javax.swing.JPanel pnlExit;
+    private javax.swing.JPanel pnlMinimize;
     private javax.swing.JTable tableKandidat;
     // End of variables declaration//GEN-END:variables
 
