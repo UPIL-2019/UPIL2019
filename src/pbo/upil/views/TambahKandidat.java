@@ -17,7 +17,7 @@ public class TambahKandidat extends javax.swing.JDialog {
     /**
      * Creates new form TambahKandidat
      */
-    public TambahKandidat(java.awt.Frame parent, boolean modal) {
+    public TambahKandidat(java.awt.Frame parent, boolean modal, JTable table) {
         super(parent, modal);
         initComponents();
     }
@@ -245,12 +245,7 @@ public class TambahKandidat extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOkMouseExited
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO add your handling code here:
-        //DefaultTableModel model = (DefaultTableModel) tableKandidat.getModel();
-        //model.addRow(new Object[]{"1", "Amber"});
-        //this.setVisible(false);
-        //ta.setVisible(true);
-        //tambahKandidatController.simpanData(new TampilanAdmin());
+     
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
