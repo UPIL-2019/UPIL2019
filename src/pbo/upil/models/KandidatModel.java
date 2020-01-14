@@ -30,8 +30,8 @@ public class KandidatModel {
         this.listener = listener;
     }
 
-    public int getNomorKandidat() {
-        return nomorKandidat;
+    public String getNomorKandidat() {
+        return Integer.toString(nomorKandidat);
     }
 
     public void setNomorKandidat(int nomorKandidat) {

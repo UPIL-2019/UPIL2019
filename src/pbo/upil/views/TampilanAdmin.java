@@ -5,13 +5,16 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import pbo.upil.entities.Kandidat;
+import pbo.upil.events.KandidatListener;
+import pbo.upil.models.KandidatModel;
 import pbo.upil.models.TableKandidatModel;
 
 /**
  *
  * @author Achapasya2109
  */
-public class TampilanAdmin extends javax.swing.JFrame {
+public class TampilanAdmin extends javax.swing.JFrame implements KandidatListener {
     private TableKandidatModel tableModel;
     public TampilanAdmin() {
         tableModel = new TableKandidatModel();
@@ -329,4 +332,24 @@ public class TampilanAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableKandidat;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(KandidatModel model) {
+        
+    }
+
+    @Override
+    public void onInsert(Kandidat kandidat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onDelete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onUpdate(Kandidat kandidat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -8,17 +8,25 @@ package pbo.upil.views;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import pbo.upil.entities.Kandidat;
+import pbo.upil.events.KandidatListener;
+import pbo.upil.models.KandidatModel;
+import pbo.upil.models.TableKandidatModel;
 
 /**
  *
  * @author Agung Nurhamidan
  */
-public class TambahKandidat extends javax.swing.JDialog {
+public class TambahKandidat extends javax.swing.JDialog implements KandidatListener {
+    private TableKandidatModel tableModel;
+    private JTable tableKandidat;
     /**
      * Creates new form TambahKandidat
      */
-    public TambahKandidat(java.awt.Frame parent, boolean modal) {
+    public TambahKandidat(java.awt.Frame parent, boolean modal, TampilanAdmin tampilanAdmin) {
         super(parent, modal);
+        tableModel = new TableKandidatModel();
+        tampilanAdmin.getTableKandidat().setModel(tableModel);
         initComponents();
     }
 
@@ -277,4 +285,26 @@ public class TambahKandidat extends javax.swing.JDialog {
     private javax.swing.JTextField txtNamaKandidat;
     private javax.swing.JTextField txtNomorKandidat;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(KandidatModel model) {
+        txtNomorKandidat.setText(model.getNomorKandidat());
+        txtNamaKandidat.setText(model.getNama());
+        
+    }
+
+    @Override
+    public void onInsert(Kandidat kandidat) {
+        tableModel.add(kandidat);
+    }
+
+    @Override
+    public void onDelete() {
+        int index = table
+    }
+
+    @Override
+    public void onUpdate(Kandidat kandidat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
