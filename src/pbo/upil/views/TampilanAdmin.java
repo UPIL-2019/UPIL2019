@@ -4,32 +4,23 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import pbo.upil.models.TableKandidatModel;
 
 /**
  *
  * @author Achapasya2109
  */
 public class TampilanAdmin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Login
-     */
-    public String test;
-    public DefaultTableModel tblKandidatModel;
+    private TableKandidatModel tableModel;
     public TampilanAdmin() {
+        tableModel = new TableKandidatModel();
         initComponents();
+        tableKandidat.setModel(tableModel);
     }
 
-    public DefaultTableModel getTblKandidatModel() {
-        return tblKandidatModel;
-    }
-
-    public JTable getTblKandidat() {
-        return tblKandidat;
-    }
-
-    public JButton getBtnHasil() {
-        return btnHasil;
+    public JTable getTableKandidat() {
+        return tableKandidat;
     }
 
     /**
@@ -48,7 +39,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnHasil = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblKandidat = new javax.swing.JTable();
+        tableKandidat = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -169,33 +160,25 @@ public class TampilanAdmin extends javax.swing.JFrame {
         jLabel1.setText("DAFTAR KANDIDAT");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, -1));
 
-        tblKandidat.setModel(new javax.swing.table.DefaultTableModel(
+        tableKandidat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Sashi"},
-                {"2", "Caddles"}
+                {},
+                {}
             },
             new String [] {
-                "Nomor Kandidat", "Nama"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
-        tblKandidat.setFocusable(false);
-        tblKandidat.addMouseListener(new java.awt.event.MouseAdapter() {
+        ));
+        tableKandidat.setFocusable(false);
+        tableKandidat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblKandidatMouseClicked(evt);
+                tableKandidatMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                tblKandidatMouseEntered(evt);
+                tableKandidatMouseEntered(evt);
             }
         });
-        jScrollPane1.setViewportView(tblKandidat);
+        jScrollPane1.setViewportView(tableKandidat);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 740, 480));
 
@@ -234,9 +217,9 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahMouseExited
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        DialogUbahKandidat dialogUbahKandidat = new DialogUbahKandidat(this, true);
-        dialogUbahKandidat.getTxtNomorKandidat().setText(tblKandidat.getValueAt(tblKandidat.getSelectedRow(), 0).toString());
-        dialogUbahKandidat.getTxtNamaKandidat().setText(tblKandidat.getValueAt(tblKandidat.getSelectedRow(), 1).toString());
+        UbahKandidat dialogUbahKandidat = new UbahKandidat(this, true);
+        dialogUbahKandidat.getTxtNomorKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
+        dialogUbahKandidat.getTxtNamaKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 1).toString());
         dialogUbahKandidat.setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -249,8 +232,8 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahMouseExited
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        TambahKandidatView tambahKandidatView = new TambahKandidatView(this, true);
-        tambahKandidatView.setVisible(true);
+        TambahKandidat tambahKandidat = new TambahKandidat(this, true);
+        tambahKandidat.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnHapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseEntered
@@ -274,30 +257,30 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHasilMouseExited
 
     private void btnHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHasilActionPerformed
-        
+
     }//GEN-LAST:event_btnHasilActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        if (tblKandidat.getSelectedRow() < 0) {
+        if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
         }
     }//GEN-LAST:event_formWindowActivated
 
-    private void tblKandidatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKandidatMouseEntered
-        if (tblKandidat.getSelectedRow() < 0) {
+    private void tableKandidatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseEntered
+        if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
         } else {
             btnUbah.setEnabled(true);
         }
-    }//GEN-LAST:event_tblKandidatMouseEntered
+    }//GEN-LAST:event_tableKandidatMouseEntered
 
-    private void tblKandidatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKandidatMouseClicked
-        if (tblKandidat.getSelectedRow() < 0) {
+    private void tableKandidatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseClicked
+        if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
         } else {
             btnUbah.setEnabled(true);
         }
-    }//GEN-LAST:event_tblKandidatMouseClicked
+    }//GEN-LAST:event_tableKandidatMouseClicked
 
     /**
      * @param args the command line arguments
@@ -344,6 +327,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblKandidat;
+    private javax.swing.JTable tableKandidat;
     // End of variables declaration//GEN-END:variables
 }
