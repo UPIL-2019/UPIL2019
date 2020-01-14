@@ -36,6 +36,8 @@ public class AdminMasuk extends javax.swing.JFrame {
         lblDaftar = new javax.swing.JLabel();
         pnlExit = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        pnlBack = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         pnlMinimize = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -109,6 +111,9 @@ public class AdminMasuk extends javax.swing.JFrame {
         lblDaftar.setText("Daftar");
         lblDaftar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDaftar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDaftarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblDaftarMouseEntered(evt);
             }
@@ -149,6 +154,47 @@ public class AdminMasuk extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 30, -1));
+
+        pnlBack.setBackground(new java.awt.Color(250, 248, 240));
+
+        jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("<");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
+        pnlBack.setLayout(pnlBackLayout);
+        pnlBackLayout.setHorizontalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        pnlBackLayout.setVerticalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
 
         pnlMinimize.setBackground(new java.awt.Color(250, 248, 240));
 
@@ -250,6 +296,27 @@ public class AdminMasuk extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel6MouseExited
 
+    private void lblDaftarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseClicked
+        // TODO add your handling code here:
+        BuatAkun ba = new BuatAkun();
+        ba.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblDaftarMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        pnlBack.setBackground(new java.awt.Color(153,153,153));
+        jLabel7.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        pnlBack.setBackground(new java.awt.Color(250,248,240));
+        jLabel7.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel7MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -296,9 +363,11 @@ public class AdminMasuk extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblDaftar;
+    private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlExit;
     private javax.swing.JPanel pnlMinimize;
     private javax.swing.JPasswordField txtPassword;
