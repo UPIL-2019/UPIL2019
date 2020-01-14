@@ -1,12 +1,16 @@
 package pbo.upil.views;
 
 import java.awt.Frame;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import pbo.upil.databases.UpilDatabase;
+import pbo.upil.errors.KandidatException;
 import pbo.upil.models.TableKandidatModel;
+import pbo.upil.services.KandidatDao;
 
 /**
  *
@@ -23,7 +27,10 @@ public class TampilanAdmin extends javax.swing.JFrame {
     public JTable getTableKandidat() {
         return tableKandidat;
     }
-
+    public void loadDatabase() throws SQLException, KandidatException{
+        KandidatDao kdao = UpilDatabase.getKandidatDao();
+        tableModel.setList(kdao.selectAllKandidat());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

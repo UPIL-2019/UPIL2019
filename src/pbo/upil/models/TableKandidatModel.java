@@ -17,6 +17,11 @@ import pbo.upil.entities.Kandidat;
 public class TableKandidatModel extends AbstractTableModel  {
     private List<Kandidat> list = new ArrayList<>();
 
+    public void setList(List<Kandidat> list) {
+        this.list = list;
+    }
+
+    
     @Override
     public int getRowCount() {
         return list.size();
