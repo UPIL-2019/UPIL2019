@@ -1,5 +1,7 @@
 package pbo.upil.views;
 
+import java.awt.Frame;
+
 /**
  *
  * @author Achapasya2109
@@ -23,64 +25,398 @@ public class TampilanPemilihan extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        kandidat1 = new javax.swing.JRadioButton();
+        btn_pilih = new javax.swing.JButton();
+        no_kandidat1 = new javax.swing.JTextField();
+        foto_kandidat5 = new javax.swing.JTextField();
+        nama_kandidat1 = new javax.swing.JTextField();
+        visi_kandidat1 = new javax.swing.JTextField();
+        no_kandidat2 = new javax.swing.JTextField();
+        nama_kandidat2 = new javax.swing.JTextField();
+        visi_kandidat2 = new javax.swing.JTextField();
+        misi_kandidat1 = new javax.swing.JTextField();
+        misi_kandidat2 = new javax.swing.JTextField();
+        kandidat2 = new javax.swing.JRadioButton();
+        no_kandidat3 = new javax.swing.JTextField();
+        nama_kandidat3 = new javax.swing.JTextField();
+        visi_kandidat3 = new javax.swing.JTextField();
+        misi_kandidat3 = new javax.swing.JTextField();
+        kandidat3 = new javax.swing.JRadioButton();
+        no_kandidat4 = new javax.swing.JTextField();
+        nama_kandidat4 = new javax.swing.JTextField();
+        visi_kandidat4 = new javax.swing.JTextField();
+        misi_kandidat4 = new javax.swing.JTextField();
+        kandidat4 = new javax.swing.JRadioButton();
+        no_kandidat5 = new javax.swing.JTextField();
+        nama_kandidat5 = new javax.swing.JTextField();
+        visi_kandidat5 = new javax.swing.JTextField();
+        misi_kandidat5 = new javax.swing.JTextField();
+        kandidat5 = new javax.swing.JRadioButton();
+        foto_kandidat1 = new javax.swing.JTextField();
+        foto_kandidat2 = new javax.swing.JTextField();
+        foto_kandidat3 = new javax.swing.JTextField();
+        foto_kandidat4 = new javax.swing.JTextField();
+        pnlExit = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        pnlBack = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        pnlMinimize = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1060, 600));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setText("Pemilihan");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 0, 48)); // NOI18N
+        jLabel1.setText("Pemilihan Kandidat");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("1");
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 129, 165, 134));
+        kandidat1.setToolTipText("");
+        getContentPane().add(kandidat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 30, 30));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText("3");
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 158, 134));
-
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField4.setText("2");
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 129, 159, 134));
-
-        jRadioButton1.setToolTipText("");
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 294, -1, -1));
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 294, -1, -1));
-        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(659, 294, -1, -1));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton1.setText("PILIH");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_pilih.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        btn_pilih.setText("PILIH");
+        btn_pilih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_pilihActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, -1));
+        getContentPane().add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, 170, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/bg.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, -1));
+        no_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        no_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        no_kandidat1.setText("1");
+        getContentPane().add(no_kandidat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 165, 30));
+
+        foto_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        foto_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        foto_kandidat5.setText("FOTO 5");
+        getContentPane().add(foto_kandidat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 165, 134));
+
+        nama_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        nama_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nama_kandidat1.setText("NAMA KAN 01");
+        getContentPane().add(nama_kandidat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 165, 30));
+
+        visi_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        visi_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        visi_kandidat1.setText("VISI KAN 01");
+        getContentPane().add(visi_kandidat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 165, 30));
+
+        no_kandidat2.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        no_kandidat2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        no_kandidat2.setText("2");
+        getContentPane().add(no_kandidat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 165, 30));
+
+        nama_kandidat2.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        nama_kandidat2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nama_kandidat2.setText("NAMA KAN 02");
+        getContentPane().add(nama_kandidat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 165, 30));
+
+        visi_kandidat2.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        visi_kandidat2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        visi_kandidat2.setText("VISI KAN 02");
+        getContentPane().add(visi_kandidat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 165, 30));
+
+        misi_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        misi_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        misi_kandidat1.setText("MISI KAN 01");
+        getContentPane().add(misi_kandidat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 120, 30));
+
+        misi_kandidat2.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        misi_kandidat2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        misi_kandidat2.setText("MISI KAN 02");
+        getContentPane().add(misi_kandidat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 120, 30));
+
+        kandidat2.setToolTipText("");
+        getContentPane().add(kandidat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 30, 30));
+
+        no_kandidat3.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        no_kandidat3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        no_kandidat3.setText("3");
+        no_kandidat3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                no_kandidat3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(no_kandidat3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 165, 30));
+
+        nama_kandidat3.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        nama_kandidat3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nama_kandidat3.setText("NAMA KAN 03");
+        getContentPane().add(nama_kandidat3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 165, 30));
+
+        visi_kandidat3.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        visi_kandidat3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        visi_kandidat3.setText("VISI KAN 03");
+        getContentPane().add(visi_kandidat3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, 165, 30));
+
+        misi_kandidat3.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        misi_kandidat3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        misi_kandidat3.setText("MISI KAN 03");
+        getContentPane().add(misi_kandidat3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, 120, 30));
+
+        kandidat3.setToolTipText("");
+        getContentPane().add(kandidat3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 30, 30));
+
+        no_kandidat4.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        no_kandidat4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        no_kandidat4.setText("4");
+        no_kandidat4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                no_kandidat4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(no_kandidat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 165, 30));
+
+        nama_kandidat4.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        nama_kandidat4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nama_kandidat4.setText("NAMA KAN 04");
+        getContentPane().add(nama_kandidat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, 165, 30));
+
+        visi_kandidat4.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        visi_kandidat4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        visi_kandidat4.setText("VISI KAN 04");
+        getContentPane().add(visi_kandidat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 390, 165, 30));
+
+        misi_kandidat4.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        misi_kandidat4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        misi_kandidat4.setText("MISI KAN 04");
+        getContentPane().add(misi_kandidat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 120, 30));
+
+        kandidat4.setToolTipText("");
+        getContentPane().add(kandidat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, 30, 30));
+
+        no_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        no_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        no_kandidat5.setText("5");
+        no_kandidat5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                no_kandidat5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(no_kandidat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 310, 165, 30));
+
+        nama_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        nama_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nama_kandidat5.setText("NAMA KAN 05");
+        getContentPane().add(nama_kandidat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 165, 30));
+
+        visi_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        visi_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        visi_kandidat5.setText("VISI KAN 05");
+        getContentPane().add(visi_kandidat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 390, 165, 30));
+
+        misi_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        misi_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        misi_kandidat5.setText("MISI KAN 05");
+        getContentPane().add(misi_kandidat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, 120, 30));
+
+        kandidat5.setToolTipText("");
+        getContentPane().add(kandidat5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 430, 30, 30));
+
+        foto_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        foto_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        foto_kandidat1.setText("FOTO 1");
+        getContentPane().add(foto_kandidat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 165, 134));
+
+        foto_kandidat2.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        foto_kandidat2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        foto_kandidat2.setText("FOTO 2");
+        getContentPane().add(foto_kandidat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 165, 134));
+
+        foto_kandidat3.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        foto_kandidat3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        foto_kandidat3.setText("FOTO 3");
+        foto_kandidat3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foto_kandidat3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(foto_kandidat3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 165, 134));
+
+        foto_kandidat4.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
+        foto_kandidat4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        foto_kandidat4.setText("FOTO 4");
+        getContentPane().add(foto_kandidat4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 165, 134));
+
+        pnlExit.setBackground(new java.awt.Color(250, 248, 240));
+
+        jLabel4.setBackground(new java.awt.Color(255, 102, 102));
+        jLabel4.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(109, 109, 109));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("x");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlExitLayout = new javax.swing.GroupLayout(pnlExit);
+        pnlExit.setLayout(pnlExitLayout);
+        pnlExitLayout.setHorizontalGroup(
+            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        pnlExitLayout.setVerticalGroup(
+            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 30, -1));
+
+        pnlBack.setBackground(new java.awt.Color(250, 248, 240));
+
+        jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("<");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
+        pnlBack.setLayout(pnlBackLayout);
+        pnlBackLayout.setHorizontalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        pnlBackLayout.setVerticalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
+
+        pnlMinimize.setBackground(new java.awt.Color(250, 248, 240));
+
+        jLabel6.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("_");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel6MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlMinimizeLayout = new javax.swing.GroupLayout(pnlMinimize);
+        pnlMinimize.setLayout(pnlMinimizeLayout);
+        pnlMinimizeLayout.setHorizontalGroup(
+            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlMinimizeLayout.setVerticalGroup(
+            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pnlMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 30, -1));
+
+        jPanel1.setBackground(new java.awt.Color(250, 248, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilihActionPerformed
         // TODO add your handling code here:
         PemilihMasuk pm = new PemilihMasuk();
         pm.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_pilihActionPerformed
+
+    private void foto_kandidat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foto_kandidat3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foto_kandidat3ActionPerformed
+
+    private void no_kandidat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_kandidat3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_no_kandidat3ActionPerformed
+
+    private void no_kandidat4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_kandidat4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_no_kandidat4ActionPerformed
+
+    private void no_kandidat5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_kandidat5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_no_kandidat5ActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+        pnlExit.setBackground(new java.awt.Color(153,153,153));
+        jLabel1.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        pnlExit.setBackground(new java.awt.Color(250,248,240));
+        jLabel1.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
+        pnlMinimize.setBackground(new java.awt.Color(153,153,153));
+        jLabel4.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel6MouseEntered
+
+    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
+        pnlMinimize.setBackground(new java.awt.Color(250,248,240));
+        jLabel4.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel6MouseExited
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        pnlBack.setBackground(new java.awt.Color(153,153,153));
+        jLabel7.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        pnlBack.setBackground(new java.awt.Color(250,248,240));
+        jLabel7.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel7MouseExited
 
     /**
      * @param args the command line arguments
@@ -119,14 +455,44 @@ public class TampilanPemilihan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_pilih;
+    private javax.swing.JTextField foto_kandidat1;
+    private javax.swing.JTextField foto_kandidat2;
+    private javax.swing.JTextField foto_kandidat3;
+    private javax.swing.JTextField foto_kandidat4;
+    private javax.swing.JTextField foto_kandidat5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton kandidat1;
+    private javax.swing.JRadioButton kandidat2;
+    private javax.swing.JRadioButton kandidat3;
+    private javax.swing.JRadioButton kandidat4;
+    private javax.swing.JRadioButton kandidat5;
+    private javax.swing.JTextField misi_kandidat1;
+    private javax.swing.JTextField misi_kandidat2;
+    private javax.swing.JTextField misi_kandidat3;
+    private javax.swing.JTextField misi_kandidat4;
+    private javax.swing.JTextField misi_kandidat5;
+    private javax.swing.JTextField nama_kandidat1;
+    private javax.swing.JTextField nama_kandidat2;
+    private javax.swing.JTextField nama_kandidat3;
+    private javax.swing.JTextField nama_kandidat4;
+    private javax.swing.JTextField nama_kandidat5;
+    private javax.swing.JTextField no_kandidat1;
+    private javax.swing.JTextField no_kandidat2;
+    private javax.swing.JTextField no_kandidat3;
+    private javax.swing.JTextField no_kandidat4;
+    private javax.swing.JTextField no_kandidat5;
+    private javax.swing.JPanel pnlBack;
+    private javax.swing.JPanel pnlExit;
+    private javax.swing.JPanel pnlMinimize;
+    private javax.swing.JTextField visi_kandidat1;
+    private javax.swing.JTextField visi_kandidat2;
+    private javax.swing.JTextField visi_kandidat3;
+    private javax.swing.JTextField visi_kandidat4;
+    private javax.swing.JTextField visi_kandidat5;
     // End of variables declaration//GEN-END:variables
 }
