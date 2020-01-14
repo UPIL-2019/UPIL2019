@@ -72,7 +72,22 @@ public class KandidatController {
         }
     }
     
-    public void deleteKandidat(TambahKandidat view) {
-        
+    public void deleteKandidat(TampilanAdmin tampilanAdmin) {
+        if (tampilanAdmin.getTableKandidat().getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(tampilanAdmin, "Silakan seleksi baris data yang akan dihapus");
+            return;
+        }
+        if (JOptionPane.showConfirmDialog(tampilanAdmin, "Anda yakin akan menghapus ?")==JOptionPane.OK_OPTION) {
+            Integer nomorKandidat = Integer.parseInt(tampilanAdmin.getName());
+            model.setNomorKandidat(nomorKandidat);
+            
+            try {
+                model.deleteKandidat();
+                JOptionPane.showMessageDialog(tampilanAdmin, "Kandidat berhasil dihapus");
+                model.resetFormulirTambahKandidat();
+            } catch (Throwable throwable) {
+                JOptionPane.showMessageDialog(tampilanAdmin, new Object[]{"Terjadi error di database dengan pesan ", throwable.getMessage()});
+            }
+        }
     }
 }
