@@ -5,26 +5,29 @@
  */
 package pbo.upil.views;
 
-import java.awt.BorderLayout;
-import java.beans.PropertyChangeEvent;
-import pbo.upil.controllers.KandidatController;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Agung Nurhamidan
  */
-public class TambahKandidatView extends javax.swing.JDialog {
-
-    
+public class TambahKandidat extends javax.swing.JDialog {
     /**
-     * Creates new form TambahKandidatView
+     * Creates new form TambahKandidat
      */
-    
-    
-    
-    public TambahKandidatView(java.awt.Frame parent, boolean modal) {
+    public TambahKandidat(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public JTextField getTxtNamaKandidat() {
+        return txtNamaKandidat;
+    }
+
+    public JTextField getTxtNomorKandidat() {
+        return txtNomorKandidat;
     }
 
     /**
@@ -39,14 +42,14 @@ public class TambahKandidatView extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        txtNomorKandidat2 = new javax.swing.JTextField();
+        txtNomorKandidat = new javax.swing.JTextField();
+        txtNamaKandidat = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        btnOk = new javax.swing.JButton();
-        btnMasuk5 = new javax.swing.JButton();
-        btnMasuk6 = new javax.swing.JButton();
-        txtNamaKandidat2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,25 +61,45 @@ public class TambahKandidatView extends javax.swing.JDialog {
 
         jSeparator5.setForeground(new java.awt.Color(49, 173, 226));
 
-        txtNomorKandidat2.setBackground(new java.awt.Color(250, 248, 240));
-        txtNomorKandidat2.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        txtNomorKandidat2.setForeground(new java.awt.Color(49, 173, 226));
-        txtNomorKandidat2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtNomorKandidat2.addActionListener(new java.awt.event.ActionListener() {
+        txtNomorKandidat.setBackground(new java.awt.Color(250, 248, 240));
+        txtNomorKandidat.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        txtNomorKandidat.setForeground(new java.awt.Color(49, 173, 226));
+        txtNomorKandidat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtNomorKandidat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomorKandidat2ActionPerformed(evt);
+                txtNomorKandidatActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel8.setText("Nama Kandidat");
+        txtNamaKandidat.setBackground(new java.awt.Color(250, 248, 240));
+        txtNamaKandidat.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        txtNamaKandidat.setForeground(new java.awt.Color(49, 173, 226));
+        txtNamaKandidat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtNamaKandidat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaKandidatActionPerformed(evt);
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel9.setText("Nomor Kandidat");
-
-        jSeparator6.setForeground(new java.awt.Color(49, 173, 226));
+        btnReset.setBackground(new java.awt.Color(49, 173, 226));
+        btnReset.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(250, 248, 240));
+        btnReset.setText("Reset");
+        btnReset.setAlignmentY(1.0F);
+        btnReset.setFocusable(false);
+        btnReset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnResetMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnResetMouseExited(evt);
+            }
+        });
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         btnOk.setBackground(new java.awt.Color(49, 173, 226));
         btnOk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -98,55 +121,35 @@ public class TambahKandidatView extends javax.swing.JDialog {
             }
         });
 
-        btnMasuk5.setBackground(new java.awt.Color(49, 173, 226));
-        btnMasuk5.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnMasuk5.setForeground(new java.awt.Color(250, 248, 240));
-        btnMasuk5.setText("Reset");
-        btnMasuk5.setAlignmentY(1.0F);
-        btnMasuk5.setFocusable(false);
-        btnMasuk5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBatal.setBackground(new java.awt.Color(49, 173, 226));
+        btnBatal.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnBatal.setForeground(new java.awt.Color(250, 248, 240));
+        btnBatal.setText("Batal");
+        btnBatal.setAlignmentY(1.0F);
+        btnBatal.setFocusable(false);
+        btnBatal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMasuk5MouseEntered(evt);
+                btnBatalMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMasuk5MouseExited(evt);
+                btnBatalMouseExited(evt);
             }
         });
-        btnMasuk5.addActionListener(new java.awt.event.ActionListener() {
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasuk5ActionPerformed(evt);
+                btnBatalActionPerformed(evt);
             }
         });
 
-        btnMasuk6.setBackground(new java.awt.Color(49, 173, 226));
-        btnMasuk6.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnMasuk6.setForeground(new java.awt.Color(250, 248, 240));
-        btnMasuk6.setText("Batal");
-        btnMasuk6.setAlignmentY(1.0F);
-        btnMasuk6.setFocusable(false);
-        btnMasuk6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMasuk6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMasuk6MouseExited(evt);
-            }
-        });
-        btnMasuk6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasuk6ActionPerformed(evt);
-            }
-        });
+        jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(6, 62, 97));
+        jLabel8.setText("Nama Kandidat");
 
-        txtNamaKandidat2.setBackground(new java.awt.Color(250, 248, 240));
-        txtNamaKandidat2.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        txtNamaKandidat2.setForeground(new java.awt.Color(49, 173, 226));
-        txtNamaKandidat2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtNamaKandidat2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaKandidat2ActionPerformed(evt);
-            }
-        });
+        jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(6, 62, 97));
+        jLabel9.setText("Nomor Kandidat");
+
+        jSeparator6.setForeground(new java.awt.Color(49, 173, 226));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -155,15 +158,16 @@ public class TambahKandidatView extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNamaKandidat2)
-                    .addComponent(txtNomorKandidat2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNamaKandidat)
+                    .addComponent(txtNomorKandidat, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnMasuk5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMasuk6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator5)
@@ -178,20 +182,20 @@ public class TambahKandidatView extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomorKandidat2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomorKandidat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNamaKandidat2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNamaKandidat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOk)
-                    .addComponent(btnMasuk6)
-                    .addComponent(btnMasuk5))
+                    .addComponent(btnBatal)
+                    .addComponent(btnReset))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -210,9 +214,25 @@ public class TambahKandidatView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomorKandidat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomorKandidat2ActionPerformed
+    private void txtNomorKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomorKandidatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomorKandidat2ActionPerformed
+    }//GEN-LAST:event_txtNomorKandidatActionPerformed
+
+    private void txtNamaKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaKandidatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaKandidatActionPerformed
+
+    private void btnResetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnResetMouseEntered
+
+    private void btnResetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnResetMouseExited
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        //kandidatController.reset();
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
         // TODO add your handling code here:
@@ -225,52 +245,36 @@ public class TambahKandidatView extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOkMouseExited
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        //TODO add your handling code here:
-        //TampilanAdmin.tblKandidatModel.addRow(new Object[]{"1", "Udin"});
-        this.setVisible(false);
+        // TODO add your handling code here:
+        //DefaultTableModel model = (DefaultTableModel) tableKandidat.getModel();
+        //model.addRow(new Object[]{"1", "Amber"});
+        //this.setVisible(false);
         //ta.setVisible(true);
         //tambahKandidatController.simpanData(new TampilanAdmin());
     }//GEN-LAST:event_btnOkActionPerformed
 
-    private void btnMasuk5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk5MouseEntered
+    private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk5MouseEntered
+    }//GEN-LAST:event_btnBatalMouseEntered
 
-    private void btnMasuk5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk5MouseExited
+    private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk5MouseExited
+    }//GEN-LAST:event_btnBatalMouseExited
 
-    private void btnMasuk5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasuk5ActionPerformed
-        //kandidatController.reset();
-    }//GEN-LAST:event_btnMasuk5ActionPerformed
-
-    private void btnMasuk6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk6MouseEntered
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk6MouseEntered
-
-    private void btnMasuk6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk6MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk6MouseExited
-
-    private void btnMasuk6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasuk6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk6ActionPerformed
-
-    private void txtNamaKandidat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaKandidat2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaKandidat2ActionPerformed
-
+    }//GEN-LAST:event_btnBatalActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMasuk5;
-    private javax.swing.JButton btnMasuk6;
+    private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnOk;
+    private javax.swing.JButton btnReset;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField txtNamaKandidat2;
-    private javax.swing.JTextField txtNomorKandidat2;
+    private javax.swing.JTextField txtNamaKandidat;
+    private javax.swing.JTextField txtNomorKandidat;
     // End of variables declaration//GEN-END:variables
 }

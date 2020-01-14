@@ -7,6 +7,7 @@ package pbo.upil.controllers;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import pbo.upil.models.AbstractModel;
@@ -51,15 +52,15 @@ public abstract class AbstractController implements PropertyChangeListener {
     }
     
     protected void setModelProperty(String propertyName, Object newValue) {
-        for (AbstractModel model : registeredModels) {
+        registeredModels.forEach((model) -> {
             try {
                 Method method = model.getClass().getMethod("set" + propertyName, new Class[] {
                     newValue.getClass()
                 });
                 method.invoke(model, newValue);
-            } catch (Exception ex) {
+            } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | SecurityException | InvocationTargetException ex) {
                 System.out.println(ex);
             }
-        }
+        });
     }
 }
