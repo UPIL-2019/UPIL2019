@@ -38,9 +38,13 @@ public class KandidatDaoImpl implements KandidatDao {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
-            statement = connection.prepareStatement(insertKandidat);
+            statement = connection.prepareStatement(insertKandidat, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, kandidat.getNama());
             statement.executeUpdate();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                kandidat.setNomorKandidat(result.getInt(1));
+            }
             connection.commit();
         } catch (SQLException e) {
             try {

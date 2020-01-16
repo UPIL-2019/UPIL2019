@@ -7,7 +7,7 @@ package pbo.upil.views;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+import pbo.upil.controllers.KandidatController;
 import pbo.upil.entities.Kandidat;
 import pbo.upil.events.KandidatListener;
 import pbo.upil.models.KandidatModel;
@@ -19,14 +19,19 @@ import pbo.upil.models.TableKandidatModel;
  */
 public class TambahKandidat extends javax.swing.JDialog implements KandidatListener {
     private TableKandidatModel tableModel;
+    private KandidatModel model;
     private JTable tableKandidat;
+    private KandidatController controller;
     /**
      * Creates new form TambahKandidat
      */
-    public TambahKandidat(java.awt.Frame parent, boolean modal, TampilanAdmin tampilanAdmin) {
+    public TambahKandidat(java.awt.Frame parent, boolean modal, TampilanAdmin tampilanAdminView) {
         super(parent, modal);
-        tableModel = new TableKandidatModel();
-        tampilanAdmin.getTableKandidat().setModel(tableModel);
+        this.tableModel = tampilanAdminView.getTableModel();
+        this.model = tampilanAdminView.getModel();
+        model.setListener(this);
+        this.controller = tampilanAdminView.getController();
+        tableKandidat = tampilanAdminView.getTableKandidat();
         initComponents();
     }
 
@@ -239,7 +244,7 @@ public class TambahKandidat extends javax.swing.JDialog implements KandidatListe
     }//GEN-LAST:event_btnResetMouseExited
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        //kandidatController.reset();
+        controller.resetFormulirTambahKandidat();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
@@ -253,12 +258,8 @@ public class TambahKandidat extends javax.swing.JDialog implements KandidatListe
     }//GEN-LAST:event_btnOkMouseExited
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO add your handling code here:
-        //DefaultTableModel model = (DefaultTableModel) tableKandidat.getModel();
-        //model.addRow(new Object[]{"1", "Amber"});
-        //this.setVisible(false);
-        //ta.setVisible(true);
-        //tambahKandidatController.simpanData(new TampilanAdmin());
+        controller.insertKandidat(this);
+        this.setVisible(false);
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
@@ -270,7 +271,7 @@ public class TambahKandidat extends javax.swing.JDialog implements KandidatListe
     }//GEN-LAST:event_btnBatalMouseExited
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
@@ -290,7 +291,6 @@ public class TambahKandidat extends javax.swing.JDialog implements KandidatListe
     public void onChange(KandidatModel model) {
         txtNomorKandidat.setText(model.getNomorKandidat());
         txtNamaKandidat.setText(model.getNama());
-        
     }
 
     @Override
@@ -300,11 +300,13 @@ public class TambahKandidat extends javax.swing.JDialog implements KandidatListe
 
     @Override
     public void onDelete() {
-        int index = table
+        int index = tableKandidat.getSelectedRow();
+        tableModel.remove(index);
     }
 
     @Override
     public void onUpdate(Kandidat kandidat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int index = tableKandidat.getSelectedRow();
+        tableModel.set(index, kandidat);
     }
 }

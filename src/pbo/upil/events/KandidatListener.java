@@ -7,6 +7,7 @@ package pbo.upil.events;
 
 import pbo.upil.entities.Kandidat;
 import pbo.upil.models.KandidatModel;
+import pbo.upil.views.TambahKandidat;
 
 /**
  *

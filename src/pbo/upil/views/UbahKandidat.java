@@ -6,21 +6,30 @@
 package pbo.upil.views;
 
 import javax.swing.JTextField;
+import pbo.upil.controllers.KandidatController;
+import pbo.upil.entities.Kandidat;
+import pbo.upil.models.KandidatModel;
 
 /**
  *
  * @author Agung Nurhamidan
  */
 public class UbahKandidat extends javax.swing.JDialog {
-
+    KandidatController controller;
+    TampilanAdmin tampilanAdmin;
     /**
      * Creates new form DialogUbahKandidat
      * @param parent
      * @param modal
      */
-    public UbahKandidat(java.awt.Frame parent, boolean modal) {
+    public UbahKandidat(java.awt.Frame parent, boolean modal, TampilanAdmin tampilanAdmin) {
         super(parent, modal);
         initComponents();
+        this.tampilanAdmin = tampilanAdmin;
+        this.controller = tampilanAdmin.getController();
+        Kandidat model = tampilanAdmin.getTableModel().get(tampilanAdmin.getTableKandidat().getSelectedRow());
+        this.txtNomorKandidat.setText(model.getNomorKandidat().toString());
+        this.txtNamaKandidat.setText(model.getNama());
     }
 
     public JTextField getTxtNamaKandidat() {
@@ -56,7 +65,6 @@ public class UbahKandidat extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         btnMasuk = new javax.swing.JButton();
-        btnMasuk1 = new javax.swing.JButton();
         btnMasuk2 = new javax.swing.JButton();
         txtNamaKandidat = new javax.swing.JTextField();
 
@@ -111,26 +119,6 @@ public class UbahKandidat extends javax.swing.JDialog {
             }
         });
 
-        btnMasuk1.setBackground(new java.awt.Color(49, 173, 226));
-        btnMasuk1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnMasuk1.setForeground(new java.awt.Color(250, 248, 240));
-        btnMasuk1.setText("Reset");
-        btnMasuk1.setAlignmentY(1.0F);
-        btnMasuk1.setFocusable(false);
-        btnMasuk1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMasuk1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMasuk1MouseExited(evt);
-            }
-        });
-        btnMasuk1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasuk1ActionPerformed(evt);
-            }
-        });
-
         btnMasuk2.setBackground(new java.awt.Color(49, 173, 226));
         btnMasuk2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         btnMasuk2.setForeground(new java.awt.Color(250, 248, 240));
@@ -165,22 +153,21 @@ public class UbahKandidat extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNamaKandidat)
-                    .addComponent(txtNomorKandidat, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnMasuk1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNamaKandidat, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNomorKandidat)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMasuk2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1)
-                    .addComponent(jSeparator2))
+                        .addComponent(btnMasuk2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,12 +187,11 @@ public class UbahKandidat extends javax.swing.JDialog {
                 .addComponent(txtNamaKandidat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMasuk)
-                    .addComponent(btnMasuk2)
-                    .addComponent(btnMasuk1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnMasuk2))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,21 +224,9 @@ public class UbahKandidat extends javax.swing.JDialog {
     }//GEN-LAST:event_btnMasukMouseExited
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
-        // TODO add your handling code here:
+        controller.updateKandidat(tampilanAdmin, this);
         this.setVisible(false);
     }//GEN-LAST:event_btnMasukActionPerformed
-
-    private void btnMasuk1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk1MouseEntered
-
-    private void btnMasuk1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk1MouseExited
-
-    private void btnMasuk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasuk1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk1ActionPerformed
 
     private void btnMasuk2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk2MouseEntered
         // TODO add your handling code here:
@@ -270,52 +244,8 @@ public class UbahKandidat extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaKandidatActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UbahKandidat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UbahKandidat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UbahKandidat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UbahKandidat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                UbahKandidat dialog = new UbahKandidat(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMasuk;
-    private javax.swing.JButton btnMasuk1;
     private javax.swing.JButton btnMasuk2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

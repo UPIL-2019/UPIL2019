@@ -1,32 +1,57 @@
 package pbo.upil.views;
 
 import java.awt.Frame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import java.sql.SQLException;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import pbo.upil.controllers.KandidatController;
+import pbo.upil.databases.UpilDatabase;
 import pbo.upil.entities.Kandidat;
+import pbo.upil.errors.KandidatException;
 import pbo.upil.events.KandidatListener;
 import pbo.upil.models.KandidatModel;
 import pbo.upil.models.TableKandidatModel;
+import pbo.upil.services.KandidatDao;
 
 /**
  *
  * @author Achapasya2109
  */
-public class TampilanAdmin extends javax.swing.JFrame implements KandidatListener {
+public class TampilanAdmin extends javax.swing.JFrame implements KandidatListener, ListSelectionListener {
     private TableKandidatModel tableModel;
+    private KandidatModel model;
+    private KandidatController controller;
     public TampilanAdmin() {
         tableModel = new TableKandidatModel();
+        model = new KandidatModel();
+        model.setListener(this);
+        controller = new KandidatController();
+        controller.setModel(model);
         initComponents();
+        tableKandidat.getSelectionModel().addListSelectionListener(this);
         tableKandidat.setModel(tableModel);
+    }
+
+    public TableKandidatModel getTableModel() {
+        return tableModel;
+    }
+
+    public KandidatModel getModel() {
+        return model;
+    }
+
+    public KandidatController getController() {
+        return controller;
     }
 
     public JTable getTableKandidat() {
         return tableKandidat;
     }
-
+    public void loadDatabase() throws SQLException, KandidatException{
+        KandidatDao kdao = UpilDatabase.getKandidatDao();
+        tableModel.setList(kdao.selectAllKandidat());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -257,21 +282,15 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         pnlBack.setLayout(pnlBackLayout);
         pnlBackLayout.setHorizontalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlBackLayout.setVerticalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(pnlBackLayout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
@@ -293,7 +312,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_btnTambahMouseExited
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        TambahKandidat tambahKandidat = new TambahKandidat(this, true);
+        TambahKandidat tambahKandidat = new TambahKandidat(this, true, this);
         tambahKandidat.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -306,7 +325,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_btnHapusMouseExited
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        // TODO add your handling code here:
+        controller.deleteKandidat(this);
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnHasilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHasilMouseEntered
@@ -354,7 +373,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
 
     private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
         pnlExit.setBackground(new java.awt.Color(250,248,240));
-        jLabel1.setForeground(new java.awt.Color(153,153,153));
+        jLabel4.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel4MouseExited
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -372,9 +391,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_jLabel6MouseExited
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        UbahKandidat dialogUbahKandidat = new UbahKandidat(this, true);
-        dialogUbahKandidat.getTxtNomorKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
-        dialogUbahKandidat.getTxtNamaKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 1).toString());
+        UbahKandidat dialogUbahKandidat = new UbahKandidat(this, true, this);
         dialogUbahKandidat.setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -383,8 +400,6 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_btnUbahMouseExited
 
     private void btnUbahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseEntered
-       pnlBack.setBackground(new java.awt.Color(153,153,153));
-        jLabel7.setForeground(new java.awt.Color(0,0,0));
     }//GEN-LAST:event_btnUbahMouseEntered
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -400,42 +415,6 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         pnlBack.setBackground(new java.awt.Color(250,248,240));
         jLabel7.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel7MouseExited
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TampilanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TampilanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TampilanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TampilanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TampilanAdmin().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
@@ -461,16 +440,27 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
 
     @Override
     public void onInsert(Kandidat kandidat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tableModel.add(kandidat);
     }
 
     @Override
     public void onDelete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int index = tableKandidat.getSelectedRow();
+        tableModel.remove(index);
     }
 
     @Override
     public void onUpdate(Kandidat kandidat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int index = tableKandidat.getSelectedRow();
+        tableModel.set(index, kandidat);
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        try {
+            Kandidat model = tableModel.get(tableKandidat.getSelectedRow());
+        } catch (IndexOutOfBoundsException exception) {
+            
+        }
     }
 }
