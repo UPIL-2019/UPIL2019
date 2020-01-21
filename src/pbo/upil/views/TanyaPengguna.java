@@ -7,12 +7,20 @@ import java.awt.Frame;
  * @author Achapasya2109
  */
 public class TanyaPengguna extends javax.swing.JFrame {
-
+    private static TanyaPengguna tanyaPengguna;
+    
     /**
      * Creates new form TanyaPengguna
      */
-    public TanyaPengguna() {
+    private TanyaPengguna() {
         initComponents();
+    }
+    
+    public static TanyaPengguna getInstance() {
+        if (tanyaPengguna == null) {
+            tanyaPengguna = new TanyaPengguna();
+        }
+        return tanyaPengguna;
     }
 
     /**

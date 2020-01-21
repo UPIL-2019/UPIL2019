@@ -2,6 +2,8 @@ package pbo.upil.views;
 
 import java.awt.Frame;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -19,10 +21,11 @@ import pbo.upil.services.KandidatDao;
  * @author Achapasya2109
  */
 public class TampilanAdmin extends javax.swing.JFrame implements KandidatListener, ListSelectionListener {
+    private static TampilanAdmin tampilanAdminView;
     private TableKandidatModel tableModel;
     private KandidatModel model;
     private KandidatController controller;
-    public TampilanAdmin() {
+    private TampilanAdmin() {
         tableModel = new TableKandidatModel();
         model = new KandidatModel();
         model.setListener(this);
@@ -31,6 +34,20 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         initComponents();
         tableKandidat.getSelectionModel().addListSelectionListener(this);
         tableKandidat.setModel(tableModel);
+        try {
+            loadDatabase();
+        } catch (SQLException ex) {
+            
+        } catch (KandidatException ex) {
+            Logger.getLogger(TampilanAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static TampilanAdmin getInstance() {
+        if (tampilanAdminView == null) {
+            tampilanAdminView = new TampilanAdmin();
+        }
+        return tampilanAdminView;
     }
 
     public TableKandidatModel getTableModel() {

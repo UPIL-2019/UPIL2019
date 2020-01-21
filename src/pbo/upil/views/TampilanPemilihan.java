@@ -1,23 +1,46 @@
 package pbo.upil.views;
 
 import java.awt.Frame;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import pbo.upil.koneksi.Koneksi;
 
 /**
  *
  * @author Achapasya2109
  */
 public class TampilanPemilihan extends javax.swing.JFrame {
-
+    private static TampilanPemilihan tampilanPemilihanView;
     /**
      * Creates new form TampilanPemilih
      */
-    public TampilanPemilihan() {
+    private TampilanPemilihan() {
         initComponents();
-        KartuKandidat kk1 = new KartuKandidat();
-        KartuKandidat kk2 = new KartuKandidat();
-        
-        jPanel3.add(kk1);
-        jPanel3.add(kk2);
+        String sql = "SELECT * FROM kandidat";
+        try {
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KartuKandidat kartuKandidat = new KartuKandidat();
+                kartuKandidat.getLblNomorKandidat().setText(Integer.toString(rs.getInt("no_kandidat")));
+                kartuKandidat.getLblNama().setText(rs.getString("nama"));
+                buttonGroupKandidat.add(kartuKandidat.getRadioKandidat());
+                panelKandidat.add(kartuKandidat);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Kesalahan di database", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public static TampilanPemilihan getInstance() {
+        if (tampilanPemilihanView == null) {
+            tampilanPemilihanView = new TampilanPemilihan();
+        }
+        return tampilanPemilihanView;
     }
 
     /**
@@ -29,23 +52,18 @@ public class TampilanPemilihan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupKandidat = new javax.swing.ButtonGroup();
         pnlContainer = new javax.swing.JPanel();
         pnlBack = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btn_pilih = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         pnlExit = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         pnlMinimize = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        foto_kandidat5 = new javax.swing.JTextField();
-        no_kandidat5 = new javax.swing.JTextField();
-        nama_kandidat5 = new javax.swing.JTextField();
-        visi_kandidat5 = new javax.swing.JTextField();
-        misi_kandidat5 = new javax.swing.JTextField();
-        kandidat5 = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelKandidat = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1060, 600));
@@ -54,28 +72,6 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         pnlContainer.setBackground(new java.awt.Color(250, 248, 240));
 
         pnlBack.setBackground(new java.awt.Color(250, 248, 240));
-
-        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
-        pnlBack.setLayout(pnlBackLayout);
-        pnlBackLayout.setHorizontalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-        pnlBackLayout.setVerticalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 23, Short.MAX_VALUE)
-        );
-
-        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 0, 48)); // NOI18N
-        jLabel1.setText("Pemilihan Kandidat");
-
-        btn_pilih.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        btn_pilih.setText("PILIH");
-        btn_pilih.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pilihActionPerformed(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
@@ -90,6 +86,39 @@ public class TampilanPemilihan extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel7MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
+        pnlBack.setLayout(pnlBackLayout);
+        pnlBackLayout.setHorizontalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 54, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        pnlBackLayout.setVerticalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 47, Short.MAX_VALUE)
+            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel7)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 0, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Pemilihan Kandidat");
+
+        btn_pilih.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        btn_pilih.setText("PILIH");
+        btn_pilih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pilihActionPerformed(evt);
             }
         });
 
@@ -152,112 +181,42 @@ public class TampilanPemilihan extends javax.swing.JFrame {
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
-
-        foto_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        foto_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        foto_kandidat5.setText("FOTO 5");
-
-        no_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        no_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        no_kandidat5.setText("5");
-        no_kandidat5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                no_kandidat5ActionPerformed(evt);
-            }
-        });
-
-        nama_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        nama_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nama_kandidat5.setText("NAMA KAN 05");
-
-        visi_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        visi_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        visi_kandidat5.setText("VISI KAN 05");
-
-        misi_kandidat5.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        misi_kandidat5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        misi_kandidat5.setText("MISI KAN 05");
-
-        kandidat5.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(visi_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(misi_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(foto_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(no_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nama_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 17, Short.MAX_VALUE)
-                .addComponent(foto_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(no_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(nama_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(visi_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(misi_kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kandidat5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        jPanel3.add(jPanel2);
+        panelKandidat.setLayout(new java.awt.GridLayout(0, 2, 50, 50));
+        jScrollPane1.setViewportView(panelKandidat);
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
         pnlContainerLayout.setHorizontalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(pnlBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
                         .addComponent(pnlMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49))))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(359, 359, 359)
+                .addGap(376, 376, 376)
                 .addComponent(btn_pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(403, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(133, 133, 133)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(pnlMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(btn_pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGap(67, 67, 67))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -323,28 +282,55 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         pnlBack.setBackground(new java.awt.Color(250,248,240));
         jLabel7.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel7MouseExited
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-    private void no_kandidat5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_kandidat5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_no_kandidat5ActionPerformed
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TampilanPemilihan().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_pilih;
-    private javax.swing.JTextField foto_kandidat5;
+    private javax.swing.ButtonGroup buttonGroupKandidat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton kandidat5;
-    private javax.swing.JTextField misi_kandidat5;
-    private javax.swing.JTextField nama_kandidat5;
-    private javax.swing.JTextField no_kandidat5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelKandidat;
     private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlExit;
     private javax.swing.JPanel pnlMinimize;
-    private javax.swing.JTextField visi_kandidat5;
     // End of variables declaration//GEN-END:variables
 }

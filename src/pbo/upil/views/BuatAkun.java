@@ -1,5 +1,9 @@
 package pbo.upil.views;
 import java.awt.Frame;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import pbo.upil.koneksi.Koneksi;
 
 /**
  *
@@ -7,11 +11,14 @@ import java.awt.Frame;
  */
 public class BuatAkun extends javax.swing.JFrame {
 
+    private AdminMasuk adminMasukView;
     /**
      * Creates new form BuatAkun
+     * @param adminMasukView
      */
-    public BuatAkun() {
+    public BuatAkun(AdminMasuk adminMasukView) {
         initComponents();
+        this.adminMasukView = adminMasukView;
     }
 
     /**
@@ -207,10 +214,10 @@ public class BuatAkun extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel7.setFont(new java.awt.Font("Falco Black", 0, 47)); // NOI18N
-        jLabel7.setText("daftar");
+        jLabel7.setText("DAFTAR");
         jPanel1.add(jLabel7, new java.awt.GridBagConstraints());
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 270, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 270, 50));
 
         jLabel2.setBackground(new java.awt.Color(49, 173, 226));
         jLabel2.setForeground(new java.awt.Color(250, 248, 240));
@@ -233,10 +240,20 @@ public class BuatAkun extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMasukMouseExited
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
-        // TODO add your handling code here:
-        TampilanAdmin ta = new TampilanAdmin();
-        this.setVisible(false);
-        ta.setVisible(true);
+        String sql = "INSERT INTO admin VALUES (?, ?)";
+        try {
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+            ps.setString(1, txtUsername.getText());
+            ps.setString(2, String.copyValueOf(txtPassword.getPassword()));
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(this, "Berhasil Menyimpan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+            adminMasukView.setVisible(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -284,41 +301,6 @@ public class BuatAkun extends javax.swing.JFrame {
         pnlBack.setBackground(new java.awt.Color(250,248,240));
         jLabel7.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel8MouseExited
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuatAkun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuatAkun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuatAkun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuatAkun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuatAkun().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMasuk;
