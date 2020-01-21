@@ -24,140 +24,54 @@ public class PemilihMasuk extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlMinimize = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        pnlBack = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        pnlExit = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        btnSelesai = new javax.swing.JButton();
         btnMasuk = new javax.swing.JButton();
-        btnMasuk1 = new javax.swing.JButton();
-        txtPassword = new javax.swing.JPasswordField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        exit = new javax.swing.JLabel();
+        back = new javax.swing.JLabel();
+        minimize = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        NIM = new javax.swing.JTextField();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlMinimize.setBackground(new java.awt.Color(250, 248, 240));
-
-        jLabel6.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("_");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
+        btnSelesai.setBackground(new java.awt.Color(49, 173, 226));
+        btnSelesai.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnSelesai.setForeground(new java.awt.Color(250, 248, 240));
+        btnSelesai.setText("Selesai");
+        btnSelesai.setAlignmentY(0.0F);
+        btnSelesai.setBorder(null);
+        btnSelesai.setFocusable(false);
+        btnSelesai.setOpaque(false);
+        btnSelesai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel6MouseEntered(evt);
+                btnSelesaiMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel6MouseExited(evt);
+                btnSelesaiMouseExited(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlMinimizeLayout = new javax.swing.GroupLayout(pnlMinimize);
-        pnlMinimize.setLayout(pnlMinimizeLayout);
-        pnlMinimizeLayout.setHorizontalGroup(
-            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pnlMinimizeLayout.setVerticalGroup(
-            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 30, -1));
-
-        pnlBack.setBackground(new java.awt.Color(250, 248, 240));
-
-        jLabel10.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("<");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel10MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel10MouseExited(evt);
+        btnSelesai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelesaiActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
-        pnlBack.setLayout(pnlBackLayout);
-        pnlBackLayout.setHorizontalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        pnlBackLayout.setVerticalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel10)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
-
-        pnlExit.setBackground(new java.awt.Color(250, 248, 240));
-
-        jLabel4.setBackground(new java.awt.Color(255, 102, 102));
-        jLabel4.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(109, 109, 109));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("x");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlExitLayout = new javax.swing.GroupLayout(pnlExit);
-        pnlExit.setLayout(pnlExitLayout);
-        pnlExitLayout.setHorizontalGroup(
-            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-        pnlExitLayout.setVerticalGroup(
-            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 30, -1));
+        getContentPane().add(btnSelesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 235, 40));
 
         btnMasuk.setBackground(new java.awt.Color(49, 173, 226));
         btnMasuk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnMasuk.setForeground(new java.awt.Color(250, 248, 240));
-        btnMasuk.setText("Selesai");
+        btnMasuk.setForeground(new java.awt.Color(255, 255, 255));
+        btnMasuk.setText("Masuk");
         btnMasuk.setAlignmentY(1.0F);
-        btnMasuk.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnMasuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
         btnMasuk.setFocusable(false);
+        btnMasuk.setOpaque(false);
         btnMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMasukMouseEntered(evt);
@@ -171,56 +85,64 @@ public class PemilihMasuk extends javax.swing.JFrame {
                 btnMasukActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 235, 40));
+        getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 235, 40));
 
-        btnMasuk1.setBackground(new java.awt.Color(49, 173, 226));
-        btnMasuk1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnMasuk1.setForeground(new java.awt.Color(250, 248, 240));
-        btnMasuk1.setText("Masuk");
-        btnMasuk1.setAlignmentY(1.0F);
-        btnMasuk1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        btnMasuk1.setFocusable(false);
-        btnMasuk1.addMouseListener(new java.awt.event.MouseAdapter() {
+        exit.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        exit.setForeground(new java.awt.Color(153, 153, 153));
+        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exit.setText("x");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMasuk1MouseEntered(evt);
+                exitMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMasuk1MouseExited(evt);
+                exitMouseExited(evt);
             }
         });
-        btnMasuk1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasuk1ActionPerformed(evt);
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 30, -1));
+
+        back.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        back.setForeground(new java.awt.Color(153, 153, 153));
+        back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        back.setText("<");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backMouseExited(evt);
             }
         });
-        getContentPane().add(btnMasuk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 235, 40));
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 30, -1));
 
-        txtPassword.setBackground(new java.awt.Color(250, 248, 240));
-        txtPassword.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(49, 173, 226));
-        txtPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 230, 30));
-
-        jPanel1.setBackground(new java.awt.Color(250, 248, 240));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
-        jLabel1.setText("Ke Menu Pilihan");
-        jPanel1.add(jLabel1, new java.awt.GridBagConstraints());
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 130, 30));
+        minimize.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        minimize.setForeground(new java.awt.Color(153, 153, 153));
+        minimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        minimize.setText("_");
+        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minimizeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                minimizeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                minimizeMouseExited(evt);
+            }
+        });
+        getContentPane().add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 30, -1));
 
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(6, 62, 97));
         jLabel9.setText("NIM");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel7.setText("Nama");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
-
-        txtUsername.setBackground(new java.awt.Color(250, 248, 240));
         txtUsername.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(49, 173, 226));
         txtUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -229,126 +151,104 @@ public class PemilihMasuk extends javax.swing.JFrame {
                 txtUsernameActionPerformed(evt);
             }
         });
-        getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 230, 30));
+        getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 230, 30));
 
         jSeparator1.setForeground(new java.awt.Color(49, 173, 226));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 230, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 230, 10));
+
+        jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(6, 62, 97));
+        jLabel7.setText("Nama");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, -1, -1));
+
+        txtPassword.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(49, 173, 226));
+        txtPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 230, 30));
 
         jSeparator2.setForeground(new java.awt.Color(49, 173, 226));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 230, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, 230, 10));
 
-        jLabel2.setBackground(new java.awt.Color(49, 173, 226));
-        jLabel2.setForeground(new java.awt.Color(250, 248, 240));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/02.png"))); // NOI18N
-        jLabel2.setFocusable(false);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
-
-        jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel8.setText("Nama Pengguna");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
-
-        NIM.setText("dd");
-        NIM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        NIM.setEnabled(false);
-        NIM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NIMActionPerformed(evt);
-            }
-        });
-        NIM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                NIMKeyTyped(evt);
-            }
-        });
-        getContentPane().add(NIM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 320, 50));
+        bg.setBackground(new java.awt.Color(49, 173, 226));
+        bg.setForeground(new java.awt.Color(250, 248, 240));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/login v.2.png"))); // NOI18N
+        bg.setFocusable(false);
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        this.setState(Frame.ICONIFIED);
-    }//GEN-LAST:event_jLabel6MouseClicked
+    private void btnSelesaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelesaiMouseEntered
+        // TODO add your handling code here:
+        btnSelesai.setBackground(new java.awt.Color(6,62,97));
+    }//GEN-LAST:event_btnSelesaiMouseEntered
 
-    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
-        pnlMinimize.setBackground(new java.awt.Color(153,153,153));
-        jLabel4.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_jLabel6MouseEntered
+    private void btnSelesaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelesaiMouseExited
+        // TODO add your handling code here:
+        btnSelesai.setBackground(new java.awt.Color(49,173,226));
+    }//GEN-LAST:event_btnSelesaiMouseExited
 
-    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
-        pnlMinimize.setBackground(new java.awt.Color(250,248,240));
-        jLabel4.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_jLabel6MouseExited
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        pnlExit.setBackground(new java.awt.Color(153,153,153));
-        jLabel1.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_jLabel4MouseEntered
-
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-        pnlExit.setBackground(new java.awt.Color(250,248,240));
-        jLabel1.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_jLabel4MouseExited
+    private void btnSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelesaiActionPerformed
+        // TODO add your handling code here:
+       TanyaPengguna tp = new TanyaPengguna();
+        tp.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSelesaiActionPerformed
 
     private void btnMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseEntered
-        // TODO add your handling code here:
         btnMasuk.setBackground(new java.awt.Color(6,62,97));
     }//GEN-LAST:event_btnMasukMouseEntered
 
     private void btnMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseExited
-        // TODO add your handling code here:
         btnMasuk.setBackground(new java.awt.Color(49,173,226));
     }//GEN-LAST:event_btnMasukMouseExited
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
-       TanyaPengguna tp = new TanyaPengguna();
-        tp.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_btnMasukActionPerformed
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
+        
+        exit.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_exitMouseEntered
+
+    private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
+        
+        exit.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_exitMouseExited
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backMouseClicked
+
+    private void backMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseEntered
+         back.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_backMouseEntered
+
+    private void backMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseExited
+        back.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_backMouseExited
+
+    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_minimizeMouseClicked
+
+    private void minimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseEntered
+        minimize.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_minimizeMouseEntered
+
+    private void minimizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseExited
+        minimize.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_minimizeMouseExited
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
-
-    private void NIMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NIMKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NIMKeyTyped
-
-    private void NIMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NIMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NIMActionPerformed
-
-    private void btnMasuk1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk1MouseEntered
-
-    private void btnMasuk1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk1MouseExited
-
-    private void btnMasuk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasuk1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMasuk1ActionPerformed
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
-        pnlBack.setBackground(new java.awt.Color(153,153,153));
-        jLabel7.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_jLabel10MouseEntered
-
-    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
-        pnlBack.setBackground(new java.awt.Color(250,248,240));
-        jLabel7.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_jLabel10MouseExited
 
     /**
      * @param args the command line arguments
@@ -389,23 +289,16 @@ public class PemilihMasuk extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField NIM;
+    private javax.swing.JLabel back;
+    private javax.swing.JLabel bg;
     private javax.swing.JButton btnMasuk;
-    private javax.swing.JButton btnMasuk1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton btnSelesai;
+    private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JPanel pnlBack;
-    private javax.swing.JPanel pnlExit;
-    private javax.swing.JPanel pnlMinimize;
+    private javax.swing.JLabel minimize;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
