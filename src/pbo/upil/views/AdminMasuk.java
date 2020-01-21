@@ -1,13 +1,17 @@
 package pbo.upil.views;
 
 import java.awt.Frame;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import pbo.upil.koneksi.Koneksi;
 
 /**
  *
  * @author Achapasya2109
  */
 public class AdminMasuk extends javax.swing.JFrame {
-//nuoiDEINCOewmqciqwmcheai
     /**
      * Creates new form Admin
      */
@@ -191,11 +195,24 @@ public class AdminMasuk extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMasukMouseExited
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
-        // TODO add your handling code here:
-        TampilanAdmin ta = new TampilanAdmin();
-        this.setVisible(false);
-        ta.setVisible(true);
-
+        String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
+        try {
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+            ps.setString(1, txtUsername.getText());
+            ps.setString(2, String.copyValueOf(txtPassword.getPassword()));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Login Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);
+                TampilanAdmin.getInstance().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Login Gagal", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Kesalahan di database", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void lblDaftarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseEntered
@@ -211,10 +228,9 @@ public class AdminMasuk extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void lblDaftarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseClicked
-        // TODO add your handling code here:
-        BuatAkun ba = new BuatAkun();
-        ba.setVisible(true);
+        BuatAkun ba = new BuatAkun(this);
         this.setVisible(false);
+        ba.setVisible(true);
     }//GEN-LAST:event_lblDaftarMouseClicked
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
@@ -254,44 +270,6 @@ public class AdminMasuk extends javax.swing.JFrame {
 
         exit.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_exitMouseExited
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminMasuk().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel back;

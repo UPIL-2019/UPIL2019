@@ -6,6 +6,9 @@
  */
 package pbo.upil.views;
 
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+
 /**
  *
  * @author Achapasya2109
@@ -19,6 +22,30 @@ public class KartuKandidat extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JLabel getLblNomorKandidat() {
+        return lblNomorKandidat;
+    }
+
+    public JRadioButton getRadioKandidat() {
+        return radioKandidat;
+    }
+
+    public JLabel getLblMisi() {
+        return lblMisi;
+    }
+
+    public JLabel getLblNama() {
+        return lblNama;
+    }
+
+    public JLabel getLblVisi() {
+        return lblVisi;
+    }
+
+    public JLabel getLblFoto() {
+        return lblFoto;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,82 +55,72 @@ public class KartuKandidat extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        foto_kandidat1 = new javax.swing.JTextField();
-        no_kandidat1 = new javax.swing.JTextField();
-        nama_kandidat1 = new javax.swing.JTextField();
-        visi_kandidat1 = new javax.swing.JTextField();
-        misi_kandidat1 = new javax.swing.JTextField();
-        kandidat1 = new javax.swing.JRadioButton();
+        radioKandidat = new javax.swing.JRadioButton();
+        lblFoto = new javax.swing.JLabel();
+        lblNomorKandidat = new javax.swing.JLabel();
+        lblNama = new javax.swing.JLabel();
+        lblVisi = new javax.swing.JLabel();
+        lblMisi = new javax.swing.JLabel();
 
-        foto_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        foto_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        foto_kandidat1.setText("FOTO 1");
+        setBackground(new java.awt.Color(0, 255, 255));
 
-        no_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        no_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        no_kandidat1.setText("1");
+        radioKandidat.setToolTipText("");
 
-        nama_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        nama_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nama_kandidat1.setText("NAMA KAN 01");
+        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFoto.setText("Foto");
 
-        visi_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        visi_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        visi_kandidat1.setText("VISI KAN 01");
+        lblNomorKandidat.setText("Nomor Kandidat");
 
-        misi_kandidat1.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
-        misi_kandidat1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        misi_kandidat1.setText("MISI KAN 01");
+        lblNama.setText("Nama Kandidat");
 
-        kandidat1.setToolTipText("");
+        lblVisi.setText("Visi Kandidat");
+
+        lblMisi.setText("Misi Kandidat");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 183, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(foto_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(no_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nama_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(visi_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(misi_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNomorKandidat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblVisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblMisi, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(radioKandidat)
+                        .addGap(69, 69, 69)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(foto_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(26, 26, 26)
-                    .addComponent(no_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addComponent(nama_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addComponent(visi_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(misi_kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(kandidat1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNomorKandidat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNama)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblVisi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMisi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioKandidat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField foto_kandidat1;
-    private javax.swing.JRadioButton kandidat1;
-    private javax.swing.JTextField misi_kandidat1;
-    private javax.swing.JTextField nama_kandidat1;
-    private javax.swing.JTextField no_kandidat1;
-    private javax.swing.JTextField visi_kandidat1;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JLabel lblMisi;
+    private javax.swing.JLabel lblNama;
+    private javax.swing.JLabel lblNomorKandidat;
+    private javax.swing.JLabel lblVisi;
+    private javax.swing.JRadioButton radioKandidat;
     // End of variables declaration//GEN-END:variables
 }
