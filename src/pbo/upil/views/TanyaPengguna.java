@@ -7,12 +7,20 @@ import java.awt.Frame;
  * @author Achapasya2109
  */
 public class TanyaPengguna extends javax.swing.JFrame {
-
+    private static TanyaPengguna tanyaPengguna;
+    
     /**
      * Creates new form TanyaPengguna
      */
-    public TanyaPengguna() {
+    private TanyaPengguna() {
         initComponents();
+    }
+    
+    public static TanyaPengguna getInstance() {
+        if (tanyaPengguna == null) {
+            tanyaPengguna = new TanyaPengguna();
+        }
+        return tanyaPengguna;
     }
 
     /**
@@ -182,10 +190,8 @@ public class TanyaPengguna extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminMouseEntered
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        // TODO add your handling code here:
-        AdminMasuk adminmasuk = new AdminMasuk();
         this.setVisible(false);
-        adminmasuk.setVisible(true);
+        AdminMasuk.getInstance().setVisible(true);
                 
     }//GEN-LAST:event_btnAdminActionPerformed
 
@@ -205,10 +211,8 @@ public class TanyaPengguna extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPemilihMouseExited
 
     private void btnPemilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPemilihActionPerformed
-        // TODO add your handling code here: AdminMasuk adminmasuk = new AdminMasuk();
-        PemilihMasuk pm = new PemilihMasuk();
         this.setVisible(false);
-        pm.setVisible(true);
+        PemilihMasuk.getInstance().setVisible(true);
         
     }//GEN-LAST:event_btnPemilihActionPerformed
 

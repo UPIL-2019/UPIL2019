@@ -5,9 +5,13 @@
  */
 package pbo.upil.views;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import pbo.upil.controllers.KandidatController;
 import pbo.upil.entities.Kandidat;
+import pbo.upil.koneksi.Koneksi;
 import pbo.upil.models.KandidatModel;
 
 /**
@@ -15,21 +19,33 @@ import pbo.upil.models.KandidatModel;
  * @author Agung Nurhamidan
  */
 public class UbahKandidat extends javax.swing.JDialog {
-    KandidatController controller;
-    TampilanAdmin tampilanAdmin;
+    private static UbahKandidat ubahKandidat;
+    private static java.awt.Frame parent;
+    private static boolean modal;
+//    KandidatController controller;
+//    TampilanAdmin tampilanAdmin;
     /**
      * Creates new form DialogUbahKandidat
      * @param parent
      * @param modal
      */
-    public UbahKandidat(java.awt.Frame parent, boolean modal, TampilanAdmin tampilanAdmin) {
+    public UbahKandidat(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        UbahKandidat.parent = parent;
+        UbahKandidat.modal = modal;
         initComponents();
-        this.tampilanAdmin = tampilanAdmin;
-        this.controller = tampilanAdmin.getController();
-        Kandidat model = tampilanAdmin.getTableModel().get(tampilanAdmin.getTableKandidat().getSelectedRow());
-        this.txtNomorKandidat.setText(model.getNomorKandidat().toString());
-        this.txtNamaKandidat.setText(model.getNama());
+//        this.tampilanAdmin = tampilanAdmin;
+//        this.controller = tampilanAdmin.getController();
+//        Kandidat model = tampilanAdmin.getTableModel().get(tampilanAdmin.getTableKandidat().getSelectedRow());
+//        this.txtNomorKandidat.setText(model.getNomorKandidat().toString());
+//        this.txtNamaKandidat.setText(model.getNama());
+    }
+    
+    public static UbahKandidat getInstance(java.awt.Frame parent, boolean modal) {
+        if ((ubahKandidat == null) || (UbahKandidat.parent != parent) || (UbahKandidat.modal != modal)) {
+            ubahKandidat = new UbahKandidat(parent, modal);
+        }
+        return ubahKandidat;
     }
 
     public JTextField getTxtNamaKandidat() {
@@ -158,13 +174,13 @@ public class UbahKandidat extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNamaKandidat, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNomorKandidat)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 87, Short.MAX_VALUE)
                         .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMasuk2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -224,8 +240,29 @@ public class UbahKandidat extends javax.swing.JDialog {
     }//GEN-LAST:event_btnMasukMouseExited
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
-        controller.updateKandidat(tampilanAdmin, this);
-        this.setVisible(false);
+        if (this.txtNamaKandidat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nama tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        } else if (this.txtNamaKandidat.getText().length() > 50) {
+            JOptionPane.showMessageDialog(this, "Nama tidak boleh lebih dari 50 karakter.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String sql = "UPDATE kandidat SET nama = ? WHERE no_kandidat = ?";
+            //int nomorKandidat = (int) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
+            try {
+                PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+                //ps.setInt(1, Integer.parseInt(txtNomorKandidat.getText()));
+                //ps.setString(2, txtNamaKandidat.getText());
+                ps.setString(1, txtNamaKandidat.getText());
+                ps.setInt(2, Integer.parseInt(txtNomorKandidat.getText()));
+                ps.executeUpdate();
+                ps.close();
+                JOptionPane.showMessageDialog(this, "Berhasil mengubah.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Gagal Mengubah", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+            TampilanAdmin.getInstance().refreshTable();
+        }        
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void btnMasuk2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk2MouseEntered

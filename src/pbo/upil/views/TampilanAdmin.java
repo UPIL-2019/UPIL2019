@@ -1,15 +1,23 @@
 package pbo.upil.views;
 
 import java.awt.Frame;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import pbo.upil.controllers.KandidatController;
 import pbo.upil.databases.UpilDatabase;
 import pbo.upil.entities.Kandidat;
 import pbo.upil.errors.KandidatException;
 import pbo.upil.events.KandidatListener;
+import pbo.upil.koneksi.Koneksi;
 import pbo.upil.models.KandidatModel;
 import pbo.upil.models.TableKandidatModel;
 import pbo.upil.services.KandidatDao;
@@ -18,39 +26,49 @@ import pbo.upil.services.KandidatDao;
  *
  * @author Achapasya2109
  */
-public class TampilanAdmin extends javax.swing.JFrame implements KandidatListener, ListSelectionListener {
-    private TableKandidatModel tableModel;
-    private KandidatModel model;
-    private KandidatController controller;
-    public TampilanAdmin() {
-        tableModel = new TableKandidatModel();
-        model = new KandidatModel();
-        model.setListener(this);
-        controller = new KandidatController();
-        controller.setModel(model);
+public class TampilanAdmin extends javax.swing.JFrame {
+    private static TampilanAdmin tampilanAdmin;
+    private DefaultTableModel tableModel;
+//    private TableKandidatModel tableModel;
+//    private KandidatModel model;
+//    private KandidatController controller;
+    private TampilanAdmin() {
+//        tableModel = new TableKandidatModel();
+//        model = new KandidatModel();
+//        model.setListener(this);
+//        controller = new KandidatController();
+//        controller.setModel(model);
         initComponents();
-        tableKandidat.getSelectionModel().addListSelectionListener(this);
-        tableKandidat.setModel(tableModel);
+//        tableKandidat.getSelectionModel().addListSelectionListener(this);
+//        tableKandidat.setModel(tableModel);
     }
-
-    public TableKandidatModel getTableModel() {
-        return tableModel;
-    }
-
-    public KandidatModel getModel() {
-        return model;
-    }
-
-    public KandidatController getController() {
-        return controller;
+    
+    public static TampilanAdmin getInstance() {
+        if (tampilanAdmin == null) {
+            tampilanAdmin = new TampilanAdmin();
+        }
+        return tampilanAdmin;
     }
 
     public JTable getTableKandidat() {
         return tableKandidat;
     }
-    public void loadDatabase() throws SQLException, KandidatException{
-        KandidatDao kdao = UpilDatabase.getKandidatDao();
-        tableModel.setList(kdao.selectAllKandidat());
+    public void refreshTable() {
+        String sql = "SELECT * FROM kandidat";
+        tableModel = (DefaultTableModel) tableKandidat.getModel();
+        tableModel.setRowCount(0);
+        try {
+            Statement st = Koneksi.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                tableModel.addRow(new Object[]{rs.getInt("no_kandidat"), rs.getString("nama")});
+            }
+            st.close();
+            JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +83,8 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnHasil = new javax.swing.JButton();
+        btnLihatVisi = new javax.swing.JButton();
+        btnLihatMisi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKandidat = new javax.swing.JTable();
@@ -169,6 +189,48 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         });
         getContentPane().add(btnHasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 240, 60));
 
+        btnLihatVisi.setBackground(new java.awt.Color(49, 173, 226));
+        btnLihatVisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnLihatVisi.setForeground(new java.awt.Color(250, 248, 240));
+        btnLihatVisi.setText("Lihat Visi");
+        btnLihatVisi.setAlignmentY(1.0F);
+        btnLihatVisi.setFocusable(false);
+        btnLihatVisi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLihatVisiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLihatVisiMouseExited(evt);
+            }
+        });
+        btnLihatVisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLihatVisiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLihatVisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 520, 240, 60));
+
+        btnLihatMisi.setBackground(new java.awt.Color(49, 173, 226));
+        btnLihatMisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnLihatMisi.setForeground(new java.awt.Color(250, 248, 240));
+        btnLihatMisi.setText("Lihat Misi");
+        btnLihatMisi.setAlignmentY(1.0F);
+        btnLihatMisi.setFocusable(false);
+        btnLihatMisi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLihatMisiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLihatMisiMouseExited(evt);
+            }
+        });
+        btnLihatMisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLihatMisiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLihatMisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, 240, 60));
+
         jLabel1.setBackground(new java.awt.Color(250, 248, 240));
         jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -177,11 +239,10 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
 
         tableKandidat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {}
+
             },
             new String [] {
-
+                "No Kandidat", "Nama"
             }
         ));
         tableKandidat.setFocusable(false);
@@ -312,8 +373,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_btnTambahMouseExited
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        TambahKandidat tambahKandidat = new TambahKandidat(this, true, this);
-        tambahKandidat.setVisible(true);
+        TambahKandidat.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnHapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseEntered
@@ -325,7 +385,7 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_btnHapusMouseExited
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        controller.deleteKandidat(this);
+        
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnHasilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHasilMouseEntered
@@ -337,28 +397,42 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_btnHasilMouseExited
 
     private void btnHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHasilActionPerformed
-
+        System.out.println(tableKandidat.getSelectedRow());
     }//GEN-LAST:event_btnHasilActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
+            btnLihatVisi.setEnabled(false);
+            btnLihatMisi.setEnabled(false);
+        } else {
+            btnUbah.setEnabled(true);
+            btnLihatVisi.setEnabled(true);
+            btnLihatMisi.setEnabled(true);
         }
     }//GEN-LAST:event_formWindowActivated
 
     private void tableKandidatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseEntered
         if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
+            btnLihatVisi.setEnabled(false);
+            btnLihatMisi.setEnabled(false);
         } else {
             btnUbah.setEnabled(true);
+            btnLihatVisi.setEnabled(true);
+            btnLihatMisi.setEnabled(true);
         }
     }//GEN-LAST:event_tableKandidatMouseEntered
 
     private void tableKandidatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseClicked
         if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
+            btnLihatVisi.setEnabled(false);
+            btnLihatMisi.setEnabled(false);
         } else {
             btnUbah.setEnabled(true);
+            btnLihatVisi.setEnabled(true);
+            btnLihatMisi.setEnabled(true);
         }
     }//GEN-LAST:event_tableKandidatMouseClicked
 
@@ -391,8 +465,9 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     }//GEN-LAST:event_jLabel6MouseExited
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        UbahKandidat dialogUbahKandidat = new UbahKandidat(this, true, this);
-        dialogUbahKandidat.setVisible(true);
+        UbahKandidat.getInstance(this, true).getTxtNomorKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
+        UbahKandidat.getInstance(this, true).getTxtNamaKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 1).toString());
+        UbahKandidat.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnUbahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseExited
@@ -416,9 +491,73 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
         jLabel7.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel7MouseExited
 
+    private void btnLihatVisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatVisiMouseEntered
+
+    private void btnLihatVisiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatVisiMouseExited
+
+    private void btnLihatVisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatVisiActionPerformed
+        LihatVisi.getInstance().setVisible(true);
+        LihatVisi.getInstance().refreshTable();
+    }//GEN-LAST:event_btnLihatVisiActionPerformed
+
+    private void btnLihatMisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatMisiMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatMisiMouseEntered
+
+    private void btnLihatMisiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatMisiMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatMisiMouseExited
+
+    private void btnLihatMisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatMisiActionPerformed
+        LihatMisi.getInstance().setVisible(true);
+        LihatMisi.getInstance().refreshTable();
+    }//GEN-LAST:event_btnLihatMisiActionPerformed
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PemilihMasuk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TampilanAdmin().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHasil;
+    private javax.swing.JButton btnLihatMisi;
+    private javax.swing.JButton btnLihatVisi;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;
@@ -433,34 +572,4 @@ public class TampilanAdmin extends javax.swing.JFrame implements KandidatListene
     private javax.swing.JTable tableKandidat;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void onChange(KandidatModel model) {
-        
-    }
-
-    @Override
-    public void onInsert(Kandidat kandidat) {
-        tableModel.add(kandidat);
-    }
-
-    @Override
-    public void onDelete() {
-        int index = tableKandidat.getSelectedRow();
-        tableModel.remove(index);
-    }
-
-    @Override
-    public void onUpdate(Kandidat kandidat) {
-        int index = tableKandidat.getSelectedRow();
-        tableModel.set(index, kandidat);
-    }
-
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        try {
-            Kandidat model = tableModel.get(tableKandidat.getSelectedRow());
-        } catch (IndexOutOfBoundsException exception) {
-            
-        }
-    }
 }
