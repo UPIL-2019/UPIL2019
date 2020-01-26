@@ -10,15 +10,20 @@ import pbo.upil.koneksi.Koneksi;
  * @author Achapasya2109
  */
 public class BuatAkun extends javax.swing.JFrame {
-
-    private AdminMasuk adminMasukView;
+    private static BuatAkun buatAkun;
     /**
      * Creates new form BuatAkun
      * @param adminMasukView
      */
-    public BuatAkun(AdminMasuk adminMasukView) {
+    private BuatAkun() {
         initComponents();
-        this.adminMasukView = adminMasukView;
+    }
+    
+    public static BuatAkun getInstance() {
+        if (buatAkun == null) {
+            buatAkun = new BuatAkun();
+        }
+        return buatAkun;
     }
 
     /**
@@ -249,7 +254,7 @@ public class BuatAkun extends javax.swing.JFrame {
             ps.close();
             JOptionPane.showMessageDialog(this, "Berhasil Menyimpan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
-            adminMasukView.setVisible(true);
+            AdminMasuk.getInstance().setVisible(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
