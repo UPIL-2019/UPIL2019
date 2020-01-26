@@ -44,28 +44,27 @@ public class TambahVisi extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
         txtNomorKandidat = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jSeparator6 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaVisi = new javax.swing.JTextArea();
+        textAreaMisi = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(250, 248, 240));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Tambah Visi");
-
-        jSeparator5.setForeground(new java.awt.Color(49, 173, 226));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 450, -1));
 
         txtNomorKandidat.setBackground(new java.awt.Color(250, 248, 240));
         txtNomorKandidat.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
@@ -77,10 +76,10 @@ public class TambahVisi extends javax.swing.JDialog {
                 txtNomorKandidatActionPerformed(evt);
             }
         });
+        jPanel1.add(txtNomorKandidat, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 510, 30));
 
-        btnReset.setBackground(new java.awt.Color(49, 173, 226));
+        btnReset.setBackground(new java.awt.Color(255, 255, 255));
         btnReset.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnReset.setForeground(new java.awt.Color(250, 248, 240));
         btnReset.setText("Reset");
         btnReset.setAlignmentY(1.0F);
         btnReset.setFocusable(false);
@@ -97,10 +96,10 @@ public class TambahVisi extends javax.swing.JDialog {
                 btnResetActionPerformed(evt);
             }
         });
+        jPanel1.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
-        btnOk.setBackground(new java.awt.Color(49, 173, 226));
+        btnOk.setBackground(new java.awt.Color(255, 255, 255));
         btnOk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnOk.setForeground(new java.awt.Color(250, 248, 240));
         btnOk.setText("Ok");
         btnOk.setAlignmentY(1.0F);
         btnOk.setFocusable(false);
@@ -117,10 +116,10 @@ public class TambahVisi extends javax.swing.JDialog {
                 btnOkActionPerformed(evt);
             }
         });
+        jPanel1.add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 80, -1));
 
-        btnBatal.setBackground(new java.awt.Color(49, 173, 226));
+        btnBatal.setBackground(new java.awt.Color(255, 255, 255));
         btnBatal.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnBatal.setForeground(new java.awt.Color(250, 248, 240));
         btnBatal.setText("Batal");
         btnBatal.setAlignmentY(1.0F);
         btnBatal.setFocusable(false);
@@ -137,77 +136,36 @@ public class TambahVisi extends javax.swing.JDialog {
                 btnBatalActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel8.setText("Visi");
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Misi");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 139, 450, -1));
 
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(6, 62, 97));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Nomor Kandidat");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 410, -1));
 
-        jSeparator6.setForeground(new java.awt.Color(49, 173, 226));
+        textAreaMisi.setColumns(20);
+        textAreaMisi.setRows(5);
+        jScrollPane1.setViewportView(textAreaMisi);
 
-        textAreaVisi.setColumns(20);
-        textAreaVisi.setRows(5);
-        jScrollPane1.setViewportView(textAreaVisi);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 510, 90));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNomorKandidat)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator6)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
-                        .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomorKandidat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReset)
-                    .addComponent(btnBatal)
-                    .addComponent(btnOk))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -227,7 +185,7 @@ public class TambahVisi extends javax.swing.JDialog {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         this.txtNomorKandidat.setText("");
-        this.textAreaVisi.setText("");
+        this.textAreaMisi.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
@@ -241,14 +199,14 @@ public class TambahVisi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOkMouseExited
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        String sql = "INSERT INTO visi (no_kandidat, teks_visi) VALUES (?, ?)";
-        if (this.textAreaVisi.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Visi tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        String sql = "INSERT INTO misi (no_kandidat, teks_misi) VALUES (?, ?)";
+        if (this.textAreaMisi.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Misi tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-                ps.setInt(1, LihatVisi.getInstance().getNomorKandidat());
-                ps.setString(2, textAreaVisi.getText());
+                ps.setInt(1, LihatMisi.getInstance().getNomorKandidat());
+                ps.setString(2, textAreaMisi.getText());
                 ps.executeUpdate();
                 ps.close();
                 JOptionPane.showMessageDialog(this, "Berhasil menyimpan.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
@@ -257,7 +215,7 @@ public class TambahVisi extends javax.swing.JDialog {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
-            LihatVisi.getInstance().refreshTable();
+            LihatMisi.getInstance().refreshTable();
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
@@ -319,14 +277,13 @@ public class TambahVisi extends javax.swing.JDialog {
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnOk;
     private javax.swing.JButton btnReset;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextArea textAreaVisi;
+    private javax.swing.JTextArea textAreaMisi;
     private javax.swing.JTextField txtNomorKandidat;
     // End of variables declaration//GEN-END:variables
 }

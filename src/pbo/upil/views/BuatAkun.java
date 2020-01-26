@@ -219,7 +219,7 @@ public class BuatAkun extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel7.setFont(new java.awt.Font("Falco Black", 0, 47)); // NOI18N
-        jLabel7.setText("DAFTAR");
+        jLabel7.setText("dAFTAR");
         jPanel1.add(jLabel7, new java.awt.GridBagConstraints());
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 270, 50));

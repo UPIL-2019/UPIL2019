@@ -269,7 +269,7 @@
           <Color blue="f0" green="f8" red="fa" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/pbo/upil/media/login v.2 Admin.png"/>
+          <Image iconType="3" name="/pbo/upil/media/login v.2.png"/>
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>

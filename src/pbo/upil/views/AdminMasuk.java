@@ -183,7 +183,7 @@ public class AdminMasuk extends javax.swing.JFrame {
 
         bg.setBackground(new java.awt.Color(49, 173, 226));
         bg.setForeground(new java.awt.Color(250, 248, 240));
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/login v.2 Admin.png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/login v.2.png"))); // NOI18N
         bg.setFocusable(false);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
