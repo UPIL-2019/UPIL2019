@@ -83,7 +83,6 @@ public class UbahKandidat extends javax.swing.JDialog {
         btnMasuk = new javax.swing.JButton();
         btnMasuk2 = new javax.swing.JButton();
         txtNamaKandidat = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -166,13 +165,6 @@ public class UbahKandidat extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -188,8 +180,7 @@ public class UbahKandidat extends javax.swing.JDialog {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGap(0, 87, Short.MAX_VALUE)
                         .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMasuk2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -215,8 +206,7 @@ public class UbahKandidat extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMasuk)
-                    .addComponent(btnMasuk2)
-                    .addComponent(jButton1))
+                    .addComponent(btnMasuk2))
                 .addContainerGap())
         );
 
@@ -291,14 +281,9 @@ public class UbahKandidat extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaKandidatActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow());
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMasuk;
     private javax.swing.JButton btnMasuk2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

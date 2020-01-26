@@ -172,6 +172,15 @@ public class BuatAkun extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("<");
+        jLabel8.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLabel8AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -306,6 +315,10 @@ public class BuatAkun extends javax.swing.JFrame {
         pnlBack.setBackground(new java.awt.Color(250,248,240));
         jLabel7.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel8MouseExited
+
+    private void jLabel8AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel8AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel8AncestorAdded
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMasuk;
