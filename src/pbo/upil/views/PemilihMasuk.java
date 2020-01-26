@@ -11,12 +11,19 @@ import pbo.upil.koneksi.Koneksi;
  * @author Achapasya2109
  */
 public class PemilihMasuk extends javax.swing.JFrame {
-
+    private static PemilihMasuk pemilihMasuk;
     /**
      * Creates new form Elector
      */
-    public PemilihMasuk() {
+    private PemilihMasuk() {
         initComponents();
+    }
+    
+    public static PemilihMasuk getInstance() {
+        if (pemilihMasuk == null) {
+            pemilihMasuk = new PemilihMasuk();
+        }
+        return pemilihMasuk;
     }
 
     /**
@@ -259,6 +266,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Berhasil Masuk", "Sukses", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
             TampilanPemilihan.getInstance().setVisible(true);
+            TampilanPemilihan.getInstance().refreshTable();
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Gagal Masuk", "Gagal", JOptionPane.ERROR_MESSAGE);

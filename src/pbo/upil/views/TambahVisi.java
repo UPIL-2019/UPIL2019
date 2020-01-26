@@ -8,40 +8,31 @@ package pbo.upil.views;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import pbo.upil.koneksi.Koneksi;
 
 /**
  *
  * @author Agung Nurhamidan
  */
-public class TambahKandidat extends javax.swing.JDialog {
-    private static TambahKandidat tambahKandidat;
+public class TambahVisi extends javax.swing.JDialog {
+    private static TambahVisi tambahVisi;
     private static java.awt.Frame parent;
     private static boolean modal;
     /**
-     * Creates new form TambahKandidat
+     * Creates new form TambahVisi
      */
-    private TambahKandidat(java.awt.Frame parent, boolean modal) {
+    public TambahVisi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        TambahKandidat.parent = parent;
-        TambahKandidat.modal = modal;
+        TambahVisi.parent = parent;
+        TambahVisi.modal = modal;
         initComponents();
     }
     
-    public static TambahKandidat getInstance(java.awt.Frame parent, boolean modal) {
-        if ((tambahKandidat == null) || (TambahKandidat.parent != parent) || (TambahKandidat.modal != modal)) {
-            tambahKandidat = new TambahKandidat(parent, modal);
+    public static TambahVisi getInstance(java.awt.Frame parent, boolean modal) {
+        if ((tambahVisi == null) || (TambahVisi.parent != parent) || (TambahVisi.modal != modal)) {
+            tambahVisi = new TambahVisi(parent, modal);
         }
-        return tambahKandidat;
-    }
-
-    public JTextField getTxtNamaKandidat() {
-        return txtNamaKandidat;
-    }
-
-    public JTextField getTxtNomorKandidat() {
-        return txtNomorKandidat;
+        return tambahVisi;
     }
 
     /**
@@ -57,13 +48,14 @@ public class TambahKandidat extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         txtNomorKandidat = new javax.swing.JTextField();
-        txtNamaKandidat = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaVisi = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,7 +63,7 @@ public class TambahKandidat extends javax.swing.JDialog {
 
         jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Tambah Kandidat");
+        jLabel7.setText("Tambah Visi");
 
         jSeparator5.setForeground(new java.awt.Color(49, 173, 226));
 
@@ -79,19 +71,10 @@ public class TambahKandidat extends javax.swing.JDialog {
         txtNomorKandidat.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtNomorKandidat.setForeground(new java.awt.Color(49, 173, 226));
         txtNomorKandidat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtNomorKandidat.setEnabled(false);
         txtNomorKandidat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomorKandidatActionPerformed(evt);
-            }
-        });
-
-        txtNamaKandidat.setBackground(new java.awt.Color(250, 248, 240));
-        txtNamaKandidat.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        txtNamaKandidat.setForeground(new java.awt.Color(49, 173, 226));
-        txtNamaKandidat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtNamaKandidat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaKandidatActionPerformed(evt);
             }
         });
 
@@ -157,7 +140,7 @@ public class TambahKandidat extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel8.setText("Nama Kandidat");
+        jLabel8.setText("Visi");
 
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(6, 62, 97));
@@ -165,27 +148,30 @@ public class TambahKandidat extends javax.swing.JDialog {
 
         jSeparator6.setForeground(new java.awt.Color(49, 173, 226));
 
+        textAreaVisi.setColumns(20);
+        textAreaVisi.setRows(5);
+        jScrollPane1.setViewportView(textAreaVisi);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNamaKandidat)
-                    .addComponent(txtNomorKandidat, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNomorKandidat)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator6)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                         .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator5)
-                    .addComponent(jSeparator6))
+                        .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -202,15 +188,15 @@ public class TambahKandidat extends javax.swing.JDialog {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNamaKandidat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOk)
+                    .addComponent(btnReset)
                     .addComponent(btnBatal)
-                    .addComponent(btnReset))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOk))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,16 +211,11 @@ public class TambahKandidat extends javax.swing.JDialog {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomorKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomorKandidatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomorKandidatActionPerformed
-
-    private void txtNamaKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaKandidatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaKandidatActionPerformed
 
     private void btnResetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseEntered
         // TODO add your handling code here:
@@ -246,7 +227,7 @@ public class TambahKandidat extends javax.swing.JDialog {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         this.txtNomorKandidat.setText("");
-        this.txtNamaKandidat.setText("");
+        this.textAreaVisi.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
@@ -260,17 +241,14 @@ public class TambahKandidat extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOkMouseExited
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if (this.txtNamaKandidat.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Nama tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        } else if (this.txtNamaKandidat.getText().length() > 50) {
-            JOptionPane.showMessageDialog(this, "Nama tidak boleh lebih dari 50 karakter.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        String sql = "INSERT INTO visi (no_kandidat, teks_visi) VALUES (?, ?)";
+        if (this.textAreaVisi.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Visi tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         } else {
-            String sql = "INSERT INTO kandidat (nama) VALUES (?)";
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-                //ps.setInt(1, Integer.parseInt(txtNomorKandidat.getText()));
-                //ps.setString(2, txtNamaKandidat.getText());
-                ps.setString(1, txtNamaKandidat.getText());
+                ps.setInt(1, LihatVisi.getInstance().getNomorKandidat());
+                ps.setString(2, textAreaVisi.getText());
                 ps.executeUpdate();
                 ps.close();
                 JOptionPane.showMessageDialog(this, "Berhasil menyimpan.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
@@ -279,7 +257,7 @@ public class TambahKandidat extends javax.swing.JDialog {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
-            TampilanAdmin.getInstance().refreshTable();
+            LihatVisi.getInstance().refreshTable();
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
@@ -294,6 +272,49 @@ public class TambahKandidat extends javax.swing.JDialog {
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TambahVisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TambahVisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TambahVisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TambahVisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                TambahVisi dialog = new TambahVisi(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnOk;
@@ -302,9 +323,10 @@ public class TambahKandidat extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField txtNamaKandidat;
+    private javax.swing.JTextArea textAreaVisi;
     private javax.swing.JTextField txtNomorKandidat;
     // End of variables declaration//GEN-END:variables
 }

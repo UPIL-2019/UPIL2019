@@ -15,7 +15,6 @@ import pbo.upil.errors.KandidatException;
 import pbo.upil.koneksi.Koneksi;
 import pbo.upil.views.AdminMasuk;
 import pbo.upil.views.BuatAkun;
-import pbo.upil.views.KartuKandidat;
 import pbo.upil.views.TampilanPemilihan;
 
 /**

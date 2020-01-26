@@ -4,7 +4,10 @@ import java.awt.Frame;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import pbo.upil.koneksi.Koneksi;
 
 /**
@@ -12,35 +15,42 @@ import pbo.upil.koneksi.Koneksi;
  * @author Achapasya2109
  */
 public class TampilanPemilihan extends javax.swing.JFrame {
-    private static TampilanPemilihan tampilanPemilihanView;
+    private static TampilanPemilihan tampilanPemilihan;
+    private DefaultTableModel tableModel;
     /**
      * Creates new form TampilanPemilih
      */
     private TampilanPemilihan() {
         initComponents();
-        String sql = "SELECT * FROM kandidat";
-        try {
-            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                KartuKandidat kartuKandidat = new KartuKandidat();
-                kartuKandidat.getLblNomorKandidat().setText(Integer.toString(rs.getInt("no_kandidat")));
-                kartuKandidat.getLblNama().setText(rs.getString("nama"));
-                buttonGroupKandidat.add(kartuKandidat.getRadioKandidat());
-                panelKandidat.add(kartuKandidat);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Kesalahan di database", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        }
     }
     
     public static TampilanPemilihan getInstance() {
-        if (tampilanPemilihanView == null) {
-            tampilanPemilihanView = new TampilanPemilihan();
+        if (tampilanPemilihan == null) {
+            tampilanPemilihan = new TampilanPemilihan();
         }
-        return tampilanPemilihanView;
+        return tampilanPemilihan;
+    }
+    
+    public void refreshTable() {
+        String sql = "SELECT * FROM kandidat";
+        tableModel = (DefaultTableModel) tableKandidat.getModel();
+        tableModel.setRowCount(0);
+        try {
+            Statement st = Koneksi.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                tableModel.addRow(new Object[]{rs.getInt("no_kandidat"), rs.getString("nama")});
+            }
+            st.close();
+            JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public JTable getTableKandidat() {
+        return tableKandidat;
     }
 
     /**
@@ -62,8 +72,26 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         pnlMinimize = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panelKandidat = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableKandidat = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        lblNomorKandidat = new javax.swing.JLabel();
+        lblNamaKandidat = new javax.swing.JLabel();
+        lblVisiKandidat = new javax.swing.JLabel();
+        lblMisiKandidat = new javax.swing.JLabel();
+        btnLihatMisi = new javax.swing.JButton();
+        btnLihatVisi = new javax.swing.JButton();
+        btnRincian = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1060, 600));
@@ -181,8 +209,199 @@ public class TampilanPemilihan extends javax.swing.JFrame {
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        panelKandidat.setLayout(new java.awt.GridLayout(0, 2, 50, 50));
-        jScrollPane1.setViewportView(panelKandidat);
+        tableKandidat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "No Kandidat", "Nama"
+            }
+        ));
+        tableKandidat.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                tableKandidatAncestorMoved(evt);
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        tableKandidat.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+                tableKandidatAncestorMoved1(evt);
+            }
+            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
+            }
+        });
+        tableKandidat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableKandidatMouseClicked(evt);
+            }
+        });
+        tableKandidat.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tableKandidatPropertyChange(evt);
+            }
+        });
+        tableKandidat.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                tableKandidatVetoableChange(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableKandidat);
+
+        jLabel2.setText("DAFTAR KANDIDAT");
+
+        jLabel3.setText("RINCIAN : ");
+
+        jLabel5.setText("Nomor Kandidat");
+
+        jLabel8.setText("Nama Kandidat");
+
+        jLabel9.setText("Visi");
+
+        jLabel10.setText("Misi");
+
+        jLabel11.setText(" : ");
+
+        jLabel12.setText(" : ");
+
+        jLabel13.setText(" : ");
+
+        jLabel14.setText(" : ");
+
+        lblNomorKandidat.setText("jLabel15");
+
+        lblNamaKandidat.setText("jLabel16");
+
+        lblVisiKandidat.setText("jLabel17");
+
+        lblMisiKandidat.setText("jLabel18");
+
+        btnLihatMisi.setBackground(new java.awt.Color(49, 173, 226));
+        btnLihatMisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnLihatMisi.setForeground(new java.awt.Color(250, 248, 240));
+        btnLihatMisi.setText("Lihat Misi");
+        btnLihatMisi.setAlignmentY(1.0F);
+        btnLihatMisi.setFocusable(false);
+        btnLihatMisi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLihatMisiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLihatMisiMouseExited(evt);
+            }
+        });
+        btnLihatMisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLihatMisiActionPerformed(evt);
+            }
+        });
+
+        btnLihatVisi.setBackground(new java.awt.Color(49, 173, 226));
+        btnLihatVisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnLihatVisi.setForeground(new java.awt.Color(250, 248, 240));
+        btnLihatVisi.setText("Lihat Visi");
+        btnLihatVisi.setAlignmentY(1.0F);
+        btnLihatVisi.setFocusable(false);
+        btnLihatVisi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLihatVisiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLihatVisiMouseExited(evt);
+            }
+        });
+        btnLihatVisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLihatVisiActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblVisiKandidat)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblMisiKandidat)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblNomorKandidat))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLihatVisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnLihatMisi, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblNamaKandidat))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel11)
+                    .addComponent(lblNomorKandidat))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel12)
+                    .addComponent(lblNamaKandidat))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel13)
+                    .addComponent(btnLihatVisi))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel14)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(btnLihatMisi)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(lblVisiKandidat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMisiKandidat)
+                .addGap(66, 66, 66))
+        );
+
+        btnRincian.setText("Tampilkan Rincian");
+        btnRincian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRincianActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -196,12 +415,21 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
                         .addComponent(pnlMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49))))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(376, 376, 376)
-                .addComponent(btn_pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(403, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                .addContainerGap()
+                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                    .addComponent(btn_pilih, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnRincian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,12 +438,20 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                     .addComponent(pnlExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(btn_pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRincian))
                 .addGap(67, 67, 67))
         );
 
@@ -236,8 +472,7 @@ public class TampilanPemilihan extends javax.swing.JFrame {
 
     private void btn_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilihActionPerformed
         // TODO add your handling code here:
-        PemilihMasuk pm = new PemilihMasuk();
-        pm.setVisible(true);
+        PemilihMasuk.getInstance().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_pilihActionPerformed
 
@@ -282,6 +517,79 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         pnlBack.setBackground(new java.awt.Color(250,248,240));
         jLabel7.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jLabel7MouseExited
+
+    private void tableKandidatPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tableKandidatPropertyChange
+        //System.out.println("tes");
+    }//GEN-LAST:event_tableKandidatPropertyChange
+
+    private void tableKandidatAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tableKandidatAncestorMoved
+
+    }//GEN-LAST:event_tableKandidatAncestorMoved
+
+    private void tableKandidatVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_tableKandidatVetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableKandidatVetoableChange
+
+    private void tableKandidatAncestorMoved1(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_tableKandidatAncestorMoved1
+        //System.out.println("tes");        // TODO add your handling code here:
+    }//GEN-LAST:event_tableKandidatAncestorMoved1
+
+    private void btnRincianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRincianActionPerformed
+        if (tableKandidat.getSelectedRow() != -1) {
+            String sql = "SELECT kandidat.no_kandidat, kandidat.nama, visi.teks_visi, misi.teks_misi FROM kandidat, visi, misi WHERE kandidat.no_kandidat = visi.no_kandidat AND kandidat.no_kandidat = misi.no_kandidat AND kandidat.no_kandidat = ?";
+            try {
+                PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+                ps.setInt(1, (Integer) tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0));
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    lblNomorKandidat.setText(rs.getString("kandidat.no_kandidat"));
+                    lblNamaKandidat.setText(rs.getString("kandidat.nama"));
+                    lblVisiKandidat.setText(rs.getString("visi.teks_visi"));
+                    lblMisiKandidat.setText(rs.getString("misi.teks_misi"));
+                } else {
+                    lblNomorKandidat.setText("-");
+                    lblNamaKandidat.setText("-");
+                    lblVisiKandidat.setText("-");
+                    lblMisiKandidat.setText("-");
+                }
+                ps.close();
+                JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnRincianActionPerformed
+
+    private void tableKandidatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseClicked
+
+    }//GEN-LAST:event_tableKandidatMouseClicked
+
+    private void btnLihatVisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatVisiMouseEntered
+
+    private void btnLihatVisiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatVisiMouseExited
+
+    private void btnLihatVisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatVisiActionPerformed
+        LihatVisiPengguna.getInstance().setVisible(true);
+        LihatVisiPengguna.getInstance().refreshTable();
+    }//GEN-LAST:event_btnLihatVisiActionPerformed
+
+    private void btnLihatMisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatMisiMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatMisiMouseEntered
+
+    private void btnLihatMisiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatMisiMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLihatMisiMouseExited
+
+    private void btnLihatMisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatMisiActionPerformed
+        LihatMisiPengguna.getInstance().setVisible(true);
+        LihatMisiPengguna.getInstance().refreshTable();
+    }//GEN-LAST:event_btnLihatMisiActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -320,17 +628,35 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLihatMisi;
+    private javax.swing.JButton btnLihatVisi;
+    private javax.swing.JButton btnRincian;
     private javax.swing.JButton btn_pilih;
     private javax.swing.ButtonGroup buttonGroupKandidat;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelKandidat;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblMisiKandidat;
+    private javax.swing.JLabel lblNamaKandidat;
+    private javax.swing.JLabel lblNomorKandidat;
+    private javax.swing.JLabel lblVisiKandidat;
     private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlExit;
     private javax.swing.JPanel pnlMinimize;
+    private javax.swing.JTable tableKandidat;
     // End of variables declaration//GEN-END:variables
 }
