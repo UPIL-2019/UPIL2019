@@ -205,7 +205,7 @@ public class TambahVisi extends javax.swing.JDialog {
         } else {
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-                ps.setInt(1, LihatMisi.getInstance().getNomorKandidat());
+                ps.setInt(1, LihatMisi2.getInstance().getNomorKandidat());
                 ps.setString(2, textAreaMisi.getText());
                 ps.executeUpdate();
                 ps.close();
@@ -215,7 +215,7 @@ public class TambahVisi extends javax.swing.JDialog {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
-            LihatMisi.getInstance().refreshTable();
+            LihatMisi2.getInstance().refreshTable();
         }
     }//GEN-LAST:event_btnOkActionPerformed
 

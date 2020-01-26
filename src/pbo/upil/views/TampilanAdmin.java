@@ -473,8 +473,8 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLihatVisiMouseExited
 
     private void btnLihatVisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatVisiActionPerformed
-        LihatVisi.getInstance().setVisible(true);
-        LihatVisi.getInstance().refreshTable();
+        LihatVisi2.getInstance().setVisible(true);
+        LihatVisi2.getInstance().refreshTable();
     }//GEN-LAST:event_btnLihatVisiActionPerformed
 
     private void btnLihatMisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatMisiMouseEntered
@@ -486,8 +486,8 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLihatMisiMouseExited
 
     private void btnLihatMisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatMisiActionPerformed
-        LihatMisi.getInstance().setVisible(true);
-        LihatMisi.getInstance().refreshTable();
+        LihatMisi2.getInstance().setVisible(true);
+        LihatMisi2.getInstance().refreshTable();
     }//GEN-LAST:event_btnLihatMisiActionPerformed
 
     private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited

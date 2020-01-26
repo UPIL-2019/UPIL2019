@@ -16,19 +16,19 @@ import pbo.upil.koneksi.Koneksi;
  *
  * @author Agung Nurhamidan
  */
-public class LihatMisi extends javax.swing.JFrame {
- private static LihatMisi LihatMisi;
+public class LihatMisi2 extends javax.swing.JFrame {
+ private static LihatMisi2 LihatMisi;
     private DefaultTableModel tableModel;
     private Integer nomorKandidat;
 
    
-    private LihatMisi() {
+    private LihatMisi2() {
         initComponents();
     }
     
-    public static LihatMisi getInstance() {
+    public static LihatMisi2 getInstance() {
         if (LihatMisi == null) {
-            LihatMisi = new LihatMisi();
+            LihatMisi = new LihatMisi2();
         }
         return LihatMisi;
     }
@@ -224,20 +224,21 @@ public class LihatMisi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LihatMisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatMisi2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LihatMisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatMisi2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LihatMisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatMisi2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LihatMisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatMisi2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LihatMisi().setVisible(true);
+                new LihatMisi2().setVisible(true);
             }
         });
     }
