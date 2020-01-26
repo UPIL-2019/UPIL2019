@@ -37,7 +37,7 @@ public class LihatVisi extends javax.swing.JFrame {
     }
     
     public void refreshTable() {
-        String sql = "SELECT kandidat.no_kandidat, kandidat.nama, visi.teks_visi FROM kandidat, visi WHERE kandidat.no_kandidat = visi.no_kandidat AND kandidat.no_kandidat = ?";
+        String sql = "SELECT visi.id_visi, kandidat.no_kandidat, kandidat.nama, visi.teks_visi FROM kandidat, visi WHERE kandidat.no_kandidat = visi.no_kandidat AND kandidat.no_kandidat = ?";
         nomorKandidat = (Integer) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
         tableModel = (DefaultTableModel) tableVisi.getModel();
         tableModel.setRowCount(0);
@@ -46,7 +46,7 @@ public class LihatVisi extends javax.swing.JFrame {
             ps.setInt(1, nomorKandidat);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getString("visi.teks_visi")});
+                tableModel.addRow(new Object[]{rs.getInt("visi.id_visi"), rs.getString("visi.teks_visi")});
             }
             ps.close();
             JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -162,15 +162,11 @@ public class LihatVisi extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,10 +177,9 @@ public class LihatVisi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                    .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,7 +221,9 @@ public class LihatVisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahMouseExited
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        
+        UbahVisi.getInstance(this, true).setIdVisi(Integer.parseInt(tableVisi.getValueAt(tableVisi.getSelectedRow(), 0).toString()));
+        UbahVisi.getInstance(this, true).getTextAreaVisi().setText(tableVisi.getValueAt(tableVisi.getSelectedRow(), 1).toString());
+        UbahVisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseEntered

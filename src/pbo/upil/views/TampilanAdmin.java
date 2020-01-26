@@ -1,26 +1,13 @@
 package pbo.upil.views;
 
 import java.awt.Frame;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import pbo.upil.controllers.KandidatController;
-import pbo.upil.databases.UpilDatabase;
-import pbo.upil.entities.Kandidat;
-import pbo.upil.errors.KandidatException;
-import pbo.upil.events.KandidatListener;
 import pbo.upil.koneksi.Koneksi;
-import pbo.upil.models.KandidatModel;
-import pbo.upil.models.TableKandidatModel;
-import pbo.upil.services.KandidatDao;
 
 /**
  *
