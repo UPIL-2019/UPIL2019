@@ -5,22 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import pbo.upil.controllers.KandidatController;
-import pbo.upil.databases.UpilDatabase;
-import pbo.upil.entities.Kandidat;
-import pbo.upil.errors.KandidatException;
-import pbo.upil.events.KandidatListener;
 import pbo.upil.koneksi.Koneksi;
-import pbo.upil.models.KandidatModel;
-import pbo.upil.models.TableKandidatModel;
-import pbo.upil.services.KandidatDao;
 
 /**
  *
@@ -53,6 +41,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
     public JTable getTableKandidat() {
         return tableKandidat;
     }
+    
     public void refreshTable() {
         String sql = "SELECT * FROM kandidat";
         tableModel = (DefaultTableModel) tableKandidat.getModel();
@@ -85,7 +74,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnHasil = new javax.swing.JButton();
         btnLihatVisi = new javax.swing.JButton();
         btnLihatMisi = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKandidat = new javax.swing.JTable();
         pnlExit = new javax.swing.JPanel();
@@ -105,9 +93,8 @@ public class TampilanAdmin extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnUbah.setBackground(new java.awt.Color(49, 173, 226));
+        btnUbah.setBackground(new java.awt.Color(255, 255, 255));
         btnUbah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnUbah.setForeground(new java.awt.Color(250, 248, 240));
         btnUbah.setText("Ubah");
         btnUbah.setAlignmentY(1.0F);
         btnUbah.setFocusable(false);
@@ -124,11 +111,10 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 btnUbahActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 240, 60));
+        getContentPane().add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 200, 40));
 
-        btnTambah.setBackground(new java.awt.Color(49, 173, 226));
+        btnTambah.setBackground(new java.awt.Color(255, 255, 255));
         btnTambah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnTambah.setForeground(new java.awt.Color(250, 248, 240));
         btnTambah.setText("Tambah");
         btnTambah.setAlignmentY(1.0F);
         btnTambah.setFocusable(false);
@@ -145,11 +131,10 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 btnTambahActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 240, 60));
+        getContentPane().add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 200, 40));
 
-        btnHapus.setBackground(new java.awt.Color(49, 173, 226));
+        btnHapus.setBackground(new java.awt.Color(255, 255, 255));
         btnHapus.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnHapus.setForeground(new java.awt.Color(250, 248, 240));
         btnHapus.setText("Hapus");
         btnHapus.setAlignmentY(1.0F);
         btnHapus.setFocusable(false);
@@ -166,11 +151,10 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 btnHapusActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 240, 60));
+        getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 200, 40));
 
-        btnHasil.setBackground(new java.awt.Color(49, 173, 226));
+        btnHasil.setBackground(new java.awt.Color(255, 255, 255));
         btnHasil.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnHasil.setForeground(new java.awt.Color(250, 248, 240));
         btnHasil.setText("Hasil");
         btnHasil.setAlignmentY(1.0F);
         btnHasil.setFocusable(false);
@@ -187,11 +171,10 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 btnHasilActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 240, 60));
+        getContentPane().add(btnHasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, 200, 40));
 
-        btnLihatVisi.setBackground(new java.awt.Color(49, 173, 226));
+        btnLihatVisi.setBackground(new java.awt.Color(255, 255, 255));
         btnLihatVisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnLihatVisi.setForeground(new java.awt.Color(250, 248, 240));
         btnLihatVisi.setText("Lihat Visi");
         btnLihatVisi.setAlignmentY(1.0F);
         btnLihatVisi.setFocusable(false);
@@ -208,11 +191,10 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 btnLihatVisiActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLihatVisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 520, 240, 60));
+        getContentPane().add(btnLihatVisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, 200, 40));
 
-        btnLihatMisi.setBackground(new java.awt.Color(49, 173, 226));
+        btnLihatMisi.setBackground(new java.awt.Color(255, 255, 255));
         btnLihatMisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnLihatMisi.setForeground(new java.awt.Color(250, 248, 240));
         btnLihatMisi.setText("Lihat Misi");
         btnLihatMisi.setAlignmentY(1.0F);
         btnLihatMisi.setFocusable(false);
@@ -229,13 +211,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 btnLihatMisiActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLihatMisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, 240, 60));
-
-        jLabel1.setBackground(new java.awt.Color(250, 248, 240));
-        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Daftar Kandidat");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1060, -1));
+        getContentPane().add(btnLihatMisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 200, 40));
 
         tableKandidat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,7 +232,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableKandidat);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 490, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 410, 230));
 
         pnlExit.setBackground(new java.awt.Color(250, 248, 240));
 
@@ -343,21 +319,19 @@ public class TampilanAdmin extends javax.swing.JFrame {
         pnlBack.setLayout(pnlBackLayout);
         pnlBackLayout.setHorizontalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
         pnlBackLayout.setVerticalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBackLayout.createSequentialGroup()
                 .addComponent(jLabel7)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
+        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, -1));
 
         jLabel2.setBackground(new java.awt.Color(250, 248, 240));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/bg.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Frame.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
@@ -385,7 +359,22 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusMouseExited
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        
+        if (JOptionPane.showConfirmDialog(this, "Apakah anda yakin?", "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            String sql = "DELETE FROM kandidat WHERE no_kandidat = ?";
+            //int nomorKandidat = (int) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
+            try {
+                PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+                ps.setString(1, tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
+                ps.executeUpdate();
+                ps.close();
+                tableModel.removeRow(tableKandidat.getSelectedRow());
+                //refreshTable();
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Gagal Menghapus", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnHasilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHasilMouseEntered
@@ -442,7 +431,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
 
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
         pnlExit.setBackground(new java.awt.Color(153,153,153));
-        jLabel1.setForeground(new java.awt.Color(0,0,0));
+        
     }//GEN-LAST:event_jLabel4MouseEntered
 
     private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
@@ -477,20 +466,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
     private void btnUbahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseEntered
     }//GEN-LAST:event_btnUbahMouseEntered
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel7MouseClicked
-
-    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
-        pnlBack.setBackground(new java.awt.Color(153,153,153));
-        jLabel7.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_jLabel7MouseEntered
-
-    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
-        pnlBack.setBackground(new java.awt.Color(250,248,240));
-        jLabel7.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_jLabel7MouseExited
-
     private void btnLihatVisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLihatVisiMouseEntered
@@ -516,6 +491,20 @@ public class TampilanAdmin extends javax.swing.JFrame {
         LihatMisi.getInstance().setVisible(true);
         LihatMisi.getInstance().refreshTable();
     }//GEN-LAST:event_btnLihatMisiActionPerformed
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        pnlBack.setBackground(new java.awt.Color(250,248,240));
+        jLabel7.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jLabel7MouseExited
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        pnlBack.setBackground(new java.awt.Color(153,153,153));
+        jLabel7.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
     /**
      * @param args the command line arguments
      */
@@ -560,7 +549,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnLihatVisi;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;

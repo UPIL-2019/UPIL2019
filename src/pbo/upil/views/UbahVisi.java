@@ -6,8 +6,11 @@
 package pbo.upil.views;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import pbo.upil.koneksi.Koneksi;
 
 /**
@@ -18,7 +21,7 @@ public class UbahVisi extends javax.swing.JDialog {
     private static UbahVisi ubahVisi;
     private static java.awt.Frame parent;
     private static boolean modal;
-    private Integer nomorKandidat;
+    private Integer idVisi;
     /**
      * Creates new form UbahVisi
      */
@@ -34,6 +37,32 @@ public class UbahVisi extends javax.swing.JDialog {
             ubahVisi = new UbahVisi(parent, modal);
         }
         return ubahVisi;
+    }
+
+    public JTextField getTxtNomorKandidat() {
+        return txtNomorKandidat;
+    }
+
+    public JTextArea getTextAreaVisi() {
+        return textAreaVisi;
+    }
+    
+    public void refreshTextAreaVisi() {
+        String sql = "SELECT visi.teks_visi FROM visi WHERE visi.id_visi = ?";
+        idVisi = (Integer) LihatVisi.getInstance().getTableVisi().getValueAt(LihatVisi.getInstance().getTableVisi().getSelectedRow(), 0);
+        try {
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+            ps.setInt(1, idVisi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                textAreaVisi.setText(rs.getString("visi.teks_visi"));
+            }
+            ps.close();
+            JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal Refresh", "Gagal", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -245,23 +274,20 @@ public class UbahVisi extends javax.swing.JDialog {
         if (this.textAreaVisi.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Nama tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         } else {
-            String sql = "UPDATE visi SET teks_visi = ? WHERE no_kandidat = ?";
-            //int nomorKandidat = (int) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
+            String sql = "UPDATE visi SET teks_visi = ? WHERE id_visi = ?";
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-                //ps.setInt(1, Integer.parseInt(txtNomorKandidat.getText()));
-                //ps.setString(2, txtNamaKandidat.getText());
                 ps.setString(1, textAreaVisi.getText());
-                ps.setInt(2, Integer.parseInt(txtNomorKandidat.getText()));
+                ps.setInt(2, idVisi);
                 ps.executeUpdate();
                 ps.close();
                 JOptionPane.showMessageDialog(this, "Berhasil mengubah.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
+                LihatVisi.getInstance().refreshTable();
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Gagal Mengubah", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
-            TampilanAdmin.getInstance().refreshTable();
         }      
     }//GEN-LAST:event_btnOkActionPerformed
 

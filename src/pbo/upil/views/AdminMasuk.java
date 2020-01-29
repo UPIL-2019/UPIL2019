@@ -82,6 +82,16 @@ public class AdminMasuk extends javax.swing.JFrame {
         txtPassword.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(49, 173, 226));
         txtPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 230, 30));
 
         jSeparator2.setForeground(new java.awt.Color(49, 173, 226));
@@ -183,7 +193,7 @@ public class AdminMasuk extends javax.swing.JFrame {
 
         bg.setBackground(new java.awt.Color(49, 173, 226));
         bg.setForeground(new java.awt.Color(250, 248, 240));
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/login v.2 Admin.png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/login v.2.png"))); // NOI18N
         bg.setFocusable(false);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
@@ -233,7 +243,7 @@ public class AdminMasuk extends javax.swing.JFrame {
     }//GEN-LAST:event_lblDaftarMouseExited
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
+        btnMasukActionPerformed(evt);
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void lblDaftarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseClicked
@@ -254,7 +264,8 @@ public class AdminMasuk extends javax.swing.JFrame {
     }//GEN-LAST:event_minimizeMouseExited
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        // TODO add your handling code here:
+        this.setVisible(false);
+        TanyaPengguna.getInstance().setVisible(true);
     }//GEN-LAST:event_backMouseClicked
 
     private void backMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseEntered
@@ -278,6 +289,14 @@ public class AdminMasuk extends javax.swing.JFrame {
 
         exit.setForeground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_exitMouseExited
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        
+    }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        btnMasukActionPerformed(evt);
+    }//GEN-LAST:event_txtPasswordActionPerformed
     /**
      * @param args the command line arguments
      */
