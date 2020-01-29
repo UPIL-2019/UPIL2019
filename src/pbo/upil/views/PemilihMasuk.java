@@ -235,12 +235,12 @@ public class PemilihMasuk extends javax.swing.JFrame {
 
     private void btnSelesaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelesaiMouseEntered
         // TODO add your handling code here:
-        btnMasuk.setBackground(new java.awt.Color(6,62,97));
+        btnSelesai.setBackground(new java.awt.Color(6,62,97));
     }//GEN-LAST:event_btnSelesaiMouseEntered
 
     private void btnSelesaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelesaiMouseExited
         // TODO add your handling code here:
-        btnMasuk.setBackground(new java.awt.Color(49,173,226));
+        btnSelesai.setBackground(new java.awt.Color(49,173,226));
     }//GEN-LAST:event_btnSelesaiMouseExited
 
     private void btnSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelesaiActionPerformed
@@ -249,10 +249,12 @@ public class PemilihMasuk extends javax.swing.JFrame {
 
     private void btnMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseEntered
         // TODO add your handling code here:
+            btnMasuk.setBackground(new java.awt.Color(6,62,97));
     }//GEN-LAST:event_btnMasukMouseEntered
 
     private void btnMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseExited
         // TODO add your handling code here:
+            btnMasuk.setBackground(new java.awt.Color(49,173,226));
     }//GEN-LAST:event_btnMasukMouseExited
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
