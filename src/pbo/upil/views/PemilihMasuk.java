@@ -25,6 +25,11 @@ public class PemilihMasuk extends javax.swing.JFrame {
         }
         return pemilihMasuk;
     }
+    
+    public void clearText() {
+        txtNim.setText("");
+        txtNim.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +76,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
                 btnMasukActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 235, 40));
+        getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 235, 40));
 
         btnSelesai.setBackground(new java.awt.Color(49, 173, 226));
         btnSelesai.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -92,7 +97,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
                 btnSelesaiActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSelesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 235, 40));
+        getContentPane().add(btnSelesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 235, 40));
 
         exit.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
         exit.setForeground(new java.awt.Color(153, 153, 153));
@@ -148,7 +153,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(6, 62, 97));
         jLabel9.setText("NIM");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
 
         txtNim.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtNim.setForeground(new java.awt.Color(49, 173, 226));
@@ -158,7 +163,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
                 txtNimActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNim, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 230, 30));
+        getContentPane().add(txtNim, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 230, 30));
 
         txtNama.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtNama.setForeground(new java.awt.Color(49, 173, 226));
@@ -168,18 +173,18 @@ public class PemilihMasuk extends javax.swing.JFrame {
                 txtNamaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 230, 30));
+        getContentPane().add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 230, 30));
 
         jSeparator1.setForeground(new java.awt.Color(49, 173, 226));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 230, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 230, 10));
 
         jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(6, 62, 97));
         jLabel7.setText("Nama");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(49, 173, 226));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, 230, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 230, 10));
 
         bg.setBackground(new java.awt.Color(49, 173, 226));
         bg.setForeground(new java.awt.Color(250, 248, 240));
@@ -267,6 +272,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
             ps.close();
             JOptionPane.showMessageDialog(this, "Berhasil Masuk", "Sukses", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
+            TampilanPemilihan.getInstance().setNim(txtNim.getText());
             TampilanPemilihan.getInstance().setVisible(true);
             TampilanPemilihan.getInstance().refreshTable();
         } catch (SQLException ex) {

@@ -6,6 +6,7 @@
 package pbo.upil.views;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import pbo.upil.koneksi.Koneksi;
@@ -14,13 +15,45 @@ import pbo.upil.koneksi.Koneksi;
  *
  * @author Agung Nurhamidan
  */
-public class UbahMisi extends javax.swing.JFrame {
-
+public class UbahMisi extends javax.swing.JDialog {
+    private static UbahMisi ubahMisi;
+    private static java.awt.Frame parent;
+    private static boolean modal;
+    private Integer idMisi;
+    
     /**
      * Creates new form UbahMisi
      */
-    public UbahMisi() {
+    public UbahMisi(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        UbahMisi.parent = parent;
+        UbahMisi.modal = modal;
         initComponents();
+    }
+    
+    public static UbahMisi getInstance(java.awt.Frame parent, boolean modal) {
+        if ((ubahMisi == null) || (UbahMisi.parent != parent) || (UbahMisi.modal != modal)) {
+            ubahMisi = new UbahMisi(parent, modal);
+        }
+        return ubahMisi;
+    }
+    
+    public void refreshTextAreaMisi() {
+        String sql = "SELECT misi.teks_misi FROM misi WHERE misi.id_misi = ?";
+        idMisi = (Integer) LihatMisi.getInstance().getTableMisi().getValueAt(LihatMisi.getInstance().getTableMisi().getSelectedRow(), 0);
+        try {
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+            ps.setInt(1, idMisi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                textAreaMisi.setText(rs.getString("misi.teks_misi"));
+            }
+            ps.close();
+            JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal Refresh", "Gagal", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -43,9 +76,9 @@ public class UbahMisi extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaVisi = new javax.swing.JTextArea();
+        textAreaMisi = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(250, 248, 240));
 
@@ -128,7 +161,7 @@ public class UbahMisi extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel8.setText("Visi");
+        jLabel8.setText("Misi");
 
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(6, 62, 97));
@@ -136,9 +169,9 @@ public class UbahMisi extends javax.swing.JFrame {
 
         jSeparator6.setForeground(new java.awt.Color(49, 173, 226));
 
-        textAreaVisi.setColumns(20);
-        textAreaVisi.setRows(5);
-        jScrollPane1.setViewportView(textAreaVisi);
+        textAreaMisi.setColumns(20);
+        textAreaMisi.setRows(5);
+        jScrollPane1.setViewportView(textAreaMisi);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -215,7 +248,7 @@ public class UbahMisi extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         this.txtNomorKandidat.setText("");
-        this.textAreaVisi.setText("");
+        this.textAreaMisi.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
@@ -229,26 +262,23 @@ public class UbahMisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkMouseExited
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if (this.textAreaVisi.getText().trim().equals("")) {
+        if (this.textAreaMisi.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Nama tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         } else {
-            String sql = "UPDATE visi SET teks_visi = ? WHERE no_kandidat = ?";
-            //int nomorKandidat = (int) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
+            String sql = "UPDATE misi SET teks_visi = ? WHERE id_misi = ?";
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-                //ps.setInt(1, Integer.parseInt(txtNomorKandidat.getText()));
-                //ps.setString(2, txtNamaKandidat.getText());
-                ps.setString(1, textAreaVisi.getText());
-                ps.setInt(2, Integer.parseInt(txtNomorKandidat.getText()));
+                ps.setString(1, textAreaMisi.getText());
+                ps.setInt(2, idMisi);
                 ps.executeUpdate();
                 ps.close();
                 JOptionPane.showMessageDialog(this, "Berhasil mengubah.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(false);
+                this.dispose();
+                LihatMisi.getInstance().refreshTable();
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Gagal Mengubah", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
-            TampilanAdmin.getInstance().refreshTable();
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
@@ -290,11 +320,19 @@ public class UbahMisi extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UbahMisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UbahMisi().setVisible(true);
+                UbahMisi dialog = new UbahMisi(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -310,7 +348,7 @@ public class UbahMisi extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextArea textAreaVisi;
+    private javax.swing.JTextArea textAreaMisi;
     private javax.swing.JTextField txtNomorKandidat;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import pbo.upil.koneksi.Koneksi;
 
@@ -17,9 +18,10 @@ import pbo.upil.koneksi.Koneksi;
  * @author Agung Nurhamidan
  */
 public class LihatMisi extends javax.swing.JFrame {
- private static LihatMisi LihatMisi;
+    private static LihatMisi LihatMisi;
     private DefaultTableModel tableModel;
     private Integer nomorKandidat;
+    private Integer idMisi;
 
    
     private LihatMisi() {
@@ -34,16 +36,16 @@ public class LihatMisi extends javax.swing.JFrame {
     }
     
     public void refreshTable() {
-        String sql = "SELECT kandidat.no_kandidat, kandidat.nama, misi.teks_misi FROM kandidat, misi WHERE kandidat.no_kandidat = misi.no_kandidat AND kandidat.no_kandidat = ?";
+        String sql = "SELECT misi.id_misi, misi.teks_misi FROM kandidat, misi WHERE kandidat.no_kandidat = misi.no_kandidat AND kandidat.no_kandidat = ?";
         nomorKandidat = (Integer) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
-        tableModel = (DefaultTableModel) tableVisi.getModel();
+        tableModel = (DefaultTableModel) tableMisi.getModel();
         tableModel.setRowCount(0);
         try {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
             ps.setInt(1, nomorKandidat);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getString("misi.teks_misi")});
+                tableModel.addRow(new Object[]{rs.getInt("misi.id_misi"), rs.getString("misi.teks_misi")});
             }
             ps.close();
             JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -52,9 +54,15 @@ public class LihatMisi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Gagal Refresh", "Gagal", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
     public Integer getNomorKandidat() {
         return nomorKandidat;
     }
+
+    public JTable getTableMisi() {
+        return tableMisi;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,55 +72,48 @@ public class LihatMisi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlContainer = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableVisi = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        btnUbah = new javax.swing.JButton();
+        tableMisi = new javax.swing.JTable();
         btnHapus = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
+        bg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tableVisi.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tableMisi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Misi"
+                "ID_Misi", "Misi"
             }
-        ));
-        jScrollPane1.setViewportView(tableVisi);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Judul");
-
-        btnUbah.setBackground(new java.awt.Color(49, 173, 226));
-        btnUbah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnUbah.setForeground(new java.awt.Color(250, 248, 240));
-        btnUbah.setText("Ubah");
-        btnUbah.setAlignmentY(1.0F);
-        btnUbah.setFocusable(false);
-        btnUbah.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnUbahMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnUbahMouseExited(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        btnUbah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUbahActionPerformed(evt);
+        tableMisi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMisiMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(tableMisi);
 
-        btnHapus.setBackground(new java.awt.Color(49, 173, 226));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 230));
+
+        btnHapus.setBackground(new java.awt.Color(255, 255, 255));
         btnHapus.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnHapus.setForeground(new java.awt.Color(250, 248, 240));
         btnHapus.setText("Hapus");
         btnHapus.setAlignmentY(1.0F);
         btnHapus.setFocusable(false);
@@ -129,10 +130,30 @@ public class LihatMisi extends javax.swing.JFrame {
                 btnHapusActionPerformed(evt);
             }
         });
+        jPanel1.add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 160, 40));
 
-        btnTambah.setBackground(new java.awt.Color(49, 173, 226));
+        btnUbah.setBackground(new java.awt.Color(255, 255, 255));
+        btnUbah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnUbah.setText("Ubah");
+        btnUbah.setAlignmentY(1.0F);
+        btnUbah.setFocusable(false);
+        btnUbah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUbahMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUbahMouseExited(evt);
+            }
+        });
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 170, 40));
+
+        btnTambah.setBackground(new java.awt.Color(255, 255, 255));
         btnTambah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnTambah.setForeground(new java.awt.Color(250, 248, 240));
         btnTambah.setText("Tambah");
         btnTambah.setAlignmentY(1.0F);
         btnTambah.setFocusable(false);
@@ -149,50 +170,21 @@ public class LihatMisi extends javax.swing.JFrame {
                 btnTambahActionPerformed(evt);
             }
         });
+        jPanel1.add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 160, 40));
 
-        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
-        pnlContainer.setLayout(pnlContainerLayout);
-        pnlContainerLayout.setHorizontalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlContainerLayout.setVerticalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
+        bg.setPreferredSize(new java.awt.Dimension(630, 600));
+        jPanel1.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(158, 158, 158))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -209,6 +201,7 @@ public class LihatMisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahMouseExited
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        TambahVisi.getInstance(this, true).clearText();
         TambahMisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -221,7 +214,8 @@ public class LihatMisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahMouseExited
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-
+        UbahMisi.getInstance(this, true).refreshTextAreaMisi();
+        UbahMisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseEntered
@@ -233,8 +227,25 @@ public class LihatMisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusMouseExited
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Apakah anda yakin?", "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            String sql = "DELETE FROM misi WHERE id_misi = ?";
+            try {
+                PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+                ps.setString(1, tableMisi.getValueAt(tableMisi.getSelectedRow(), 0).toString());
+                ps.executeUpdate();
+                ps.close();
+                tableModel.removeRow(tableMisi.getSelectedRow());
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Gagal Menghapus", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void tableMisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMisiMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableMisiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -262,6 +273,9 @@ public class LihatMisi extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LihatMisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -272,12 +286,12 @@ public class LihatMisi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel pnlContainer;
-    private javax.swing.JTable tableVisi;
+    private javax.swing.JTable tableMisi;
     // End of variables declaration//GEN-END:variables
 }

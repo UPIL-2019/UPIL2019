@@ -9,10 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import pbo.upil.controllers.KandidatController;
-import pbo.upil.entities.Kandidat;
 import pbo.upil.koneksi.Koneksi;
-import pbo.upil.models.KandidatModel;
 
 /**
  *
@@ -262,7 +259,7 @@ public class UbahKandidat extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Gagal Mengubah", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
             TampilanAdmin.getInstance().refreshTable();
-        }        
+        }
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void btnMasuk2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasuk2MouseEntered
