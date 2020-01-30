@@ -386,7 +386,8 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHasilMouseExited
 
     private void btnHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHasilActionPerformed
-        System.out.println(tableKandidat.getSelectedRow());
+        LihatHasil.getInstance().refreshPnlKandidat();
+        LihatHasil.getInstance().setVisible(true);
     }//GEN-LAST:event_btnHasilActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
