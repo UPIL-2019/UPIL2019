@@ -232,6 +232,7 @@ public class UbahMisi extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomorKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomorKandidatActionPerformed
@@ -265,7 +266,7 @@ public class UbahMisi extends javax.swing.JDialog {
         if (this.textAreaMisi.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Nama tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         } else {
-            String sql = "UPDATE misi SET teks_visi = ? WHERE id_misi = ?";
+            String sql = "UPDATE misi SET teks_misi = ? WHERE id_misi = ?";
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
                 ps.setString(1, textAreaMisi.getText());
