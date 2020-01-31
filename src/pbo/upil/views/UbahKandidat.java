@@ -19,8 +19,8 @@ public class UbahKandidat extends javax.swing.JDialog {
     private static UbahKandidat ubahKandidat;
     private static java.awt.Frame parent;
     private static boolean modal;
-//    KandidatController controller;
-//    TampilanAdmin tampilanAdmin;
+    private int mouseX;
+    private int mouseY;
     /**
      * Creates new form DialogUbahKandidat
      * @param parent
@@ -31,11 +31,6 @@ public class UbahKandidat extends javax.swing.JDialog {
         UbahKandidat.parent = parent;
         UbahKandidat.modal = modal;
         initComponents();
-//        this.tampilanAdmin = tampilanAdmin;
-//        this.controller = tampilanAdmin.getController();
-//        Kandidat model = tampilanAdmin.getTableModel().get(tampilanAdmin.getTableKandidat().getSelectedRow());
-//        this.txtNomorKandidat.setText(model.getNomorKandidat().toString());
-//        this.txtNamaKandidat.setText(model.getNama());
     }
     
     public static UbahKandidat getInstance(java.awt.Frame parent, boolean modal) {
@@ -43,6 +38,12 @@ public class UbahKandidat extends javax.swing.JDialog {
             ubahKandidat = new UbahKandidat(parent, modal);
         }
         return ubahKandidat;
+    }
+    
+    public void clearText() {
+        txtNomorKandidat.setText("");
+        txtNamaKandidat.setText("");
+        txtNomorKandidat.requestFocus();
     }
 
     public JTextField getTxtNamaKandidat() {
@@ -85,6 +86,16 @@ public class UbahKandidat extends javax.swing.JDialog {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(250, 248, 240));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -278,6 +289,17 @@ public class UbahKandidat extends javax.swing.JDialog {
     private void txtNamaKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaKandidatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaKandidatActionPerformed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMasuk;

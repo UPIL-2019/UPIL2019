@@ -22,6 +22,8 @@ public class LihatMisi extends javax.swing.JFrame {
     private DefaultTableModel tableModel;
     private Integer nomorKandidat;
     private Integer idMisi;
+    private int mouseX;
+    private int mouseY;
 
    
     private LihatMisi() {
@@ -83,6 +85,11 @@ public class LihatMisi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -105,12 +112,18 @@ public class LihatMisi extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableMisi.getTableHeader().setReorderingAllowed(false);
         tableMisi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMisiMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tableMisi);
+        if (tableMisi.getColumnModel().getColumnCount() > 0) {
+            tableMisi.getColumnModel().getColumn(0).setMinWidth(0);
+            tableMisi.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableMisi.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 230));
 
@@ -196,6 +209,16 @@ public class LihatMisi extends javax.swing.JFrame {
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
         bg.setPreferredSize(new java.awt.Dimension(630, 600));
+        bg.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bgMouseDragged(evt);
+            }
+        });
+        bg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                bgMousePressed(evt);
+            }
+        });
         jPanel1.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,7 +247,8 @@ public class LihatMisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahMouseExited
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        TambahVisi.getInstance(this, true).clearText();
+        TambahMisi.getInstance(this, true).clearText();
+        TambahMisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
         TambahMisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -238,6 +262,7 @@ public class LihatMisi extends javax.swing.JFrame {
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         UbahMisi.getInstance(this, true).refreshTextAreaMisi();
+        UbahMisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
         UbahMisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -267,7 +292,13 @@ public class LihatMisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void tableMisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMisiMouseClicked
-        // TODO add your handling code here:
+        if (tableMisi.getSelectedRow() < 0) {
+            btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
+        } else {
+            btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
+        }
     }//GEN-LAST:event_tableMisiMouseClicked
 
     private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
@@ -282,6 +313,27 @@ public class LihatMisi extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if (tableMisi.getSelectedRow() < 0) {
+            btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
+        } else {
+            btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void bgMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_bgMouseDragged
+
+    private void bgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_bgMousePressed
 
     /**
      * @param args the command line arguments

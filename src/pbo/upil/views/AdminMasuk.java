@@ -13,6 +13,8 @@ import pbo.upil.koneksi.Koneksi;
  */
 public class AdminMasuk extends javax.swing.JFrame {
     private static AdminMasuk adminMasuk;
+    private int mouseX;
+    private int mouseY;
     /**
      * Creates new form Admin
      */
@@ -27,6 +29,12 @@ public class AdminMasuk extends javax.swing.JFrame {
         }
         return adminMasuk;
     }
+    
+    public void clearText() {
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtUsername.requestFocus();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +45,12 @@ public class AdminMasuk extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlBack = new javax.swing.JPanel();
+        lblBack = new javax.swing.JLabel();
+        pnlMinimize = new javax.swing.JPanel();
+        lblMinimize = new javax.swing.JLabel();
+        pnlExit = new javax.swing.JPanel();
+        lblExit = new javax.swing.JLabel();
         Nama_Pengguna = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -46,15 +60,78 @@ public class AdminMasuk extends javax.swing.JFrame {
         btnMasuk = new javax.swing.JButton();
         Kata_Sandi = new javax.swing.JLabel();
         lblDaftar = new javax.swing.JLabel();
-        minimize = new javax.swing.JLabel();
-        back = new javax.swing.JLabel();
-        exit = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(250, 248, 240));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlBack.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBack.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblBack.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        lblBack.setForeground(new java.awt.Color(153, 153, 153));
+        lblBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBack.setText("<");
+        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBackMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBackMouseExited(evt);
+            }
+        });
+        pnlBack.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, -1));
+
+        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, -1, -1));
+
+        pnlMinimize.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMinimize.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblMinimize.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        lblMinimize.setForeground(new java.awt.Color(153, 153, 153));
+        lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMinimize.setText("_");
+        lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseExited(evt);
+            }
+        });
+        pnlMinimize.add(lblMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, -1));
+
+        getContentPane().add(pnlMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, -1, -1));
+
+        pnlExit.setBackground(new java.awt.Color(255, 255, 255));
+        pnlExit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblExit.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        lblExit.setForeground(new java.awt.Color(109, 109, 109));
+        lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExit.setText("x");
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblExitMouseExited(evt);
+            }
+        });
+        pnlExit.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, -1));
+
+        getContentPane().add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, -1, -1));
 
         Nama_Pengguna.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         Nama_Pengguna.setForeground(new java.awt.Color(6, 62, 97));
@@ -140,61 +217,20 @@ public class AdminMasuk extends javax.swing.JFrame {
         });
         getContentPane().add(lblDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 40, 20));
 
-        minimize.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
-        minimize.setForeground(new java.awt.Color(255, 255, 255));
-        minimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        minimize.setText("_");
-        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                minimizeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                minimizeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                minimizeMouseExited(evt);
-            }
-        });
-        getContentPane().add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 30, -1));
-
-        back.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        back.setForeground(new java.awt.Color(255, 255, 255));
-        back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        back.setText("<");
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                backMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                backMouseExited(evt);
-            }
-        });
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 30, -1));
-
-        exit.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        exit.setForeground(new java.awt.Color(255, 255, 255));
-        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exit.setText("x");
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitMouseExited(evt);
-            }
-        });
-        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 30, -1));
-
         bg.setBackground(new java.awt.Color(49, 173, 226));
         bg.setForeground(new java.awt.Color(250, 248, 240));
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/login v.2.png"))); // NOI18N
         bg.setFocusable(false);
+        bg.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bgMouseDragged(evt);
+            }
+        });
+        bg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                bgMousePressed(evt);
+            }
+        });
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
@@ -202,13 +238,10 @@ public class AdminMasuk extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseEntered
-        // TODO add your handling code here:
         btnMasuk.setBackground(new java.awt.Color(6,62,97));
-
     }//GEN-LAST:event_btnMasukMouseEntered
 
     private void btnMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseExited
-        // TODO add your handling code here:
         btnMasuk.setBackground(new java.awt.Color(49,173,226));
     }//GEN-LAST:event_btnMasukMouseExited
 
@@ -218,6 +251,7 @@ public class AdminMasuk extends javax.swing.JFrame {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
             ps.setString(1, txtUsername.getText());
             ps.setString(2, String.copyValueOf(txtPassword.getPassword()));
+            System.out.println("tes");
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Login Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -228,8 +262,7 @@ public class AdminMasuk extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Login Gagal", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
             ps.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException | NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Kesalahan di database", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnMasukActionPerformed
@@ -247,48 +280,10 @@ public class AdminMasuk extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void lblDaftarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDaftarMouseClicked
-        this.setVisible(false);
+        BuatAkun.getInstance().clearText();
         BuatAkun.getInstance().setVisible(true);
-    }//GEN-LAST:event_lblDaftarMouseClicked
-
-    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
-        this.setState(Frame.ICONIFIED);
-    }//GEN-LAST:event_minimizeMouseClicked
-
-    private void minimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseEntered
-        minimize.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_minimizeMouseEntered
-
-    private void minimizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseExited
-        minimize.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_minimizeMouseExited
-
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         this.setVisible(false);
-        TanyaPengguna.getInstance().setVisible(true);
-    }//GEN-LAST:event_backMouseClicked
-
-    private void backMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseEntered
-        back.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_backMouseEntered
-
-    private void backMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseExited
-        back.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_backMouseExited
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_exitMouseClicked
-
-    private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
-
-        exit.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_exitMouseEntered
-
-    private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
-
-        exit.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_exitMouseExited
+    }//GEN-LAST:event_lblDaftarMouseClicked
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
         
@@ -297,6 +292,59 @@ public class AdminMasuk extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         btnMasukActionPerformed(evt);
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
+        this.setVisible(false);
+        TanyaPengguna.getInstance().setVisible(true);
+    }//GEN-LAST:event_lblBackMouseClicked
+
+    private void lblBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseEntered
+        pnlBack.setBackground(new java.awt.Color(153,153,153));
+        lblBack.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_lblBackMouseEntered
+
+    private void lblBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseExited
+        pnlBack.setBackground(new java.awt.Color(255,255,255));
+        lblBack.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblBackMouseExited
+
+    private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizeMouseClicked
+
+    private void lblMinimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseEntered
+        pnlMinimize.setBackground(new java.awt.Color(153,153,153));
+        jLabel4.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_lblMinimizeMouseEntered
+
+    private void lblMinimizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseExited
+        pnlMinimize.setBackground(new java.awt.Color(255,255,255));
+        jLabel4.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblMinimizeMouseExited
+
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblExitMouseClicked
+
+    private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered
+        pnlExit.setBackground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblExitMouseEntered
+
+    private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
+        pnlExit.setBackground(new java.awt.Color(255,255,255));
+        jLabel4.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblExitMouseExited
+
+    private void bgMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_bgMouseDragged
+
+    private void bgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_bgMousePressed
     /**
      * @param args the command line arguments
      */
@@ -337,15 +385,18 @@ public class AdminMasuk extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Kata_Sandi;
     private javax.swing.JLabel Nama_Pengguna;
-    private javax.swing.JLabel back;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnMasuk;
-    private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblDaftar;
-    private javax.swing.JLabel minimize;
+    private javax.swing.JLabel lblExit;
+    private javax.swing.JLabel lblMinimize;
+    private javax.swing.JPanel pnlBack;
+    private javax.swing.JPanel pnlExit;
+    private javax.swing.JPanel pnlMinimize;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
