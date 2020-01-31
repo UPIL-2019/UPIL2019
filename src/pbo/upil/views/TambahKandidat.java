@@ -66,6 +66,7 @@ public class TambahKandidat extends javax.swing.JDialog {
         jSeparator6 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(250, 248, 240));
 

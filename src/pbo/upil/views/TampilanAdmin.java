@@ -319,7 +319,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
         pnlBack.setLayout(pnlBackLayout);
         pnlBackLayout.setHorizontalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
         pnlBackLayout.setVerticalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +328,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, -1));
+        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 30, -1));
 
         jLabel2.setBackground(new java.awt.Color(250, 248, 240));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Frame.png"))); // NOI18N
@@ -504,7 +504,8 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseEntered
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
+        this.setVisible(false);
+        AdminMasuk.getInstance().setVisible(true);        
     }//GEN-LAST:event_jLabel7MouseClicked
     /**
      * @param args the command line arguments

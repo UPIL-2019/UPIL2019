@@ -79,17 +79,24 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableKandidat = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         btnLihatVisi = new javax.swing.JButton();
         btnLihatMisi = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1060, 600));
+        setMinimumSize(new java.awt.Dimension(530, 300));
         setUndecorated(true);
 
         pnlContainer.setBackground(new java.awt.Color(250, 248, 240));
+        pnlContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlBack.setBackground(new java.awt.Color(250, 248, 240));
+        pnlBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlBackMouseClicked(evt);
+            }
+        });
+        pnlBack.setLayout(new java.awt.GridBagLayout());
 
         jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
@@ -106,32 +113,17 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                 jLabel7MouseExited(evt);
             }
         });
+        pnlBack.add(jLabel7, new java.awt.GridBagConstraints());
 
-        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
-        pnlBack.setLayout(pnlBackLayout);
-        pnlBackLayout.setHorizontalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 54, Short.MAX_VALUE)
-            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        pnlBackLayout.setVerticalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 47, Short.MAX_VALUE)
-            .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel7)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        pnlContainer.add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 30, 30));
 
-        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pemilihan Kandidat");
+        pnlContainer.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 530, 20));
 
+        btn_pilih.setBackground(new java.awt.Color(255, 255, 255));
         btn_pilih.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         btn_pilih.setText("PILIH");
         btn_pilih.addActionListener(new java.awt.event.ActionListener() {
@@ -139,8 +131,11 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                 btn_pilihActionPerformed(evt);
             }
         });
+        pnlContainer.add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 470, 30));
 
         pnlExit.setBackground(new java.awt.Color(250, 248, 240));
+        pnlExit.setPreferredSize(new java.awt.Dimension(20, 20));
+        pnlExit.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setBackground(new java.awt.Color(255, 102, 102));
         jLabel4.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
@@ -158,19 +153,12 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                 jLabel4MouseExited(evt);
             }
         });
+        pnlExit.add(jLabel4, new java.awt.GridBagConstraints());
 
-        javax.swing.GroupLayout pnlExitLayout = new javax.swing.GroupLayout(pnlExit);
-        pnlExit.setLayout(pnlExitLayout);
-        pnlExitLayout.setHorizontalGroup(
-            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-        pnlExitLayout.setVerticalGroup(
-            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        pnlContainer.add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 30, 30));
 
         pnlMinimize.setBackground(new java.awt.Color(250, 248, 240));
+        pnlMinimize.setLayout(new java.awt.GridBagLayout());
 
         jLabel6.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
@@ -187,17 +175,9 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                 jLabel6MouseExited(evt);
             }
         });
+        pnlMinimize.add(jLabel6, new java.awt.GridBagConstraints());
 
-        javax.swing.GroupLayout pnlMinimizeLayout = new javax.swing.GroupLayout(pnlMinimize);
-        pnlMinimize.setLayout(pnlMinimizeLayout);
-        pnlMinimizeLayout.setHorizontalGroup(
-            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-        );
-        pnlMinimizeLayout.setVerticalGroup(
-            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        pnlContainer.add(pnlMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 30, 30));
 
         tableKandidat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -243,7 +223,7 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tableKandidat);
 
-        jLabel2.setText("DAFTAR KANDIDAT");
+        pnlContainer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 470, 130));
 
         btnLihatVisi.setBackground(new java.awt.Color(49, 173, 226));
         btnLihatVisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -264,6 +244,7 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                 btnLihatVisiActionPerformed(evt);
             }
         });
+        pnlContainer.add(btnLihatVisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, -1));
 
         btnLihatMisi.setBackground(new java.awt.Color(49, 173, 226));
         btnLihatMisi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -284,65 +265,16 @@ public class TampilanPemilihan extends javax.swing.JFrame {
                 btnLihatMisiActionPerformed(evt);
             }
         });
+        pnlContainer.add(btnLihatMisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 130, -1));
 
-        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
-        pnlContainer.setLayout(pnlContainerLayout);
-        pnlContainerLayout.setHorizontalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addComponent(pnlBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
-                        .addComponent(pnlMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(btn_pilih, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(btnLihatVisi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLihatMisi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(453, 453, 453))))
-        );
-        pnlContainerLayout.setVerticalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLihatVisi)
-                    .addComponent(btnLihatMisi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
+        pnlContainer.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,6 +390,11 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         LihatMisiPengguna.getInstance().refreshTable();
         LihatMisiPengguna.getInstance().setVisible(true);
     }//GEN-LAST:event_btnLihatMisiActionPerformed
+
+    private void pnlBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBackMouseClicked
+        this.setVisible(false);
+        PemilihMasuk.getInstance().setVisible(true);
+    }//GEN-LAST:event_pnlBackMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -501,7 +438,7 @@ public class TampilanPemilihan extends javax.swing.JFrame {
     private javax.swing.JButton btn_pilih;
     private javax.swing.ButtonGroup buttonGroupKandidat;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

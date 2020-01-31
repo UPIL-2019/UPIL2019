@@ -37,14 +37,14 @@ public class AdminMasuk extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        Nama_Pengguna = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
         btnMasuk = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        Kata_Sandi = new javax.swing.JLabel();
         lblDaftar = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
@@ -56,10 +56,10 @@ public class AdminMasuk extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel3.setText("Nama Pengguna");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
+        Nama_Pengguna.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        Nama_Pengguna.setForeground(new java.awt.Color(6, 62, 97));
+        Nama_Pengguna.setText("Nama Pengguna");
+        getContentPane().add(Nama_Pengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
 
         txtUsername.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(49, 173, 226));
@@ -118,10 +118,10 @@ public class AdminMasuk extends javax.swing.JFrame {
         });
         getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 235, 40));
 
-        jLabel5.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(6, 62, 97));
-        jLabel5.setText("Kata Sandi");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
+        Kata_Sandi.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
+        Kata_Sandi.setForeground(new java.awt.Color(6, 62, 97));
+        Kata_Sandi.setText("Kata Sandi");
+        getContentPane().add(Kata_Sandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
 
         lblDaftar.setFont(new java.awt.Font("Montserrat Medium", 0, 10)); // NOI18N
         lblDaftar.setForeground(new java.awt.Color(49, 173, 226));
@@ -335,13 +335,13 @@ public class AdminMasuk extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Kata_Sandi;
+    private javax.swing.JLabel Nama_Pengguna;
     private javax.swing.JLabel back;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnMasuk;
     private javax.swing.JLabel exit;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblDaftar;

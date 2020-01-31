@@ -78,9 +78,11 @@ public class LihatMisi extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -130,7 +132,7 @@ public class LihatMisi extends javax.swing.JFrame {
                 btnHapusActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 160, 40));
+        jPanel1.add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 130, 40));
 
         btnUbah.setBackground(new java.awt.Color(255, 255, 255));
         btnUbah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -150,7 +152,7 @@ public class LihatMisi extends javax.swing.JFrame {
                 btnUbahActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 170, 40));
+        jPanel1.add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 120, 40));
 
         btnTambah.setBackground(new java.awt.Color(255, 255, 255));
         btnTambah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -170,7 +172,27 @@ public class LihatMisi extends javax.swing.JFrame {
                 btnTambahActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 160, 40));
+        jPanel1.add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 120, 40));
+
+        btnBatal.setBackground(new java.awt.Color(255, 255, 255));
+        btnBatal.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnBatal.setText("Batal");
+        btnBatal.setAlignmentY(1.0F);
+        btnBatal.setFocusable(false);
+        btnBatal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBatalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBatalMouseExited(evt);
+            }
+        });
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatalActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 110, 40));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
         bg.setPreferredSize(new java.awt.Dimension(630, 600));
@@ -248,6 +270,19 @@ public class LihatMisi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tableMisiMouseClicked
 
+    private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBatalMouseEntered
+
+    private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBatalMouseExited
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnBatalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +323,7 @@ public class LihatMisi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
+    private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;

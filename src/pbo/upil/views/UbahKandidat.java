@@ -82,6 +82,7 @@ public class UbahKandidat extends javax.swing.JDialog {
         txtNamaKandidat = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(250, 248, 240));
 
