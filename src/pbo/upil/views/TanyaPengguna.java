@@ -8,6 +8,8 @@ import java.awt.Frame;
  */
 public class TanyaPengguna extends javax.swing.JFrame {
     private static TanyaPengguna tanyaPengguna;
+    private int mouseX;
+    private int mouseY;
     
     /**
      * Creates new form TanyaPengguna
@@ -149,6 +151,16 @@ public class TanyaPengguna extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/TanyaPengguna.png"))); // NOI18N
         jLabel2.setFocusable(false);
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel2MouseDragged(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
@@ -200,9 +212,9 @@ public class TanyaPengguna extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPemilihMouseEntered
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        this.setVisible(false);
+        AdminMasuk.getInstance().clearText();
         AdminMasuk.getInstance().setVisible(true);
-
+        this.setVisible(false);
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnAdminMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseExited
@@ -215,6 +227,17 @@ public class TanyaPengguna extends javax.swing.JFrame {
         btnAdmin.setBackground(new java.awt.Color(49,173,226));
 
     }//GEN-LAST:event_btnAdminMouseEntered
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_jLabel2MouseDragged
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_jLabel2MousePressed
 
     
     /**

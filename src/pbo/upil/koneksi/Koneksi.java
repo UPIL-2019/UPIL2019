@@ -18,14 +18,14 @@ public class Koneksi {
     private static Connection connection;
     public static Connection getConnection() {
         if (connection == null) {
+            try {
             MysqlDataSource dataSource = new MysqlDataSource();
             dataSource.setURL("jdbc:mysql://localhost:3306/upil");
             dataSource.setUser("root");
             dataSource.setPassword("");
-            try {
-                connection = dataSource.getConnection();
+            connection = dataSource.getConnection();
             } catch(SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal terhubung ke database", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
         }
         return connection;

@@ -1,4 +1,5 @@
 package pbo.upil.views;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.awt.Frame;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,6 +12,8 @@ import pbo.upil.koneksi.Koneksi;
  */
 public class BuatAkun extends javax.swing.JFrame {
     private static BuatAkun buatAkun;
+    private int mouseX;
+    private int mouseY;
     /**
      * Creates new form BuatAkun
      * @param adminMasukView
@@ -25,6 +28,12 @@ public class BuatAkun extends javax.swing.JFrame {
         }
         return buatAkun;
     }
+    
+    public void clearText() {
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtUsername.requestFocus();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +46,7 @@ public class BuatAkun extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         txtPassword = new javax.swing.JPasswordField();
-        btnMasuk = new javax.swing.JButton();
+        btnDaftar = new javax.swing.JButton();
         pnlMinimize = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         pnlMinimize1 = new javax.swing.JPanel();
@@ -65,29 +74,34 @@ public class BuatAkun extends javax.swing.JFrame {
         txtPassword.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(49, 173, 226));
         txtPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 230, 30));
 
-        btnMasuk.setBackground(new java.awt.Color(49, 173, 226));
-        btnMasuk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnMasuk.setForeground(new java.awt.Color(250, 248, 240));
-        btnMasuk.setText("Daftar");
-        btnMasuk.setAlignmentY(1.0F);
-        btnMasuk.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        btnMasuk.setFocusable(false);
-        btnMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDaftar.setBackground(new java.awt.Color(49, 173, 226));
+        btnDaftar.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnDaftar.setForeground(new java.awt.Color(250, 248, 240));
+        btnDaftar.setText("Daftar");
+        btnDaftar.setAlignmentY(1.0F);
+        btnDaftar.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnDaftar.setFocusable(false);
+        btnDaftar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMasukMouseEntered(evt);
+                btnDaftarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMasukMouseExited(evt);
+                btnDaftarMouseExited(evt);
             }
         });
-        btnMasuk.addActionListener(new java.awt.event.ActionListener() {
+        btnDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasukActionPerformed(evt);
+                btnDaftarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 235, 40));
+        getContentPane().add(btnDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 235, 40));
 
         pnlMinimize.setBackground(new java.awt.Color(250, 248, 240));
 
@@ -269,7 +283,7 @@ public class BuatAkun extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel7.setFont(new java.awt.Font("Falco Black", 0, 47)); // NOI18N
-        jLabel7.setText("dAFTAR");
+        jLabel7.setText("DAFTAR");
         jPanel1.add(jLabel7, new java.awt.GridBagConstraints());
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 270, 50));
@@ -278,38 +292,52 @@ public class BuatAkun extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(250, 248, 240));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/02.png"))); // NOI18N
         jLabel2.setFocusable(false);
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel2MouseDragged(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseEntered
-        // TODO add your handling code here:
-        btnMasuk.setBackground(new java.awt.Color(6,62,97));
-    }//GEN-LAST:event_btnMasukMouseEntered
+    private void btnDaftarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDaftarMouseEntered
+        btnDaftar.setBackground(new java.awt.Color(6,62,97));
+    }//GEN-LAST:event_btnDaftarMouseEntered
 
-    private void btnMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseExited
-        // TODO add your handling code here:
-        btnMasuk.setBackground(new java.awt.Color(49,173,226));
-    }//GEN-LAST:event_btnMasukMouseExited
+    private void btnDaftarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDaftarMouseExited
+        btnDaftar.setBackground(new java.awt.Color(49,173,226));
+    }//GEN-LAST:event_btnDaftarMouseExited
 
-    private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
-        String sql = "INSERT INTO admin VALUES (?, ?)";
-        try {
-            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-            ps.setString(1, txtUsername.getText());
-            ps.setString(2, String.copyValueOf(txtPassword.getPassword()));
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(this, "Berhasil Menyimpan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
-            this.setVisible(false);
-            AdminMasuk.getInstance().setVisible(true);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
+    private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
+        if (this.txtUsername.getText().trim().equals("") || String.copyValueOf(txtPassword.getPassword()).trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nama pengguna atau password tidak boleh kosong.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        } else if (txtUsername.getText().length() > 11) {
+            JOptionPane.showMessageDialog(this, "Nama tidak boleh lebih dari 11 karakter.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String sql = "INSERT INTO admin VALUES (?, ?)";
+            try {
+                PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+                ps.setString(1, txtUsername.getText());
+                ps.setString(2, String.copyValueOf(txtPassword.getPassword()));
+                ps.executeUpdate();
+                ps.close();
+                JOptionPane.showMessageDialog(this, "Berhasil Menyimpan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                AdminMasuk.getInstance().setVisible(true);
+                this.setVisible(false);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }//GEN-LAST:event_btnMasukActionPerformed
+    }//GEN-LAST:event_btnDaftarActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         this.setState(Frame.ICONIFIED);
@@ -326,7 +354,7 @@ public class BuatAkun extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseExited
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
+        btnDaftarActionPerformed(evt);
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -374,8 +402,23 @@ public class BuatAkun extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9MouseExited
 
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        btnDaftarActionPerformed(evt);
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_jLabel2MouseDragged
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_jLabel2MousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMasuk;
+    private javax.swing.JButton btnDaftar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -18,6 +18,8 @@ public class TampilanPemilihan extends javax.swing.JFrame {
     private static TampilanPemilihan tampilanPemilihan;
     private DefaultTableModel tableModel;
     private String nim;
+    private int mouseX;
+    private int mouseY;
     /**
      * Creates new form TampilanPemilih
      */
@@ -86,6 +88,11 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(530, 300));
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         pnlContainer.setBackground(new java.awt.Color(250, 248, 240));
         pnlContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -189,7 +196,16 @@ public class TampilanPemilihan extends javax.swing.JFrame {
             new String [] {
                 "No Kandidat", "Nama"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableKandidat.getTableHeader().setReorderingAllowed(false);
         tableKandidat.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                 tableKandidatAncestorMoved(evt);
@@ -210,6 +226,12 @@ public class TampilanPemilihan extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableKandidatMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tableKandidatMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tableKandidatMouseExited(evt);
+            }
         });
         tableKandidat.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -222,6 +244,9 @@ public class TampilanPemilihan extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tableKandidat);
+        if (tableKandidat.getColumnModel().getColumnCount() > 0) {
+            tableKandidat.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         pnlContainer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 470, 130));
 
@@ -268,6 +293,16 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         pnlContainer.add(btnLihatMisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 130, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
+        jLabel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel3MouseDragged(evt);
+            }
+        });
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
+        });
         pnlContainer.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -395,6 +430,47 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         this.setVisible(false);
         PemilihMasuk.getInstance().setVisible(true);
     }//GEN-LAST:event_pnlBackMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if (tableKandidat.getSelectedRow() < 0) {
+            btnLihatVisi.setEnabled(false);
+            btnLihatMisi.setEnabled(false);
+        } else {
+            btnLihatVisi.setEnabled(true);
+            btnLihatMisi.setEnabled(true);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void tableKandidatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseEntered
+        if (tableKandidat.getSelectedRow() < 0) {
+            btnLihatVisi.setEnabled(false);
+            btnLihatMisi.setEnabled(false);
+        } else {
+            btnLihatVisi.setEnabled(true);
+            btnLihatMisi.setEnabled(true);
+        }
+    }//GEN-LAST:event_tableKandidatMouseEntered
+
+    private void tableKandidatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseExited
+        if (tableKandidat.getSelectedRow() < 0) {
+            btnLihatVisi.setEnabled(false);
+            btnLihatMisi.setEnabled(false);
+        } else {
+            btnLihatVisi.setEnabled(true);
+            btnLihatMisi.setEnabled(true);
+        }
+    }//GEN-LAST:event_tableKandidatMouseExited
+
+    private void jLabel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_jLabel3MouseDragged
+
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_jLabel3MousePressed
     /**
      * @param args the command line arguments
      */

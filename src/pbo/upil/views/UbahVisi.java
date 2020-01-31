@@ -22,6 +22,8 @@ public class UbahVisi extends javax.swing.JDialog {
     private static java.awt.Frame parent;
     private static boolean modal;
     private Integer idVisi;
+    private int mouseX;
+    private int mouseY;
     /**
      * Creates new form UbahVisi
      */
@@ -37,6 +39,12 @@ public class UbahVisi extends javax.swing.JDialog {
             ubahVisi = new UbahVisi(parent, modal);
         }
         return ubahVisi;
+    }
+    
+    public void clearText() {
+        txtNomorKandidat.setText("");
+        textAreaVisi.setText("");
+        txtNomorKandidat.requestFocus();
     }
 
     public JTextField getTxtNomorKandidat() {
@@ -187,6 +195,16 @@ public class UbahVisi extends javax.swing.JDialog {
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, 510, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel1MouseDragged(evt);
+            }
+        });
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -263,6 +281,17 @@ public class UbahVisi extends javax.swing.JDialog {
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_jLabel1MousePressed
 
     /**
      * @param args the command line arguments

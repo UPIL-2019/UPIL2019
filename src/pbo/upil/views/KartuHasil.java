@@ -43,66 +43,73 @@ public class KartuHasil extends javax.swing.JPanel {
     private void initComponents() {
 
         lblNomorKandidat = new javax.swing.JLabel();
+        pnlNamaKandidat = new javax.swing.JPanel();
         lblNamaKandidat = new javax.swing.JLabel();
+        pnlJumlahSuara = new javax.swing.JPanel();
         lblJumlahSuara = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(260, 161));
+        setPreferredSize(new java.awt.Dimension(261, 161));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblNomorKandidat.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         lblNomorKandidat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNomorKandidat.setText("jLabel1");
+        add(lblNomorKandidat, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 236, 65));
 
-        lblNamaKandidat.setText("jLabel5");
+        pnlNamaKandidat.setBackground(new java.awt.Color(49, 173, 226));
 
-        lblJumlahSuara.setText("jLabel3");
+        lblNamaKandidat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblNamaKandidat.setForeground(new java.awt.Color(255, 255, 255));
+        lblNamaKandidat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNamaKandidat.setText("Nama Kandidat");
 
-        jLabel2.setText("Jumlah Suara :");
-
-        jLabel4.setText("Nama Kandidat :");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNomorKandidat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNamaKandidat)
-                            .addComponent(lblJumlahSuara))
-                        .addGap(0, 85, Short.MAX_VALUE)))
-                .addContainerGap())
+        javax.swing.GroupLayout pnlNamaKandidatLayout = new javax.swing.GroupLayout(pnlNamaKandidat);
+        pnlNamaKandidat.setLayout(pnlNamaKandidatLayout);
+        pnlNamaKandidatLayout.setHorizontalGroup(
+            pnlNamaKandidatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblNamaKandidat, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNomorKandidat, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblNamaKandidat))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblJumlahSuara))
-                .addContainerGap(27, Short.MAX_VALUE))
+        pnlNamaKandidatLayout.setVerticalGroup(
+            pnlNamaKandidatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblNamaKandidat, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
+
+        add(pnlNamaKandidat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 260, 40));
+
+        pnlJumlahSuara.setBackground(new java.awt.Color(17, 30, 54));
+
+        lblJumlahSuara.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblJumlahSuara.setForeground(new java.awt.Color(255, 255, 255));
+        lblJumlahSuara.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJumlahSuara.setText("Jumlah Suara");
+
+        javax.swing.GroupLayout pnlJumlahSuaraLayout = new javax.swing.GroupLayout(pnlJumlahSuara);
+        pnlJumlahSuara.setLayout(pnlJumlahSuaraLayout);
+        pnlJumlahSuaraLayout.setHorizontalGroup(
+            pnlJumlahSuaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblJumlahSuara, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+        );
+        pnlJumlahSuaraLayout.setVerticalGroup(
+            pnlJumlahSuaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlJumlahSuaraLayout.createSequentialGroup()
+                .addComponent(lblJumlahSuara, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        add(pnlJumlahSuara, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 260, 40));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 160));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblJumlahSuara;
     private javax.swing.JLabel lblNamaKandidat;
     private javax.swing.JLabel lblNomorKandidat;
+    private javax.swing.JPanel pnlJumlahSuara;
+    private javax.swing.JPanel pnlNamaKandidat;
     // End of variables declaration//GEN-END:variables
 }

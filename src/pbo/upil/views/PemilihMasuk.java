@@ -12,6 +12,8 @@ import pbo.upil.koneksi.Koneksi;
  */
 public class PemilihMasuk extends javax.swing.JFrame {
     private static PemilihMasuk pemilihMasuk;
+    private int mouseX;
+    private int mouseY;
     /**
      * Creates new form Elector
      */
@@ -28,7 +30,8 @@ public class PemilihMasuk extends javax.swing.JFrame {
     
     public void clearText() {
         txtNim.setText("");
-        txtNim.setText("");
+        txtNama.setText("");
+        txtNim.requestFocus();
     }
 
     /**
@@ -190,6 +193,16 @@ public class PemilihMasuk extends javax.swing.JFrame {
         bg.setForeground(new java.awt.Color(250, 248, 240));
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/login v.2.png"))); // NOI18N
         bg.setFocusable(false);
+        bg.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bgMouseDragged(evt);
+            }
+        });
+        bg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                bgMousePressed(evt);
+            }
+        });
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
@@ -235,7 +248,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
     }//GEN-LAST:event_minimizeMouseExited
 
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
-        // TODO add your handling code here:
+        btnMasukActionPerformed(evt);
     }//GEN-LAST:event_txtNamaActionPerformed
 
     private void btnSelesaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelesaiMouseEntered
@@ -282,8 +295,19 @@ public class PemilihMasuk extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void txtNimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNimActionPerformed
-        // TODO add your handling code here:
+        btnMasukActionPerformed(evt);
     }//GEN-LAST:event_txtNimActionPerformed
+
+    private void bgMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_bgMouseDragged
+
+    private void bgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_bgMousePressed
 
     /**
      * @param args the command line arguments

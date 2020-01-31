@@ -19,6 +19,8 @@ public class TambahKandidat extends javax.swing.JDialog {
     private static TambahKandidat tambahKandidat;
     private static java.awt.Frame parent;
     private static boolean modal;
+    private int mouseX;
+    private int mouseY;
     /**
      * Creates new form TambahKandidat
      */
@@ -34,6 +36,12 @@ public class TambahKandidat extends javax.swing.JDialog {
             tambahKandidat = new TambahKandidat(parent, modal);
         }
         return tambahKandidat;
+    }
+    
+    public void clearText() {
+        txtNomorKandidat.setText("");
+        txtNamaKandidat.setText("");
+        txtNomorKandidat.requestFocus();
     }
 
     public JTextField getTxtNamaKandidat() {
@@ -69,6 +77,16 @@ public class TambahKandidat extends javax.swing.JDialog {
         setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(250, 248, 240));
+        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel3MouseDragged(evt);
+            }
+        });
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel3MousePressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -266,12 +284,11 @@ public class TambahKandidat extends javax.swing.JDialog {
         } else if (this.txtNamaKandidat.getText().length() > 50) {
             JOptionPane.showMessageDialog(this, "Nama tidak boleh lebih dari 50 karakter.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         } else {
-            String sql = "INSERT INTO kandidat (nama) VALUES (?)";
+            String sql = "INSERT INTO kandidat (no_kandidat, nama) VALUES (?, ?)";
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-                //ps.setInt(1, Integer.parseInt(txtNomorKandidat.getText()));
-                //ps.setString(2, txtNamaKandidat.getText());
-                ps.setString(1, txtNamaKandidat.getText());
+                ps.setString(1, txtNomorKandidat.getText());
+                ps.setString(2, txtNamaKandidat.getText());
                 ps.executeUpdate();
                 ps.close();
                 JOptionPane.showMessageDialog(this, "Berhasil menyimpan.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
@@ -295,6 +312,18 @@ public class TambahKandidat extends javax.swing.JDialog {
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_jPanel3MouseDragged
+
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_jPanel3MousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnOk;

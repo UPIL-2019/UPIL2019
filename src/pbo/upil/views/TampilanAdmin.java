@@ -17,18 +17,10 @@ import pbo.upil.koneksi.Koneksi;
 public class TampilanAdmin extends javax.swing.JFrame {
     private static TampilanAdmin tampilanAdmin;
     private DefaultTableModel tableModel;
-//    private TableKandidatModel tableModel;
-//    private KandidatModel model;
-//    private KandidatController controller;
+    private int mouseX;
+    private int mouseY;
     private TampilanAdmin() {
-//        tableModel = new TableKandidatModel();
-//        model = new KandidatModel();
-//        model.setListener(this);
-//        controller = new KandidatController();
-//        controller.setModel(model);
         initComponents();
-//        tableKandidat.getSelectionModel().addListSelectionListener(this);
-//        tableKandidat.setModel(tableModel);
     }
     
     public static TampilanAdmin getInstance() {
@@ -68,6 +60,12 @@ public class TampilanAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlBack = new javax.swing.JPanel();
+        lblBack = new javax.swing.JLabel();
+        pnlMinimize = new javax.swing.JPanel();
+        lblMinimize = new javax.swing.JLabel();
+        pnlExit = new javax.swing.JPanel();
+        lblExit = new javax.swing.JLabel();
         btnUbah = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
@@ -76,12 +74,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnLihatMisi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKandidat = new javax.swing.JTable();
-        pnlExit = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        pnlMinimize = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        pnlBack = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,6 +84,72 @@ public class TampilanAdmin extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlBack.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBack.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblBack.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        lblBack.setForeground(new java.awt.Color(153, 153, 153));
+        lblBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBack.setText("<");
+        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBackMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBackMouseExited(evt);
+            }
+        });
+        pnlBack.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, -1));
+
+        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, -1, -1));
+
+        pnlMinimize.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMinimize.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblMinimize.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        lblMinimize.setForeground(new java.awt.Color(153, 153, 153));
+        lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMinimize.setText("_");
+        lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseExited(evt);
+            }
+        });
+        pnlMinimize.add(lblMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, -1));
+
+        getContentPane().add(pnlMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, -1, -1));
+
+        pnlExit.setBackground(new java.awt.Color(255, 255, 255));
+        pnlExit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblExit.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
+        lblExit.setForeground(new java.awt.Color(109, 109, 109));
+        lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExit.setText("x");
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblExitMouseExited(evt);
+            }
+        });
+        pnlExit.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, -1));
+
+        getContentPane().add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, -1, -1));
 
         btnUbah.setBackground(new java.awt.Color(255, 255, 255));
         btnUbah.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -220,8 +278,17 @@ public class TampilanAdmin extends javax.swing.JFrame {
             new String [] {
                 "No Kandidat", "Nama"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tableKandidat.setFocusable(false);
+        tableKandidat.getTableHeader().setReorderingAllowed(false);
         tableKandidat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableKandidatMouseClicked(evt);
@@ -231,107 +298,24 @@ public class TampilanAdmin extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tableKandidat);
+        if (tableKandidat.getColumnModel().getColumnCount() > 0) {
+            tableKandidat.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 410, 230));
 
-        pnlExit.setBackground(new java.awt.Color(250, 248, 240));
-
-        jLabel4.setBackground(new java.awt.Color(255, 102, 102));
-        jLabel4.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(109, 109, 109));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("x");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlExitLayout = new javax.swing.GroupLayout(pnlExit);
-        pnlExit.setLayout(pnlExitLayout);
-        pnlExitLayout.setHorizontalGroup(
-            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-        pnlExitLayout.setVerticalGroup(
-            pnlExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 30, -1));
-
-        pnlMinimize.setBackground(new java.awt.Color(250, 248, 240));
-
-        jLabel6.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("_");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel6MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlMinimizeLayout = new javax.swing.GroupLayout(pnlMinimize);
-        pnlMinimize.setLayout(pnlMinimizeLayout);
-        pnlMinimizeLayout.setHorizontalGroup(
-            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pnlMinimizeLayout.setVerticalGroup(
-            pnlMinimizeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, 30, -1));
-
-        pnlBack.setBackground(new java.awt.Color(250, 248, 240));
-
-        jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("<");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel7MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel7MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
-        pnlBack.setLayout(pnlBackLayout);
-        pnlBackLayout.setHorizontalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-        pnlBackLayout.setVerticalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBackLayout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(pnlBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 30, -1));
-
         jLabel2.setBackground(new java.awt.Color(250, 248, 240));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Frame.png"))); // NOI18N
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel2MouseDragged(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
@@ -347,6 +331,7 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahMouseExited
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        TambahKandidat.getInstance(this, true).clearText();
         TambahKandidat.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -386,17 +371,20 @@ public class TampilanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHasilMouseExited
 
     private void btnHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHasilActionPerformed
-        LihatHasil.getInstance().refreshPnlKandidat();
+        this.setVisible(false);
         LihatHasil.getInstance().setVisible(true);
+        LihatHasil.getInstance().refreshPnlKandidat();
     }//GEN-LAST:event_btnHasilActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
             btnLihatVisi.setEnabled(false);
             btnLihatMisi.setEnabled(false);
         } else {
             btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
             btnLihatVisi.setEnabled(true);
             btnLihatMisi.setEnabled(true);
         }
@@ -405,10 +393,12 @@ public class TampilanAdmin extends javax.swing.JFrame {
     private void tableKandidatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseEntered
         if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
             btnLihatVisi.setEnabled(false);
             btnLihatMisi.setEnabled(false);
         } else {
             btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
             btnLihatVisi.setEnabled(true);
             btnLihatMisi.setEnabled(true);
         }
@@ -417,42 +407,16 @@ public class TampilanAdmin extends javax.swing.JFrame {
     private void tableKandidatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseClicked
         if (tableKandidat.getSelectedRow() < 0) {
             btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
             btnLihatVisi.setEnabled(false);
             btnLihatMisi.setEnabled(false);
         } else {
             btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
             btnLihatVisi.setEnabled(true);
             btnLihatMisi.setEnabled(true);
         }
     }//GEN-LAST:event_tableKandidatMouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        pnlExit.setBackground(new java.awt.Color(153,153,153));
-        
-    }//GEN-LAST:event_jLabel4MouseEntered
-
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-        pnlExit.setBackground(new java.awt.Color(250,248,240));
-        jLabel4.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_jLabel4MouseExited
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        this.setState(Frame.ICONIFIED);
-    }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
-        pnlMinimize.setBackground(new java.awt.Color(153,153,153));
-        jLabel4.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_jLabel6MouseEntered
-
-    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
-        pnlMinimize.setBackground(new java.awt.Color(250,248,240));
-        jLabel4.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_jLabel6MouseExited
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         UbahKandidat.getInstance(this, true).getTxtNomorKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
@@ -493,20 +457,58 @@ public class TampilanAdmin extends javax.swing.JFrame {
         LihatMisi.getInstance().refreshTable();
     }//GEN-LAST:event_btnLihatMisiActionPerformed
 
-    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
-        pnlBack.setBackground(new java.awt.Color(250,248,240));
-        jLabel7.setForeground(new java.awt.Color(153,153,153));
-    }//GEN-LAST:event_jLabel7MouseExited
-
-    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
-        pnlBack.setBackground(new java.awt.Color(153,153,153));
-        jLabel7.setForeground(new java.awt.Color(0,0,0));
-    }//GEN-LAST:event_jLabel7MouseEntered
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
         this.setVisible(false);
-        AdminMasuk.getInstance().setVisible(true);        
-    }//GEN-LAST:event_jLabel7MouseClicked
+        TanyaPengguna.getInstance().setVisible(true);
+    }//GEN-LAST:event_lblBackMouseClicked
+
+    private void lblBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseEntered
+        pnlBack.setBackground(new java.awt.Color(153,153,153));
+        lblBack.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_lblBackMouseEntered
+
+    private void lblBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseExited
+        pnlBack.setBackground(new java.awt.Color(255,255,255));
+        lblBack.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblBackMouseExited
+
+    private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizeMouseClicked
+
+    private void lblMinimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseEntered
+        pnlMinimize.setBackground(new java.awt.Color(153,153,153));
+        lblMinimize.setForeground(new java.awt.Color(0,0,0));
+    }//GEN-LAST:event_lblMinimizeMouseEntered
+
+    private void lblMinimizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseExited
+        pnlMinimize.setBackground(new java.awt.Color(255,255,255));
+        lblMinimize.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblMinimizeMouseExited
+
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblExitMouseClicked
+
+    private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered
+        pnlExit.setBackground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblExitMouseEntered
+
+    private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
+        pnlExit.setBackground(new java.awt.Color(255,255,255));
+        lblExit.setForeground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_lblExitMouseExited
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_jLabel2MouseDragged
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_jLabel2MousePressed
     /**
      * @param args the command line arguments
      */
@@ -552,10 +554,10 @@ public class TampilanAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBack;
+    private javax.swing.JLabel lblExit;
+    private javax.swing.JLabel lblMinimize;
     private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlExit;
     private javax.swing.JPanel pnlMinimize;

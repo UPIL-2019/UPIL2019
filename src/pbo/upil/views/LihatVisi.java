@@ -22,6 +22,8 @@ public class LihatVisi extends javax.swing.JFrame {
     private static LihatVisi lihatVisi;
     private DefaultTableModel tableModel;
     private Integer nomorKandidat;
+    private int mouseX;
+    private int mouseY;
 
     /**
      * Creates new form LihatVisi
@@ -85,6 +87,11 @@ public class LihatVisi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -107,12 +114,18 @@ public class LihatVisi extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableVisi.getTableHeader().setReorderingAllowed(false);
         tableVisi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableVisiMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tableVisi);
+        if (tableVisi.getColumnModel().getColumnCount() > 0) {
+            tableVisi.getColumnModel().getColumn(0).setMinWidth(0);
+            tableVisi.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableVisi.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 230));
 
@@ -198,6 +211,16 @@ public class LihatVisi extends javax.swing.JFrame {
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
         bg.setPreferredSize(new java.awt.Dimension(630, 600));
+        bg.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bgMouseDragged(evt);
+            }
+        });
+        bg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                bgMousePressed(evt);
+            }
+        });
         jPanel1.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,6 +273,7 @@ public class LihatVisi extends javax.swing.JFrame {
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         UbahVisi.getInstance(this, true).refreshTextAreaVisi();
+        UbahVisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
         UbahVisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -265,11 +289,18 @@ public class LihatVisi extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         TambahVisi.getInstance(this, true).clearText();
+        TambahVisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
         TambahVisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void tableVisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableVisiMouseClicked
-        // TODO add your handling code here:
+        if (tableVisi.getSelectedRow() < 0) {
+            btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
+        } else {
+            btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
+        }
     }//GEN-LAST:event_tableVisiMouseClicked
 
     private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
@@ -284,6 +315,27 @@ public class LihatVisi extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if (tableVisi.getSelectedRow() < 0) {
+            btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
+        } else {
+            btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void bgMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMouseDragged
+        int koordinatX = evt.getXOnScreen();
+        int koordinatY = evt.getYOnScreen();
+        this.setLocation(koordinatX - mouseX, koordinatY - mouseY);
+    }//GEN-LAST:event_bgMouseDragged
+
+    private void bgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_bgMousePressed
 
     /**
      * @param args the command line arguments
