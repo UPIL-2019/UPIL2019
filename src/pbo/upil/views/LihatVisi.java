@@ -255,12 +255,12 @@ public class LihatVisi extends javax.swing.JFrame {
 
     private void btnTambahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahMouseEntered
         // TODO add your handling code here:
-        btnTambah.setBackground(new java.awt.Color(6,62,97));
+        
     }//GEN-LAST:event_btnTambahMouseEntered
 
     private void btnTambahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahMouseExited
         // TODO add your handling code here:
-        btnTambah.setBackground(new java.awt.Color(49,173,226));
+        
     }//GEN-LAST:event_btnTambahMouseExited
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
