@@ -263,6 +263,7 @@ public class PemilihMasuk extends javax.swing.JFrame {
 
     private void btnSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelesaiActionPerformed
         TanyaPengguna.getInstance().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSelesaiActionPerformed
 
     private void btnMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseEntered

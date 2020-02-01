@@ -6,6 +6,7 @@
 package pbo.upil.views;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -40,10 +41,21 @@ public class UbahKandidat extends javax.swing.JDialog {
         return ubahKandidat;
     }
     
-    public void clearText() {
-        txtNomorKandidat.setText("");
-        txtNamaKandidat.setText("");
-        txtNomorKandidat.requestFocus();
+    public void refreshTxtNamaKandidat() {
+        String sql = "SELECT nama FROM kandidat WHERE no_kandidat = ?";
+        try {
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+            ps.setString(1, txtNomorKandidat.getText());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                txtNamaKandidat.setText(rs.getString("nama"));
+            }
+            ps.close();
+            JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal refresh.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public JTextField getTxtNamaKandidat() {

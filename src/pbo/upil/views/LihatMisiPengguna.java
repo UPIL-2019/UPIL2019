@@ -19,7 +19,7 @@ import pbo.upil.koneksi.Koneksi;
 public class LihatMisiPengguna extends javax.swing.JFrame {
 private static LihatMisiPengguna LihatMisiPengguna;
     private DefaultTableModel tableModel;
-    private Integer nomorKandidat;
+    private String nomorKandidat;
     private int mouseX;
     private int mouseY;
 
@@ -39,12 +39,12 @@ private static LihatMisiPengguna LihatMisiPengguna;
     
     public void refreshTable() {
         String sql = "SELECT teks_misi FROM misi WHERE no_kandidat = ?";
-        nomorKandidat = (Integer) TampilanPemilihan.getInstance().getTableKandidat().getValueAt(TampilanPemilihan.getInstance().getTableKandidat().getSelectedRow(), 0);
+        nomorKandidat = (String) TampilanPemilihan.getInstance().getTableKandidat().getValueAt(TampilanPemilihan.getInstance().getTableKandidat().getSelectedRow(), 0);
         tableModel = (DefaultTableModel) tableMisiPengguna.getModel();
         tableModel.setRowCount(0);
         try {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-            ps.setInt(1, nomorKandidat);
+            ps.setString(1, nomorKandidat);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 tableModel.addRow(new Object[]{rs.getString("teks_misi")});
@@ -57,7 +57,7 @@ private static LihatMisiPengguna LihatMisiPengguna;
         }
     }
     
-    public Integer getNomorKandidat() {
+    public String getNomorKandidat() {
         return nomorKandidat;
     }
     /**

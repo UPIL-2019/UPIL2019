@@ -85,7 +85,6 @@ public class UbahVisi extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtNomorKandidat = new javax.swing.JTextField();
-        btnReset = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -118,26 +117,6 @@ public class UbahVisi extends javax.swing.JDialog {
         });
         jPanel3.add(txtNomorKandidat, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 66, 510, 30));
 
-        btnReset.setBackground(new java.awt.Color(255, 255, 255));
-        btnReset.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnReset.setText("Reset");
-        btnReset.setAlignmentY(1.0F);
-        btnReset.setFocusable(false);
-        btnReset.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnResetMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnResetMouseExited(evt);
-            }
-        });
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 75, -1));
-
         btnOk.setBackground(new java.awt.Color(255, 255, 255));
         btnOk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         btnOk.setText("Ok");
@@ -156,7 +135,7 @@ public class UbahVisi extends javax.swing.JDialog {
                 btnOkActionPerformed(evt);
             }
         });
-        jPanel3.add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 87, -1));
+        jPanel3.add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 80, -1));
 
         btnBatal.setBackground(new java.awt.Color(255, 255, 255));
         btnBatal.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
@@ -211,7 +190,7 @@ public class UbahVisi extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,19 +204,6 @@ public class UbahVisi extends javax.swing.JDialog {
     private void txtNomorKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomorKandidatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomorKandidatActionPerformed
-
-    private void btnResetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetMouseEntered
-
-    private void btnResetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetMouseExited
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        this.txtNomorKandidat.setText("");
-        this.textAreaVisi.setText("");
-    }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
         // TODO add your handling code here:
@@ -338,7 +304,6 @@ public class UbahVisi extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnOk;
-    private javax.swing.JButton btnReset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

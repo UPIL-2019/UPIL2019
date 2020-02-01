@@ -31,6 +31,8 @@ public class LihatHasil extends javax.swing.JFrame {
      */
     private LihatHasil() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+        jScrollPane1.getHorizontalScrollBar().setUnitIncrement(16);
     }
     
     public static LihatHasil getInstance() {
@@ -45,18 +47,18 @@ public class LihatHasil extends javax.swing.JFrame {
         try {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            Integer nomorKandidatTertinggi = 0;
+            String nomorKandidatTertinggi = "";
             String namaKandidatTertinggi = "";
             Integer jumlahSuaraTertinggi = 0;
             ArrayList<String> listKandidatTertinggi = new ArrayList<>();
             while (rs.next()) {
                 KartuHasil kartuHasil = new KartuHasil();
-                kartuHasil.getLblNomorKandidat().setText(Integer.toString(rs.getInt("no_kandidat")));
+                kartuHasil.getLblNomorKandidat().setText(rs.getString("no_kandidat"));
                 kartuHasil.getLblNamaKandidat().setText(rs.getString("nama"));
                 String sql2 = "SELECT * FROM pemilih WHERE no_kandidat = ?";
                 try {
                     PreparedStatement ps2 = Koneksi.getConnection().prepareStatement(sql2);
-                    ps2.setInt(1, rs.getInt("no_kandidat"));
+                    ps2.setString(1, rs.getString("no_kandidat"));
                     ResultSet rs2 = ps2.executeQuery();
                     rs2.last();
                     kartuHasil.getLblJumlahSuara().setText(Integer.toString(rs2.getRow()).concat(" Suara"));
@@ -67,7 +69,7 @@ public class LihatHasil extends javax.swing.JFrame {
                             }
                             listKandidatTertinggi.add(rs.getString("nama"));
                         }
-                        nomorKandidatTertinggi = rs.getInt("no_kandidat");
+                        nomorKandidatTertinggi = rs.getString("no_kandidat");
                         namaKandidatTertinggi = rs.getString("nama");
                         jumlahSuaraTertinggi = rs2.getRow();
                     }
@@ -76,7 +78,7 @@ public class LihatHasil extends javax.swing.JFrame {
                 }
                 pnlKandidat.add(kartuHasil);
             }
-            if (nomorKandidatTertinggi != 0) {
+            if (!(nomorKandidatTertinggi.trim().equals(""))) {
                 if (listKandidatTertinggi.isEmpty()) {
                     lblHasilSuara.setText("Kandidat yang mendapatkan hasil suara tertinggi adalah " + namaKandidatTertinggi + " dengan nomor " + nomorKandidatTertinggi + " dan jumlah suara " + jumlahSuaraTertinggi + ".");
                 } else {

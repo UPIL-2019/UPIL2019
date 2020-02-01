@@ -20,7 +20,7 @@ import pbo.upil.koneksi.Koneksi;
 public class LihatMisi extends javax.swing.JFrame {
     private static LihatMisi LihatMisi;
     private DefaultTableModel tableModel;
-    private Integer nomorKandidat;
+    private String nomorKandidat;
     private Integer idMisi;
     private int mouseX;
     private int mouseY;
@@ -39,12 +39,12 @@ public class LihatMisi extends javax.swing.JFrame {
     
     public void refreshTable() {
         String sql = "SELECT misi.id_misi, misi.teks_misi FROM kandidat, misi WHERE kandidat.no_kandidat = misi.no_kandidat AND kandidat.no_kandidat = ?";
-        nomorKandidat = (Integer) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
+        nomorKandidat = (String) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
         tableModel = (DefaultTableModel) tableMisi.getModel();
         tableModel.setRowCount(0);
         try {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-            ps.setInt(1, nomorKandidat);
+            ps.setString(1, nomorKandidat);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 tableModel.addRow(new Object[]{rs.getInt("misi.id_misi"), rs.getString("misi.teks_misi")});
@@ -57,7 +57,7 @@ public class LihatMisi extends javax.swing.JFrame {
         }
     }
     
-    public Integer getNomorKandidat() {
+    public String getNomorKandidat() {
         return nomorKandidat;
     }
 
@@ -80,7 +80,7 @@ public class LihatMisi extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
-        btnBatal = new javax.swing.JButton();
+        btnTutup = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -187,25 +187,25 @@ public class LihatMisi extends javax.swing.JFrame {
         });
         jPanel1.add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 120, 40));
 
-        btnBatal.setBackground(new java.awt.Color(255, 255, 255));
-        btnBatal.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnBatal.setText("Batal");
-        btnBatal.setAlignmentY(1.0F);
-        btnBatal.setFocusable(false);
-        btnBatal.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTutup.setBackground(new java.awt.Color(255, 255, 255));
+        btnTutup.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnTutup.setText("Tutup");
+        btnTutup.setAlignmentY(1.0F);
+        btnTutup.setFocusable(false);
+        btnTutup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBatalMouseEntered(evt);
+                btnTutupMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBatalMouseExited(evt);
+                btnTutupMouseExited(evt);
             }
         });
-        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+        btnTutup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalActionPerformed(evt);
+                btnTutupActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 110, 40));
+        jPanel1.add(btnTutup, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 110, 40));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
         bg.setPreferredSize(new java.awt.Dimension(630, 600));
@@ -248,7 +248,7 @@ public class LihatMisi extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         TambahMisi.getInstance(this, true).clearText();
-        TambahMisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
+        TambahMisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat);
         TambahMisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -262,7 +262,7 @@ public class LihatMisi extends javax.swing.JFrame {
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         UbahMisi.getInstance(this, true).refreshTextAreaMisi();
-        UbahMisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
+        UbahMisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat);
         UbahMisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -301,18 +301,18 @@ public class LihatMisi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableMisiMouseClicked
 
-    private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
+    private void btnTutupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTutupMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBatalMouseEntered
+    }//GEN-LAST:event_btnTutupMouseEntered
 
-    private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
+    private void btnTutupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTutupMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBatalMouseExited
+    }//GEN-LAST:event_btnTutupMouseExited
 
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+    private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed
         this.setVisible(false);
 
-    }//GEN-LAST:event_btnBatalActionPerformed
+    }//GEN-LAST:event_btnTutupActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (tableMisi.getSelectedRow() < 0) {
@@ -375,9 +375,9 @@ public class LihatMisi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
+    private javax.swing.JButton btnTutup;
     private javax.swing.JButton btnUbah;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

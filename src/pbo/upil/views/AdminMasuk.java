@@ -251,7 +251,6 @@ public class AdminMasuk extends javax.swing.JFrame {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
             ps.setString(1, txtUsername.getText());
             ps.setString(2, String.copyValueOf(txtPassword.getPassword()));
-            System.out.println("tes");
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Login Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);

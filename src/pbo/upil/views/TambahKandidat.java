@@ -5,6 +5,7 @@
  */
 package pbo.upil.views;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -120,14 +121,6 @@ public class TambahKandidat extends javax.swing.JDialog {
         btnReset.setText("Reset");
         btnReset.setAlignmentY(1.0F);
         btnReset.setFocusable(false);
-        btnReset.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnResetMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnResetMouseExited(evt);
-            }
-        });
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -160,14 +153,6 @@ public class TambahKandidat extends javax.swing.JDialog {
         btnBatal.setText("Batal");
         btnBatal.setAlignmentY(1.0F);
         btnBatal.setFocusable(false);
-        btnBatal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBatalMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBatalMouseExited(evt);
-            }
-        });
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalActionPerformed(evt);
@@ -255,17 +240,8 @@ public class TambahKandidat extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaKandidatActionPerformed
 
-    private void btnResetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetMouseEntered
-
-    private void btnResetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetMouseExited
-
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        this.txtNomorKandidat.setText("");
-        this.txtNamaKandidat.setText("");
+        clearText();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
@@ -289,25 +265,22 @@ public class TambahKandidat extends javax.swing.JDialog {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
                 ps.setString(1, txtNomorKandidat.getText());
                 ps.setString(2, txtNamaKandidat.getText());
-                ps.executeUpdate();
+                try {
+                    ps.executeUpdate();
+                } catch (MySQLIntegrityConstraintViolationException sudahAda) {
+                    JOptionPane.showMessageDialog(this, "Nomor kandidat sudah ada.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 ps.close();
                 JOptionPane.showMessageDialog(this, "Berhasil menyimpan.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
+                TampilanAdmin.getInstance().refreshTable();
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
-            TampilanAdmin.getInstance().refreshTable();
         }
     }//GEN-LAST:event_btnOkActionPerformed
-
-    private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBatalMouseEntered
-
-    private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBatalMouseExited
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         this.setVisible(false);
