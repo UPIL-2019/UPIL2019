@@ -21,7 +21,7 @@ import pbo.upil.koneksi.Koneksi;
 public class LihatVisi extends javax.swing.JFrame {
     private static LihatVisi lihatVisi;
     private DefaultTableModel tableModel;
-    private Integer nomorKandidat;
+    private String nomorKandidat;
     private int mouseX;
     private int mouseY;
 
@@ -41,12 +41,12 @@ public class LihatVisi extends javax.swing.JFrame {
     
     public void refreshTable() {
         String sql = "SELECT visi.id_visi, visi.teks_visi FROM kandidat, visi WHERE kandidat.no_kandidat = visi.no_kandidat AND kandidat.no_kandidat = ?";
-        nomorKandidat = (Integer) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
+        nomorKandidat = (String) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
         tableModel = (DefaultTableModel) tableVisi.getModel();
         tableModel.setRowCount(0);
         try {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-            ps.setInt(1, nomorKandidat);
+            ps.setString(1, nomorKandidat);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 tableModel.addRow(new Object[]{rs.getInt("visi.id_visi"), rs.getString("visi.teks_visi")});
@@ -59,7 +59,7 @@ public class LihatVisi extends javax.swing.JFrame {
         }
     }
 
-    public Integer getNomorKandidat() {
+    public String getNomorKandidat() {
         return nomorKandidat;
     }
 
@@ -82,7 +82,7 @@ public class LihatVisi extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
-        btnBatal = new javax.swing.JButton();
+        btnTutup = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -189,25 +189,25 @@ public class LihatVisi extends javax.swing.JFrame {
         });
         jPanel1.add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 120, 40));
 
-        btnBatal.setBackground(new java.awt.Color(255, 255, 255));
-        btnBatal.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        btnBatal.setText("Batal");
-        btnBatal.setAlignmentY(1.0F);
-        btnBatal.setFocusable(false);
-        btnBatal.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTutup.setBackground(new java.awt.Color(255, 255, 255));
+        btnTutup.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        btnTutup.setText("Tutup");
+        btnTutup.setAlignmentY(1.0F);
+        btnTutup.setFocusable(false);
+        btnTutup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBatalMouseEntered(evt);
+                btnTutupMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBatalMouseExited(evt);
+                btnTutupMouseExited(evt);
             }
         });
-        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+        btnTutup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalActionPerformed(evt);
+                btnTutupActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 110, 40));
+        jPanel1.add(btnTutup, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 110, 40));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/upil/media/Dialog.png"))); // NOI18N
         bg.setPreferredSize(new java.awt.Dimension(630, 600));
@@ -272,8 +272,8 @@ public class LihatVisi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahMouseExited
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        UbahVisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat);
         UbahVisi.getInstance(this, true).refreshTextAreaVisi();
-        UbahVisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
         UbahVisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -289,7 +289,7 @@ public class LihatVisi extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         TambahVisi.getInstance(this, true).clearText();
-        TambahVisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat.toString());
+        TambahVisi.getInstance(this, true).getTxtNomorKandidat().setText(nomorKandidat);
         TambahVisi.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -303,18 +303,18 @@ public class LihatVisi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableVisiMouseClicked
 
-    private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
+    private void btnTutupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTutupMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBatalMouseEntered
+    }//GEN-LAST:event_btnTutupMouseEntered
 
-    private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
+    private void btnTutupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTutupMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBatalMouseExited
+    }//GEN-LAST:event_btnTutupMouseExited
 
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+    private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed
         this.setVisible(false);
         
-    }//GEN-LAST:event_btnBatalActionPerformed
+    }//GEN-LAST:event_btnTutupActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (tableVisi.getSelectedRow() < 0) {
@@ -377,9 +377,9 @@ public class LihatVisi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
+    private javax.swing.JButton btnTutup;
     private javax.swing.JButton btnUbah;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

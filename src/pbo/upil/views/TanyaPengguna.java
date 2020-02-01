@@ -198,7 +198,6 @@ public class TanyaPengguna extends javax.swing.JFrame {
     private void btnPemilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPemilihActionPerformed
         this.setVisible(false);
         PemilihMasuk.getInstance().setVisible(true);
-
     }//GEN-LAST:event_btnPemilihActionPerformed
 
     private void btnPemilihMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPemilihMouseExited

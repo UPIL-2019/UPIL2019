@@ -46,7 +46,7 @@ public class TambahVisi extends javax.swing.JDialog {
     public void clearText() {
         txtNomorKandidat.setText("");
         textAreaVisi.setText("");
-        txtNomorKandidat.requestFocus();
+        textAreaVisi.requestFocus();
     }
 
     /**
@@ -210,18 +210,15 @@ public class TambahVisi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnResetMouseExited
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        this.txtNomorKandidat.setText("");
-        this.textAreaVisi.setText("");
+        clearText();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
-        // TODO add your handling code here:
-        btnOk.setBackground(new java.awt.Color(6,62,97));
+
     }//GEN-LAST:event_btnOkMouseEntered
 
     private void btnOkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseExited
-        // TODO add your handling code here:
-        btnOk.setBackground(new java.awt.Color(49,173,226));
+
     }//GEN-LAST:event_btnOkMouseExited
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
@@ -231,7 +228,7 @@ public class TambahVisi extends javax.swing.JDialog {
         } else {
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-                ps.setInt(1, LihatVisi.getInstance().getNomorKandidat());
+                ps.setString(1, LihatVisi.getInstance().getNomorKandidat());
                 ps.setString(2, textAreaVisi.getText());
                 ps.executeUpdate();
                 ps.close();

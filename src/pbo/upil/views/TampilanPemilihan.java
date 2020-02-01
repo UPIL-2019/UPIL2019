@@ -42,7 +42,7 @@ public class TampilanPemilihan extends javax.swing.JFrame {
             Statement st = Koneksi.getConnection().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getInt("no_kandidat"), rs.getString("nama")});
+                tableModel.addRow(new Object[]{rs.getString("no_kandidat"), rs.getString("nama")});
             }
             st.close();
             JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -324,7 +324,7 @@ public class TampilanPemilihan extends javax.swing.JFrame {
         String sql = "UPDATE pemilih SET no_kandidat = ? WHERE nim = ?";
         try {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
-            ps.setInt(1, (Integer) tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0));
+            ps.setString(1, (String) tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0));
             ps.setString(2, nim);
             ps.executeUpdate();
             ps.close();
@@ -397,7 +397,13 @@ public class TampilanPemilihan extends javax.swing.JFrame {
     }//GEN-LAST:event_tableKandidatAncestorMoved1
 
     private void tableKandidatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKandidatMouseClicked
-
+        if (tableKandidat.getSelectedRow() < 0) {
+            btnLihatVisi.setEnabled(false);
+            btnLihatMisi.setEnabled(false);
+        } else {
+            btnLihatVisi.setEnabled(true);
+            btnLihatMisi.setEnabled(true);
+        }
     }//GEN-LAST:event_tableKandidatMouseClicked
 
     private void btnLihatVisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseEntered

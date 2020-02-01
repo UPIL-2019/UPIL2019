@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2020 at 03:57 AM
+-- Generation Time: Feb 01, 2020 at 05:27 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `kandidat` (
-  `no_kandidat` int(2) NOT NULL,
+  `no_kandidat` varchar(2) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -52,7 +52,7 @@ CREATE TABLE `kandidat` (
 
 CREATE TABLE `misi` (
   `id_misi` int(3) NOT NULL,
-  `no_kandidat` int(2) DEFAULT NULL,
+  `no_kandidat` varchar(2) DEFAULT NULL,
   `teks_misi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -64,7 +64,7 @@ CREATE TABLE `misi` (
 
 CREATE TABLE `pemilih` (
   `nim` varchar(15) NOT NULL,
-  `no_kandidat` int(2) DEFAULT NULL,
+  `no_kandidat` varchar(2) DEFAULT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -76,7 +76,7 @@ CREATE TABLE `pemilih` (
 
 CREATE TABLE `visi` (
   `id_visi` int(3) NOT NULL,
-  `no_kandidat` int(2) DEFAULT NULL,
+  `no_kandidat` varchar(2) DEFAULT NULL,
   `teks_visi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -123,22 +123,16 @@ ALTER TABLE `visi`
 --
 
 --
--- AUTO_INCREMENT for table `kandidat`
---
-ALTER TABLE `kandidat`
-  MODIFY `no_kandidat` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `misi`
 --
 ALTER TABLE `misi`
-  MODIFY `id_misi` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_misi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `visi`
 --
 ALTER TABLE `visi`
-  MODIFY `id_visi` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_visi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

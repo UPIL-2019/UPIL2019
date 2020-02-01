@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -39,16 +41,16 @@ public class TampilanAdmin extends javax.swing.JFrame {
         tableModel = (DefaultTableModel) tableKandidat.getModel();
         tableModel.setRowCount(0);
         try {
-            Statement st = Koneksi.getConnection().createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                tableModel.addRow(new Object[]{rs.getInt("no_kandidat"), rs.getString("nama")});
+                tableModel.addRow(new String[]{rs.getString("no_kandidat"), rs.getString("nama")});
             }
-            st.close();
-            JOptionPane.showMessageDialog(this, "Refresh Berhasil", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            ps.close();
+            JOptionPane.showMessageDialog(this, "Refresh berhasil.", "Sukses", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal Menyimpan", "Gagal", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Gagal Refresh", "Gagal", JOptionPane.ERROR_MESSAGE);
         }
     }
     /**
@@ -156,14 +158,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnUbah.setText("Ubah");
         btnUbah.setAlignmentY(1.0F);
         btnUbah.setFocusable(false);
-        btnUbah.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnUbahMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnUbahMouseExited(evt);
-            }
-        });
         btnUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUbahActionPerformed(evt);
@@ -176,14 +170,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnTambah.setText("Tambah");
         btnTambah.setAlignmentY(1.0F);
         btnTambah.setFocusable(false);
-        btnTambah.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnTambahMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnTambahMouseExited(evt);
-            }
-        });
         btnTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTambahActionPerformed(evt);
@@ -196,14 +182,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnHapus.setText("Hapus");
         btnHapus.setAlignmentY(1.0F);
         btnHapus.setFocusable(false);
-        btnHapus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHapusMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnHapusMouseExited(evt);
-            }
-        });
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHapusActionPerformed(evt);
@@ -216,14 +194,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnHasil.setText("Hasil");
         btnHasil.setAlignmentY(1.0F);
         btnHasil.setFocusable(false);
-        btnHasil.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHasilMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnHasilMouseExited(evt);
-            }
-        });
         btnHasil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHasilActionPerformed(evt);
@@ -236,14 +206,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnLihatVisi.setText("Lihat Visi");
         btnLihatVisi.setAlignmentY(1.0F);
         btnLihatVisi.setFocusable(false);
-        btnLihatVisi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLihatVisiMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLihatVisiMouseExited(evt);
-            }
-        });
         btnLihatVisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLihatVisiActionPerformed(evt);
@@ -256,14 +218,6 @@ public class TampilanAdmin extends javax.swing.JFrame {
         btnLihatMisi.setText("Lihat Misi");
         btnLihatMisi.setAlignmentY(1.0F);
         btnLihatMisi.setFocusable(false);
-        btnLihatMisi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLihatMisiMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLihatMisiMouseExited(evt);
-            }
-        });
         btnLihatMisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLihatMisiActionPerformed(evt);
@@ -279,9 +233,16 @@ public class TampilanAdmin extends javax.swing.JFrame {
                 "No Kandidat", "Nama"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -322,38 +283,20 @@ public class TampilanAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTambahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTambahMouseEntered
-
-    private void btnTambahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTambahMouseExited
-
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         TambahKandidat.getInstance(this, true).clearText();
         TambahKandidat.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
-    private void btnHapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHapusMouseEntered
-
-    private void btnHapusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHapusMouseExited
-
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Apakah anda yakin?", "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             String sql = "DELETE FROM kandidat WHERE no_kandidat = ?";
-            //int nomorKandidat = (int) TampilanAdmin.getInstance().getTableKandidat().getValueAt(TampilanAdmin.getInstance().getTableKandidat().getSelectedRow(), 0);
             try {
                 PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);
                 ps.setString(1, tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
                 ps.executeUpdate();
                 ps.close();
                 tableModel.removeRow(tableKandidat.getSelectedRow());
-                //refreshTable();
                 JOptionPane.showMessageDialog(this, "Berhasil menghapus.", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -362,17 +305,9 @@ public class TampilanAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
-    private void btnHasilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHasilMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHasilMouseEntered
-
-    private void btnHasilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHasilMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHasilMouseExited
-
     private void btnHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHasilActionPerformed
-        this.setVisible(false);
         LihatHasil.getInstance().setVisible(true);
+        this.setVisible(false);
         LihatHasil.getInstance().refreshPnlKandidat();
     }//GEN-LAST:event_btnHasilActionPerformed
 
@@ -420,37 +355,14 @@ public class TampilanAdmin extends javax.swing.JFrame {
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         UbahKandidat.getInstance(this, true).getTxtNomorKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 0).toString());
-        UbahKandidat.getInstance(this, true).getTxtNamaKandidat().setText(tableKandidat.getValueAt(tableKandidat.getSelectedRow(), 1).toString());
+        UbahKandidat.getInstance(this, true).refreshTxtNamaKandidat();
         UbahKandidat.getInstance(this, true).setVisible(true);
     }//GEN-LAST:event_btnUbahActionPerformed
-
-    private void btnUbahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUbahMouseExited
-
-    private void btnUbahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseEntered
-    }//GEN-LAST:event_btnUbahMouseEntered
-
-    private void btnLihatVisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLihatVisiMouseEntered
-
-    private void btnLihatVisiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatVisiMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLihatVisiMouseExited
 
     private void btnLihatVisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatVisiActionPerformed
         LihatVisi.getInstance().setVisible(true);
         LihatVisi.getInstance().refreshTable();
     }//GEN-LAST:event_btnLihatVisiActionPerformed
-
-    private void btnLihatMisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatMisiMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLihatMisiMouseEntered
-
-    private void btnLihatMisiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLihatMisiMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLihatMisiMouseExited
 
     private void btnLihatMisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatMisiActionPerformed
         LihatMisi.getInstance().setVisible(true);
