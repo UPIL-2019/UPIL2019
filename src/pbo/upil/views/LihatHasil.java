@@ -43,6 +43,7 @@ public class LihatHasil extends javax.swing.JFrame {
     }
     
     public void refreshPnlKandidat() {
+        pnlKandidat.removeAll();
         String sql = "SELECT * FROM kandidat";
         try {
             PreparedStatement ps = Koneksi.getConnection().prepareStatement(sql);

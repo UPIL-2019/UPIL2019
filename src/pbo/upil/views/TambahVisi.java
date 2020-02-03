@@ -155,7 +155,7 @@ public class TambahVisi extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Misi");
+        jLabel8.setText("Visi");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 139, 450, -1));
 
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 10)); // NOI18N
